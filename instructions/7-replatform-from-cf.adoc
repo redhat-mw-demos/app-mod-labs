@@ -1,0 +1,1 @@
+Next link:./8-replatform-from-kubernetes.adoc[Step 8]

@@ -1,1 +1,0 @@
-Next link:./10-closing.adoc[Step 10]

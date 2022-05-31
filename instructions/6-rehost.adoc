@@ -1,1 +1,0 @@
-Next link:./7-replatform-from-cf.adoc[Step 7]

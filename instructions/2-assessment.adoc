@@ -1,4 +1,4 @@
-== Assessment
+= Assessment
 
 To start the assessment of these applications we will use the Tackle
 Application Assessment tool. We can use the tools within the Konveyor community to move our
@@ -94,4 +94,4 @@ need to dig deeper into the legacy customers application to check what
 the problem is with the config library and how to remove it. To do this
 we will use the analysis module of Tacke.
 
-Next link:./3-analyze.adoc[Analyze]
+➡️ Next section: link:./3-analyze.adoc[3 - Analyze]

@@ -1,4 +1,4 @@
-== Refactor application code
+= Refactor application code
 
 //TODO: Validate these steps
 
@@ -40,5 +40,4 @@ image::../images/issue-side-by-side.png[Issue side by side]
 
 Once the code changes are made. we would need to have the deployment manifests to have the application running in Kubernetes, along with the image required for this type of application.  That is something that the MOve2Kube project can infer right from the source code.
 
-
-Next link:./5-deploy-to-kubernetes.adoc[Step 5 deploy to kubernetes]
+➡️ Next section: link:./5-rehost.adoc[5 - Rehost]

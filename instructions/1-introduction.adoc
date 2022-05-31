@@ -161,4 +161,4 @@ curl http://169.60.225.219:8080/customers/customers/2
 {"id":2,"username":"hate_guybrush","name":"Pirate","surname":"Lechuck","address":"Caverns of Meat, no number","zipCode":"MO-666","city":"Giant Monkey Head","country":"Monkey Island"}
 ----
 
-Next link:./2-assessment.adoc[Assessment]
+➡️ Next section: link:./2-assessment.adoc[2 - Assessment]

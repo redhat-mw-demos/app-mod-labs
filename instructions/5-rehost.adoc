@@ -1,0 +1,3 @@
+= Rehost
+
+➡️ Next section: link:./6-deploy-to-kubernetes.adoc[6 - Deploy to Kubernetes]

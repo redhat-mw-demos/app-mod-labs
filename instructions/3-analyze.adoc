@@ -1,4 +1,4 @@
-== Analyze application code
+= Analyze application code
 
 To perform an analysis of the application code, we will use the Tackle
 Application Assessment tool
@@ -130,4 +130,4 @@ image::../images/report-code.png[report code]
 
 // TODO: How to switch to the IDE?
 
-Next link:./4-refactor.adoc[Step 4- Refactor]
+➡️ Next section: link:./4-refactor.adoc[4 - Refactor]

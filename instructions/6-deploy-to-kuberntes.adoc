@@ -1,0 +1,3 @@
+= Deploy to Kubernetes
+
+➡️ Next section: link:./7-replatform-from-kubernetes.adoc[7 - Replatform from Kubernetes]

@@ -1,7 +1,11 @@
 == Assessment
 
 To start the assessment of these applications we will use the Tackle
-Application Assessment tool.
+Application Assessment tool. We can use the tools within the Konveyor community to move our
+applications. We will use Tackle to assess and analyze the tomcat
+application, rehost the database into KubeVirt, migrate Spring Boot to
+Kubernetes, and refactor the Angular app to leverage the GitOps model
+properly on Kubernetes.
 
 image::../images/application-inventory.png[application inventory]
 

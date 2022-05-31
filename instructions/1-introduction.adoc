@@ -19,7 +19,7 @@ This demo will walk you thorough 2 phases (_Assess_, _Rationalize_) as following
 
 Your initial demo environment has the whole microservices applications deployed and working.
 
-image::../images/architecture_initial.png[width=100%]
+image::../images/architecture_initial.png[architecture_initial]
 
 Your initial state for this demo is an environment that is spread over Red Hat Virtualization and Red Hat OpenShift Container Platform.
 
@@ -38,7 +38,7 @@ The problem right now is the customers service:
 
 When you have finished this demonstration your deployment architecture should look like this:
 
-image::../images/architecture_completed.png[width=100%]
+image::../images/architecture_completed.png[architecture_completed]
 
 == OpenShift Configuration
 
@@ -71,7 +71,7 @@ This makes it easy to change any source code (or configuration files) in the clo
 
 The URL and password for the VSCode Server can be found in the provisioning e-mail.
 
-image::../images/vscode.png[100%]
+image::../images/vscode.png[VSCode]
 
 [NOTE]
 You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHV.
@@ -96,7 +96,7 @@ ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.co
 
 . Navigate to the orders frontend route. You can use either https or http (which will be redirected to http).
 +
-image::../images/frontend.png[width=80%]
+image::../images/frontend.png[Frontend]
 
 . Click through the three panels on the left.
 .. Customer doesn't work (bug in the code)
@@ -116,7 +116,7 @@ You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the O
 .. *Host*: `<from the e-mail>`
 .. *Database*: `XEPDB1`
 .. *Username*: `customer`
-.. *Password*: `<from the e-mail>`
+.. *Password*: `redhat`
 . Click *Test Connection ...*. You should see a success message.
 . Click *Finish*
 
@@ -126,6 +126,8 @@ Next you can show the contents of the database:
 . Expand *CUSTOMER* then expand *Tables*
 . Double click on *CUSTOMERS* under *Tables*
 . On the right you can show the table properties (first tab) and table properties (*Data* tab)
+
+image::../images/customer-dbms.png[Connect using DBeaver]
 
 === Demo the Customer Application deployed on Tomcat
 
@@ -137,13 +139,13 @@ From a terminal window you can use `curl` to demonstrate that the application is
 +
 [source,sh]
 ----
-curl http://169.60.225.219:8080/customers/customers/1
+curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers/customers/1
 ----
 +
 .Sample Output
 [source,texinfo]
 ----
-{"id":1,"username":"phlegm_master_19","name":"Guybrush","surname":"Threepwood","address":"1060 West Addison","zipCode":"ME-001","city":"Melee Town","country":"Melee Island"}%
+{"id":1,"username":"phlegm_master_19","name":"Guybrush","surname":"Threepwood","address":"1060 West Addison","zipCode":"ME-001","city":"Melee Town","country":"Melee Island"}
 ----
 
 . Try another customer

@@ -21,7 +21,7 @@ Your initial demo environment has the whole microservices applications deployed 
 
 image::../images/architecture_initial.png[width=100%]
 
-Your initial state for this demo is an environment that is spread over Red Hat Enterprise Virtualization and Red Hat OpenShift Container Platform.
+Your initial state for this demo is an environment that is spread over Red Hat Virtualization and Red Hat OpenShift Container Platform.
 
 Your application has been partially already moved from your legacy environments to OpenShift.
 
@@ -33,8 +33,8 @@ All source code for the applications as well as the GitOps YAML manifests for al
 
 The problem right now is the customers service:
 
-* The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Enterprise Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat Web Server.
-* The customers database is using an Oracle 21c database running as a VM in Red Hat Enterprise Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
+* The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat Web Server.
+* The customers database is using an Oracle 21c database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
 
 When you have finished this demonstration your deployment architecture should look like this:
 
@@ -50,7 +50,7 @@ Your OpenShift cluster is already configured with everything you need. Here are 
 * The following operators have been installed and configured:
 ** Gitea (to host the source code repositories)
 ** OpenShift Virtualization (to ultimately run the migrated Oracle VM)
-** Migration Toolkit for Virtualization (to facilitate the migration of the Oracle VM from Red Hat Enterprise Virtualization to Red Hat OpenShift Container Platform)
+** Migration Toolkit for Virtualization (to facilitate the migration of the Oracle VM from Red Hat Virtualization to Red Hat OpenShift Container Platform)
 ** OpenShift GitOps: to manage the deployed services using a GitOps approach through ArgoCD
 ** OpenShift Pipelines: to build the customer application from source code and deploy to the `retail` project using GitOps
 ** Migration Toolkit for Applications (Tackle): to help modernize the customer service Java source code.
@@ -74,7 +74,7 @@ The URL and password for the VSCode Server can be found in the provisioning e-ma
 image::../images/vscode.png[100%]
 
 [NOTE]
-You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHEV.
+You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHV.
 
 == Demonstrating the Application
 
@@ -107,7 +107,7 @@ image::../images/frontend.png[width=80%]
 
 === Connect using DBeaver
 
-You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the Oracle database on Red Hat Virtualization (RHEV).
+You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the Oracle database on Red Hat Virtualization (RHV).
 
 . Launch *DBeaver*
 . Right click the *Database Navigator* Panel and select *Create* -> *Connection*
@@ -129,7 +129,7 @@ Next you can show the contents of the database:
 
 === Demo the Customer Application deployed on Tomcat
 
-The RHEV environment not only has the Oracle Database VM deployed but it also hosts another VM which runs the old customer application on top of Apache Tomcat.
+The RHV environment not only has the Oracle Database VM deployed but it also hosts another VM which runs the old customer application on top of Apache Tomcat.
 
 From a terminal window you can use `curl` to demonstrate that the application is connected to the database.
 

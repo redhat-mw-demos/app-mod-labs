@@ -2,7 +2,14 @@
 
 # Demonstrating App Modernization with Customers
 
-This demo aims to showcase how to modernize existing applications for solving the customers' challenges in terms of scalability, reliability, security, developer experience, and Kubernetes deployments. Take a look at the [Konveyor Community’s Application Modernization Report for 2022](https://www.konveyor.io/modernization-report/) to understand how users and organizations define application modernization as well as top reasons for modernization.
+This demo aims to showcase how to modernize applications for solving the challenges faced by existing applications in the current landscape as below:
+
+* **Integration**: Challenging to leverage new cloud based services
+* **Scalability**: Not able to meet web scale due to data-centric architecture
+* **Reliability**: Unable to quickly deploy new capabilities
+* **Developer productivity and Business Agility**: Often low in comparison to cloud native applications
+
+Take a look at the [Konveyor Community’s Application Modernization Report for 2022](https://www.konveyor.io/modernization-report/) to understand how users and organizations define application modernization as well as top reasons for modernization.
 
 ![App Mod Report 2022](images/app-mod-report-2022.png)
 

@@ -1,8 +1,9 @@
-== Introduction
+= Introduction
 
-We created Konveyor to help you more easily modernize your applications
-to Kubernetes. IN this workshop we’ll guide you through an entire app
-modernization scenario using tools provider by the Konveyor project.
+Application modernization strategies are often categorized into the `6R`’s framework that was popularized by Amazon (and prior the 5Rs by Gartner). Here is what they mean.
+
+image::../images/mod-strategies.png[Modernization Strategies]
+
 
 === About Konveyor
 

@@ -248,5 +248,4 @@ Go to `Report` on the left menu, you will find out the report details such as _C
 
 image::../images/report-review.png[report-review]
 
-
 ➡️ Next section: link:./3-analyze.adoc[3 - Analyze]

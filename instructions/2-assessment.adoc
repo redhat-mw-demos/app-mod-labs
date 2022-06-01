@@ -240,12 +240,13 @@ Click on `Submit Review`.
 
 image::../images/submit-review.png[submit-review]
 
-Now that we’ve completed the initial assessment we can see that we will need to dig deeper into the legacy customers application to check what the problem is with the config library and how to remove it. To do this we will use the https://developers.redhat.com/products/mta/overview[Migration Toolkit for Applications^].
+Now that we’ve completed the initial assessment we can see that we will need to dig deeper into the legacy customers application to check what the problem is with the config library and how to remove it. To do this we will use the https://developers.redhat.com/products/mta/overview[Migration Toolkit for Applications^] in the next section.
 
 image::../images/complete-review.png[complete-review]
 
 Go to `Report` on the left menu, you will find out the report details such as _Current landscape_, _Suggested adoption plan_, and _Identified risks_.
 
 image::../images/report-review.png[report-review]
+
 
 ➡️ Next section: link:./3-analyze.adoc[3 - Analyze]

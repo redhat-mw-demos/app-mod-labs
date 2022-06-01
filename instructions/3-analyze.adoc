@@ -1,7 +1,5 @@
 = Analyze application code
 
-== What is Migration Toolkit for Applications?
-
 image::../images/mta-logo.png[mta-logo]
 
 Migration Toolkit for Applications (MTA) is an extensible and customizable rule-based tool that helps simplify migration of Java applications.

@@ -1,97 +1,251 @@
 = Assessment
 
-To start the assessment of these applications we will use the Tackle
-Application Assessment tool. We can use the tools within the Konveyor community to move our
-applications. We will use Tackle to assess and analyze the tomcat
-application, rehost the database into KubeVirt, migrate Spring Boot to
-Kubernetes, and refactor the Angular app to leverage the GitOps model
-properly on Kubernetes.
+To start the assessment of the existing applications we will use the https://www.konveyor.io/tools/tackle[Tackle^] Application Assessment tool in the https://www.konveyor.io[Konveyor^] community to move our applications. We will use _Tackle_ to assess the `Customers` service based on the _Tomcat_ server on Red Hat Virtualization.
+
+Open a new browser to access the Tackle web console that is provided from the e-mail. Use the following credential.
+
+* Username or email: `tackle`
+* Password: `password`
+
+image::../images/tackle-login.png[Tackle Login]
+
+You will see _no applications available_ in the `Application inventory`.
 
 image::../images/application-inventory.png[application inventory]
 
-The idea behind the application inventory is to allow organizations to
-have a holistic view of their application portfolio and serve as the
-main integration point for all the Tackle tools like the assessment and
-analysis.
+**Tackle Application Inventory** is the vehicle which selects applications for assessment by https://github.com/konveyor/tackle-pathfinder[Pathfinder^] and analysis by https://github.com/windup/[windup^]. It provides users four main functions:
 
-Open the Application Inventory UI using the following url (LINK). You’ll
-notice we’ve already loaded the existing application portfolio on the
-App inventory.
+* Maintain a portfolio of applications.
+* Link applications to the business services they support.
+* Define interdependencies.
+* Add metadata using an extensible tagging model to describe and categorize applications in multiple dimensions.
 
-=== Classification
+**Tackle Pathfinder** is an interactive questionnaire based tool that assesses the suitability of applications for modernization in order to deploy them into containers on an enterprise Kubernetes platform. The tool output includes:
 
-Applications can be classified and grouped in multiple ways, for example
-using the business service. Let’s focus on the Retail applications now.
+* Application’s suitability for Kubernetes
+* Associated risks
+* Adoption plan with the applications’ prioritization, business criticality and dependencies.
 
-*_Click on ``Filter by business service and enter''Retail”_*
+== Controls
 
-image::../images/business-service.png[business service]
+https://github.com/konveyor/tackle-controls[Tackle Controls^] are a collection of entities that add value to Application Inventory and the Pathfinder assessment. They comprise _business services_, _stakeholders_, _stakeholder groups_, _job functions_, _tag types_, and _tags_.
 
-One of the key features of the App Inventory is the extensible tagging
-model that allows to classify applications in multiple dimensions.
+=== Stakeholders
 
-Let’s focus on the legacy application. We have added tags that represent
-its technology, like java, Tomcat and Oracle, and decided to add a
-custom tag type that allows us to identify which custom architecture
-libraries are used by each application.
+Go to `Controls` on the left menu and click on `Create new` in the _Stakeholders_ tab.
 
-*_Expand the legacy customers application._*
+image::../images/tackle-control-stakeholder.png[stakeholders]
 
-Since the legacy application comes from a traditional platform and we
-are aware about some problems with the configuration model, let’s focus
-on this one for the assessment.
+Fill out a new stakeholder information, as below Figure. Then, click on `Create`.
 
-To start the assessment, select the legacy customer application and
-click on ``Assess''.
+image::../images/new-stakeholder.png[new-stakeholder]
 
-First step will be to enter the different stakeholders involved with the
-assessment.
+You can also create the _Stakeholder groups_ to register your team members for the application assessment.
 
-image::../images/stakeholders.png[stakeholders]
+=== Business services
 
-*_Once you’re happy with the stakeholders, click on ``Next''._*
+Applications can be classified and grouped in multiple ways such as **business service**. Let’s create a new business service for the legacy `Retail` applications.
 
-The assessment is driven by a questionnaire, and aims to determine the
-suitability for containerization for a given application. It covers all
-the different areas of the application landscape, including the
-technology, application lifecycle mananagement, and operations.
+Go to `Controls` on the left menu and click on `Create new` in the _Business services_ tab.
 
-These questions allow the tool to identify potential risks that might
-prevent the application from running in containers or would require any
-kind of adjustmanr for that.
+image::../images/tackle-control-business-service.png[business service]
 
-*_Complete the application details questions and click on ``Next''_*
+Fill in the following fields. Then, click on `Create`.
 
-You will be presented with the review screen.
+* Name: `Retail service`
+* Description: `Legacy applications`
+* Owner: `<Your stakeholder>` (_e.g. Daniel Oh_)
+
+image::../images/new-business-service.png[new-stakeholder]
+
+== Application inventory
+
+Let’s focus on the legacy application. We have added tags that represent its technology, like java, Tomcat and Oracle, and decided to add a custom tag type that allows us to identify which custom architecture libraries are used by each application.
+
+=== Create a New Application Inventory
+
+Go to `Application inventory` on the left menu and click on `Create new`.
+
+image::../images/app-inventory-landing.png[app-inventory-landing]
+
+Fill in the following fields. Then, click on `Create`.
+
+* Name: `Customers application`
+* Business service: `Retail service`
+* Tags: `Java`, `Tomcat`, `RHEL 8`, `Oracle`
+
+image::../images/create-new-app-inventory.png[create-new-app-inventory]
+
+=== Expand the Legacy Customers Application
+
+Since the legacy application comes from a traditional platform and we are aware about some problems with the configuration model, let’s focus on this one for the assessment.
+
+To start the assessment, select the customers application. Then, click on `Assess`.
+
+image::../images/app-inventory-access.png[app-inventory-access]
+
+First step will be to enter the different stakeholders (_e.g. Daniel Oh_) involved with the assessment.
+
+image::../images/select-stakeholder.png[select-stakeholder]
+
+Once you’re happy with the stakeholders, click on `Next`.
+
+The assessment is driven by a questionnaire, and aims to determine the suitability for containerization for a given application. It covers all the different areas of the application landscape, including the technology, application lifecycle management, and operations.
+
+These questions allow the tool to identify potential risks that might prevent the application from running in containers or would require any kind of adjustment for that.
+
+==== Application details
+
+Choose the following answers for each question.
+
+* Does the application development team understand and actively develop the application?
+** Actively developed, SME knowledge is available
+
+* How is the application supported in production?
+** Separate internal support team, separate from the development team, with little interaction between the team
+
+* How much time passes from when code is committed until the application is deployed to production?
+** 1-7 days
+
+* How often is the application deployed to production?
+** Weekly
+
+* What is the application's mean time to recover (MTTR) from failure in a production environment?
+** Less than 1 hour
+
+* Does the application have legal and/or licensing requirements?
+** None
+
+* Which model best describes the application architecture?
+** Independently deployable components
+
+Click on `Next`.
+
+image::../images/app-details.png[app-details]
+
+==== Application dependencies
+
+Choose the following answers for each question.
+
+* Does the application require specific hardware?
+** Requires CPU that is supported by Red Hat
+
+* What operating system does the application require?
+** Standard Linux distribution
+
+* Does the vendor provide support for a third-party component running in a container?
+** No third-party components required
+
+* Incoming/northbound dependencies
+** No incoming/northbound dependencies
+
+* Outgoing/southbound dependencies
+** No outgoing/southbound dependencies
+
+Click on `Next`.
+
+image::../images/app-dependencies.png[app-dependencies]
+
+==== Application architecture
+
+Choose the following answers for each question.
+
+* How resilient is the application? How well does it recover from outages and restarts?
+** Application employs resilient architecture patterns (examples: circuit breakers, retry mechanisms)
+
+* How does the external world communicate with the application?
+** HTTP/HTTPS
+
+* How does the application manage its internal state?
+** Stateless or ephemeral container storage
+
+* How does the application handle service discovery?
+** Uses technologies that are not compatible with Kubernetes (examples: hardcoded IP addresses, custom cluster manager)
+
+* How is the application clustering managed?
+** No cluster management required
+
+Click on `Next`.
+
+image::../images/app-architecture.png[app-architecture]
+
+==== Application observability
+
+Choose the following answers for each question.
+
+* How does the application use logging and how are the logs accessed?
+** Logs are forwarded to an external logging system (example: Splunk)
+
+* Does the application provide metrics?
+** Metrics exposed using a third-party solution (examples: Dynatrace, AppDynamics)
+
+* How easy is it to determine the application's health and readiness to handle traffic?
+** Dedicated, independent liveness and readiness endpoints
+
+* What best describes the application's runtime characteristics?
+** Constant traffic with predictable CPU and memory usage
+
+* How long does it take the application to be ready to handle traffic?
+** 10-60 seconds
+
+Click on `Next`.
+
+image::../images/app-observability.png[app-observability]
+
+==== Application cross-cutting concerns
+
+Choose the following answers for each question.
+
+* How is the application tested?
+** Highly repeatable automated testing (examples: unit, integration, smoke tests) before deploying to production; modern test practices are followed
+
+* How is the application configured?
+** Multiple configuration files in multiple file system locations
+
+* How does the application acquire security keys or certificates?
+** Not required
+
+* How is the application deployed?
+** Automated deployment with a full CI/CD pipeline, minimal intervention for promotion through pipeline stages
+
+* Where is the application deployed?
+** Virtual machine (examples: Red Hat Virtualization, VMware)
+
+* How mature is the containerization process, if any?
+** Some experience with containers but not yet fully defined
+
+Click on `Save and review`.
+
+image::../images/app-cross-cutting-concerns.png[app-cross-cutting-concerns]
+
+=== Application Review
+
+You will be presented with the review screen. It allows you to find out which risks were identified during the assessment and decide which migration strategy to follow based on that.
 
 image::../images/review.png[review]
 
-The review screen allows you to find out which risks were identified
-during the assessment and decide which migration strategy to follow
-based on that.
+Scroll down the screen to view the risks. This legacy application uses a discovery mechanism that is not cloud-friendly, which makes sense since it comes from a classic platform and accesses a database through a static IP.
 
-*_Scroll down the screen to view the risks._*
+Now that we know there will be some changes required in the source code to adapt the application, we can decide that the strategy will be `Refactor`.
 
-This legacy application use a discovery mechanism that is not cloud
-friendly, which makes sense since it comes from a classic platform and
-accesses a database though a static IP.
+* Proposed action: `Refactor`
+* Effort estimate: `Small`
 
-*_Sort the risks, highest first_*
+Since this is a key application in the architecture, we’re going to set the criticality and priority to `10`.
 
-Now that we know there will be some changes required in the source code
-to adapt the application, we can decide that the strategy will be
-``Refactor''
+* Business criticality: `10`
+* Work priority: `9`
 
-*_Choose ``Refractor'' as strategy and choose ``Small'' effort._*
+Click on `Submit Review`. 
 
-Since this is a key application in the architecture, we’re going to set
-the criticality and priority to ``10''
+image::../images/submit-review.png[submit-review]
 
-*_Set Criticality and Priority to ``10''_*
+Now that we’ve completed the initial assessment we can see that we will need to dig deeper into the legacy customers application to check what the problem is with the config library and how to remove it. To do this we will use the https://developers.redhat.com/products/mta/overview[Migration Toolkit for Applications^].
 
-Now that we’ve completed the initial assessment we can see that we will
-need to dig deeper into the legacy customers application to check what
-the problem is with the config library and how to remove it. To do this
-we will use the analysis module of Tacke.
+image::../images/complete-review.png[complete-review]
+
+Go to `Report` on the left menu, you will find out the report details such as _Current landscape_, _Suggested adoption plan_, and _Identified risks_.
+
+image::../images/report-review.png[report-review]
 
 ➡️ Next section: link:./3-analyze.adoc[3 - Analyze]

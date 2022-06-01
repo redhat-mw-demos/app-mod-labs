@@ -9,7 +9,7 @@ Open a new browser to access the Tackle web console that is provided from the e-
 
 image::../images/tackle-login.png[Tackle Login]
 
-You will see _no applications available_ in the `Application inventory`.
+You will see existing application inventories such as *Customers*, *Orders*, and *RetailFrontend*.
 
 image::../images/application-inventory.png[application inventory]
 
@@ -32,49 +32,38 @@ https://github.com/konveyor/tackle-controls[Tackle Controls^] are a collection o
 
 === Stakeholders
 
-Go to `Controls` on the left menu and click on `Create new` in the _Stakeholders_ tab.
+Go to `Controls` on the left menu and you will existing _stakeholders_ such as *Hank Scorpio* and *Homer Simpson*.
 
 image::../images/tackle-control-stakeholder.png[stakeholders]
 
-Fill out a new stakeholder information, as below Figure. Then, click on `Create`.
+You can also find the existing _stakeholder groups_ such as *IT Management* and *Retail Management* for the application assessment.
 
-image::../images/new-stakeholder.png[new-stakeholder]
-
-You can also create the _Stakeholder groups_ to register your team members for the application assessment.
+image::../images/stakeholder-groups.png[stakeholder-groups]
 
 === Business services
 
 Applications can be classified and grouped in multiple ways such as **business service**. Let’s create a new business service for the legacy `Retail` applications.
 
-Go to `Controls` on the left menu and click on `Create new` in the _Business services_ tab.
+Go to `Controls` on the left menu and click on _Business services_ tab. You will existing _business services_ such as *Finance and HR* and *Retail*.
 
 image::../images/tackle-control-business-service.png[business service]
-
-Fill in the following fields. Then, click on `Create`.
-
-* Name: `Retail service`
-* Description: `Legacy applications`
-* Owner: `<Your stakeholder>` (_e.g. Daniel Oh_)
-
-image::../images/new-business-service.png[new-stakeholder]
 
 == Application inventory
 
 Let’s focus on the legacy application. We have added tags that represent its technology, like java, Tomcat and Oracle, and decided to add a custom tag type that allows us to identify which custom architecture libraries are used by each application.
 
-=== Create a New Application Inventory
+=== Update the Customers Application Inventory
 
-Go to `Application inventory` on the left menu and click on `Create new`.
+Go to `Application inventory` on the left menu and click on `pencil` icon for the customers inventory.
 
 image::../images/app-inventory-landing.png[app-inventory-landing]
 
-Fill in the following fields. Then, click on `Create`.
+Fill in the following fields. Then, click on `Save`.
 
-* Name: `Customers application`
-* Business service: `Retail service`
+* Business service: `Retail`
 * Tags: `Java`, `Tomcat`, `RHEL 8`, `Oracle`
 
-image::../images/create-new-app-inventory.png[create-new-app-inventory]
+image::../images/update-new-app-inventory.png[update-new-app-inventory]
 
 === Expand the Legacy Customers Application
 
@@ -84,7 +73,10 @@ To start the assessment, select the customers application. Then, click on `Asses
 
 image::../images/app-inventory-access.png[app-inventory-access]
 
-First step will be to enter the different stakeholders (_e.g. Daniel Oh_) involved with the assessment.
+[NOTE]
+You might see `This application has already been assessed. Do you want to continue?` message, then click on `Continue` to make sure that the following answers are selected for each step.
+
+First step will be to select the stakeholders (_e.g. Homer Simpson_) involved with the assessment. Leave the default values.
 
 image::../images/select-stakeholder.png[select-stakeholder]
 
@@ -117,7 +109,7 @@ Choose the following answers for each question.
 ** None
 
 * Which model best describes the application architecture?
-** Independently deployable components
+** Resilient monolith (examples: retries, circuit breakers)
 
 Click on `Next`.
 
@@ -244,7 +236,7 @@ Now that we’ve completed the initial assessment we can see that we will need t
 
 image::../images/complete-review.png[complete-review]
 
-Go to `Report` on the left menu, you will find out the report details such as _Current landscape_, _Suggested adoption plan_, and _Identified risks_.
+Go to `Report` on the left menu. Then filter the report by `Retail` business service and you will find out the report details such as _Current landscape_, _Suggested adoption plan_, and _Identified risks_.
 
 image::../images/report-review.png[report-review]
 

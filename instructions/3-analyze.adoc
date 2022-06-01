@@ -15,6 +15,8 @@ It is used by organizations for:
 
 Read more about it in the https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/5.3[MTA documentation^]
 
+== Create a New Project in MTA Web Console
+
 Open a new browser to access the MTA web console that is provided from the e-mail. Use the following credential.
 
 * Username or email: `mta`
@@ -34,33 +36,39 @@ image::../images/create-project.png[Create project]
 
 Click on `Next`.
 
-From the `Add applications` page, click on browse to select the WAR file for analysis, the file is located in the **TODO** folder.
+=== Add applications
+
+First, you need to download the `customers-tomcat-asis.war` file in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/packages-mta[packages-mta^] folder.
+
+From the `Add applications` page, click on browse to select the WAR file for analysis.
 
 image::../images/add-applications.png[Add applications]
 
 Click on `Next`.
 
-You will now be presented with options for transformation targets.
+=== Configure the analysis
 
-image::../images/configure-analysis.png[Configure Analysis]
-
-As this is a tomcat application, we’re going to uncheck the EAP migration path.
+You will now be presented with options for transformation targets. As this is a tomcat application, we’re going to uncheck the EAP migration path.
 
 * `Uncheck the EAP migration path`
 
+image::../images/configure-analysis.png[Configure Analysis]
+
 We will focus on containerizing the application. Since this is going to be a linux container, it makes sense to do a sanity check to avoid and Windows paths might remain in the code from previous iterations. We also going to investigate removing reliance on proprietary JDK licenses, so we going to select OpenJDK as a target.
+
+image::../images/configure-analysis-checked.png[Configure Analysis]
 
 * `Check Containers, Linux, and OpenJDK as the targets`
 
 Click on `Next`.
 
-You will now be presented with options for packages.
+You will now be presented with options for packages. In order to accelerate the analysis, we will choose only the business packages related to our application. In the case of this application, these classes belong to the `io.konyeyor` package. You need to remove the `io` package from the *Included package* box by clicking on `<` button. Once you expand the `io` package in the *Packages* box, check only `io.konveyor` package to move to the *Included package* box by clicking on the `>` button.
 
 image::../images/packages.png[Select packages]
 
-In order to accelerate the analysis, we will choose only the business packages related to our application. In the case of this application, these classes belong to the `io.konyeyor` package. Ensure only `io.konyeyor`` is selected and click on the ``>`` button to move to include these packages.
+Click on `Next`.
 
-Click on `Next`.`
+=== Advanced
 
 You will now be presented with options for custom rules.
 
@@ -68,21 +76,21 @@ image::../images/custom-rules.png[Custom rules]
 
 MTA Analysis uses a custom rule engine for the analysis. It comes with many rules out of the box to support the different migration paths, but it can be extended. Custom rules can be developed with a very simple XML syntax and used on the analysis. We've provided some custom rules which will detect the usage of a specific library and make suggestions for changes to be performed to remove it.  
 
-Click on `Add Rule`.
+Download the custom rule https://github.com/redhat-mw-demos/app-mod-projects/blob/main/customrules/corporate-framework-config.windup.xml[corporate-framework-config.windup.xml^]. Click on `Add Rule`.
 
-* `Upload the provided rules file``  
+* `Upload the provided rules file`  
 
-// TODO: provide location for rule file
+image::../images/add-custom-rules.png[add-custom-rules]
 
-Click on `Next`.
+Click on `Close`.
 
-You will now be presented with options for labels.
+image::../images/complete-custom-rules.png[complete-custom-rules]
+
+Click on `Next`. Then, you will now be presented with options for labels.
 
 image::../images/labels.png[Labels]
 
-No custom labels are required for this analysis.
-
-Click on `Next`.
+No custom labels are required for this analysis. Click on `Next`.
 
 You will now be presented with options to fine tune the analysis, for the moment we will stick with the default options.
 
@@ -100,13 +108,20 @@ Now the analysis has been scheduled, and once it is finished we will be able to 
 
 image::../images/active-analysis.png[Active analysis]
 
-Once the report is finished, click on the link to access the report.
+== Understanding the report
 
-// TODO update link with correct wording
+The Dashboard gives an overview of the entire application migration effort. It summarizes:
+
+* The incidents and story points by category
+* The incidents and story points by level of effort of the suggested changes
+* The incidents by package
+
+[NOTE]
+Story points are an abstract metric commonly used in Agile software development to estimate the relative level of effort needed to implement a feature or change. Migration Toolkit for Application uses story points to express the level of effort needed to migrate particular application constructs, and the application as a whole. The level of effort will vary greatly depending on the size and complexity of the application(s) to migrate.
+
+Once the report is finished, click on the link to access the report. Click on `customers-tomcat-asis.war` application.
 
 image::../images/report-view.png[View report]
-
-Click on the `customers application`.
 
 The reports provide all kinds of information about the application, like the technologies it uses, dependencies, but most importantly issues that need to get fixed.
 

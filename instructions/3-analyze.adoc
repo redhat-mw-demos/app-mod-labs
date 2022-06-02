@@ -1,4 +1,4 @@
-= Analyze application code
+= Analyze
 
 image::../images/mta-logo.png[mta-logo]
 

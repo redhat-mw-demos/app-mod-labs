@@ -1,6 +1,4 @@
-= Refactor application code
-
-//TODO: Validate these steps
+= Refactor
 
 Switch to the VS Code server ui, the project should already be open and the IDE plugin already installed and ready to go.
 

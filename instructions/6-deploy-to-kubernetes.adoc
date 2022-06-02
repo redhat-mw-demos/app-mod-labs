@@ -4,7 +4,7 @@
 
 === Change Customer Application to connect to the migrated VM on the cluster
 
-The existing customer pod connects to the VM running in RHEV. Unless you started the VM again in RHEV this application now has no database. But since we migrated the VM over to OpenShift we need to tell the application to connect to the VM on OpenShift instead.
+The existing customer pod connects to the VM running in RHV. Unless you started the VM again in RHV this application now has no database. But since we migrated the VM over to OpenShift we need to tell the application to connect to the VM on OpenShift instead.
 
 You will need to change source code in order to point to the VM.
 

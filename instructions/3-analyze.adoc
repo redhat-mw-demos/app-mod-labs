@@ -38,9 +38,9 @@ Click on `Next`.
 
 === Add applications
 
-First, you need to download the `customers-tomcat-asis.war` file in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/packages-mta[packages-mta^] folder.
+First, you need to download the `customers-tomcat.war` file in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/packages-mta[packages-mta^] folder.
 
-From the `Add applications` page, click on browse to select the WAR file for analysis.
+From the `Add applications` page, click on `Browse`` to select the WAR file for analysis.
 
 image::../images/add-applications.png[Add applications]
 
@@ -62,7 +62,7 @@ image::../images/configure-analysis-checked.png[Configure Analysis]
 
 Click on `Next`.
 
-You will now be presented with options for packages. In order to accelerate the analysis, we will choose only the business packages related to our application. In the case of this application, these classes belong to the `io.konyeyor` package. You need to remove the `io` package from the *Included package* box by clicking on `<` button. Once you expand the `io` package in the *Packages* box, check only `io.konveyor` package to move to the *Included package* box by clicking on the `>` button.
+You will now be presented with options for packages. In order to accelerate the analysis, we will choose only the business packages related to our application. In the case of this application, these classes belong to the `io.konyeyor` package. You need to remove all packages from the *Included package* box except for  `io.konveyor` package by clicking on `<` button.
 
 image::../images/packages.png[Select packages]
 
@@ -76,17 +76,7 @@ image::../images/custom-rules.png[Custom rules]
 
 MTA Analysis uses a custom rule engine for the analysis. It comes with many rules out of the box to support the different migration paths, but it can be extended. Custom rules can be developed with a very simple XML syntax and used on the analysis. We've provided some custom rules which will detect the usage of a specific library and make suggestions for changes to be performed to remove it.  
 
-Download the custom rule https://github.com/redhat-mw-demos/app-mod-projects/blob/main/customrules/corporate-framework-config.windup.xml[corporate-framework-config.windup.xml^]. Click on `Add Rule`.
-
-* `Upload the provided rules file`  
-
-image::../images/add-custom-rules.png[add-custom-rules]
-
-Click on `Close`.
-
-image::../images/complete-custom-rules.png[complete-custom-rules]
-
-Click on `Next`. Then, you will now be presented with options for labels.
+In this case, you don't need to add a custom rule. Click on `Next`. Then, you will now be presented with options for labels.
 
 image::../images/labels.png[Labels]
 
@@ -119,7 +109,7 @@ The Dashboard gives an overview of the entire application migration effort. It s
 [NOTE]
 Story points are an abstract metric commonly used in Agile software development to estimate the relative level of effort needed to implement a feature or change. Migration Toolkit for Application uses story points to express the level of effort needed to migrate particular application constructs, and the application as a whole. The level of effort will vary greatly depending on the size and complexity of the application(s) to migrate.
 
-Once the report is finished, click on the link to access the report. Click on `customers-tomcat-asis.war` application.
+Once the report is finished, click on the link to access the report. Click on `customers-tomcat.war` application.
 
 image::../images/report-view.png[View report]
 
@@ -127,7 +117,7 @@ The reports provide all kinds of information about the application, like the tec
 
 image::../images/report-dashboard.png[report dashboard]
 
-Click on the `issues` tab.
+Click on the `Issues` tab.
 
 This view shows us the list of issues that prevent an application to run on the target runtime. We can see that the application has a few mandatory issues that need to be addressed.
 

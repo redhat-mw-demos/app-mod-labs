@@ -24,7 +24,8 @@ You can compare the code in `dataSource()` method how to configure the datastore
 
 * AS-IS
 
-```java
+[source,java]
+----
 @Bean
 public DataSource dataSource() {
     ApplicationConfiguration config = new ApplicationConfiguration();
@@ -36,11 +37,12 @@ public DataSource dataSource() {
 
     return dataSource;
 }
-```
+----
 
 * TO-BE
 
-```java
+[source,java]
+----
 @Bean
 public DataSource dataSource() {
     final DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -51,6 +53,6 @@ public DataSource dataSource() {
 
     return dataSource;
 }
-```
+----
 
 ➡️ Next section: link:./5-rehost.adoc[5 - Rehost]

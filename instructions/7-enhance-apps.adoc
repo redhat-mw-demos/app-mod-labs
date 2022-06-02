@@ -620,7 +620,7 @@ Prerequisites:
 
 ==== Signup and launch Red Hat OpenShift API Management sandbox
 
-Register for a RHOAM sandbox by clicking on the red button in the https://developers.redhat.com/developer-sandbox/activities/share-java--applications-openshift-api-management[user activities page]
+Register for a RHOAM sandbox by clicking on the red button in the https://developers.redhat.com/developer-sandbox/activities/share-java\--applications-openshift-api-management[Developer Sandbox use case activities page]
 
 You will be asked to confirm the request through an email sent to your inbox. Once you launch the sandbox, follow these steps to setup an RHOAM sandbox tenant
 

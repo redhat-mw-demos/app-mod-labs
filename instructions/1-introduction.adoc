@@ -139,7 +139,7 @@ From a terminal window you can use `curl` to demonstrate that the application is
 +
 [source,sh]
 ----
-curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers/customers/1
+curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/1
 ----
 +
 .Sample Output
@@ -152,7 +152,7 @@ curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers/customers/1
 +
 [source,sh]
 ----
-curl http://169.60.225.219:8080/customers/customers/2
+curl http://169.60.225.219:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2
 ----
 +
 .Sample Output

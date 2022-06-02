@@ -96,7 +96,7 @@ Select the Oracle VM (e.g. _oracle-96trd_) in your welcome e-mail on the *Select
 
 image::../images/mtv-select-vm.png[mtv-select-vm]
 
- Click on *Select a network mapping* on the *Network Mapping* page. Then, Select `Create a network mapping`. Leave the defaults and click `Next`.
+Click on *Select a network mapping* on the *Network Mapping* page. Then, Select `Create a network mapping`. Leave the defaults and click `Next`.
 
 image::../images/mtv-select-nw.png[mtv-select-nw]
 
@@ -110,7 +110,7 @@ Select `Cold migration` on the *Migration type* page. Click `Next`.
 
 image::../images/mtv-select-cold.png[mtv-select-cold]
 
- Click `Next` on the *Hooks* page.
+Click `Next` on the *Hooks* page.
 
 image::../images/mtv-select-hook.png[mtv-select-hook]
 

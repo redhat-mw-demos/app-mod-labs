@@ -74,9 +74,17 @@ You will now be presented with options for custom rules.
 
 image::../images/custom-rules.png[Custom rules]
 
-MTA Analysis uses a custom rule engine for the analysis. It comes with many rules out of the box to support the different migration paths, but it can be extended. Custom rules can be developed with a very simple XML syntax and used on the analysis. We've provided some custom rules which will detect the usage of a specific library and make suggestions for changes to be performed to remove it.  
+MTA Analysis uses a custom rule engine for the analysis. It comes with many rules out of the box to support the different migration paths, but it can be extended. Custom rules can be developed with a very simple XML syntax and used on the analysis. We've provided some custom rules which will detect the usage of a specific library and make suggestions for changes to be performed to remove it.
 
-In this case, you don't need to add a custom rule. Click on `Next`. Then, you will now be presented with options for labels.
+Click on `Add Rule` to upload a custom rule (`corporate-framework-config.windup.xml`) in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/customrules[customrules] directory. You can clone the whole Git repository or download the XML file to your local file system.
+
+image::../images/upload-custom-rule.png[upload-custom-rule]
+
+Click on `Close`. Make sure to enable the custom rule by clicking the toggle button. Click on `Next`.
+
+image::../images/enable-custom-rule.png[enable-custom-rule]
+
+Then, you will now be presented with options for labels.
 
 image::../images/labels.png[Labels]
 
@@ -141,8 +149,10 @@ image::../images/report-hint-custom.png[report hint custom rule]
 
 Click on the `file to view the source code`.
 
-We can now see exactly where the issue is located in the source code.  But we are still using a web environment. We could check these reports for the changes, but that's not practical. Because of that we developed a series of plugins for the most popular IDEs to make the like of the developer easier.
+The legacy ApplicationConfiguration class is being used in this application. 
 
 image::../images/report-code.png[report code]
+
+You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using Integrated development environment (IDE) tool in the next section.
 
 ➡️ Next section: link:./4-refactor.adoc[4 - Refactor]

@@ -38,4 +38,4 @@ In the future we will have a trigger and event listener on the pipeline. But for
 . Navigate to *Pipelines* -> *Pipelines*
 . Click the dots menu to the right of the pipeline `customers-deployment-pipeline` and select *Start last run*
 
-➡️ Next section: link:./7-replatform-from-kubernetes.adoc[7 - Replatform from Kubernetes]
+➡️ Next section: link:./7-enhance-apps.adoc[7 - Enhance Applications with Managed Services]

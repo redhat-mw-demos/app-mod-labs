@@ -1,3 +1,0 @@
-= Replatform from Kubernetes
-
-➡️ Next section: link:./8-enhance-apps.adoc[8 - Enhance Applications with Managed Services]

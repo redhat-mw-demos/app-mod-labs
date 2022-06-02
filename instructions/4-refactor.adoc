@@ -22,7 +22,7 @@ image::../images/persistence-class-ocp.png[persistence-class-ocp]
 
 You can compare the code in `dataSource()` method how to configure the datastore values.
 
-* AS-IS
+* *AS-IS*
 
 [source,java]
 ----
@@ -39,7 +39,7 @@ public DataSource dataSource() {
 }
 ----
 
-* TO-BE
+* *TO-BE*
 
 [source,java]
 ----

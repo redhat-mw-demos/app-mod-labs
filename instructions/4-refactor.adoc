@@ -1,6 +1,13 @@
 = Refactor
 
-Switch to the VS Code server ui, the project should already be open and the IDE plugin already installed and ready to go.
+In this step you will modernize the customers application to fix the analyzed issues (e.g. _Hard coded IP address_).
+
+Open a new browser to access the VSCode server that is provided from the e-mail. Use the following credential.
+
+* Password: `password`
+
+image::../images/vscode-server-login.png[vscode-server-login]
+
 
 *_Click on the MTA plugin view_*
 

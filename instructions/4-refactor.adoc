@@ -8,41 +8,49 @@ Open a new browser to access the VSCode server that is provided from the e-mail.
 
 image::../images/vscode-server-login.png[vscode-server-login]
 
+== Explore the Migration issues
 
-*_Click on the MTA plugin view_*
+Go to `customers-tomcat-legacy` project. Then, open `PersistenceConfig.java` file in `src/main/java/io/konveyor/demo/ordermanagement/config` directory.
 
-image::../images/persistence-class.png[VS Code MTA plugin]
+image::../images/persistence-class.png[persistence-class]
 
-We can configure the MTA plugin to perform the exact same analysis that we ran on the Web Console.
+== Understand the Solution
 
-//TODO: Fill out steps needed to run report within the IDE.
+We already have the solution how to fix the migration issues. Go to `customers-tomcat-ocp` project. Then, open `PersistenceConfig.java` file in `src/main/java/io/konveyor/demo/ordermanagement/config` directory.
 
-Once the config is ready, we can just click on run and it will execute locally and provide the results right there in the IDE.  
+image::../images/persistence-class-ocp.png[persistence-class-ocp]
 
-We can access the exact same reports that get generated on the web console, but the cool thing is seeing the results in the IDE.  In this case, we can see it has found some issues in the PersistenceConfig class, let's take a look to see what the issue is.
+You can compare the code in `dataSource()` method how to configure the datastore values.
 
-*_Navigate in the issue tree to the PersistenceConfig class_*
+* AS-IS
 
-image::../images/persistence-class.png[PersistenceConfig class]
+```java
+@Bean
+public DataSource dataSource() {
+    ApplicationConfiguration config = new ApplicationConfiguration();
+    final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName(config.getProperty("jdbc.driverClassName"));
+    dataSource.setUrl(config.getProperty("jdbc.url"));
+    dataSource.setUsername(config.getProperty("jdbc.user"));
+    dataSource.setPassword(config.getProperty("jdbc.password"));
 
-We have two occurences of the issue from out custom rule in this class.  If you click on it, it brings you to the extact place in the source code.
+    return dataSource;
+}
+```
 
-*_Click on the issue_*
+* TO-BE
 
-To know exactly what happened, I can see the details to understand what needs to be changed.
+```java
+@Bean
+public DataSource dataSource() {
+    final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+    dataSource.setUrl(env.getProperty("jdbc.url"));
+    dataSource.setUsername(env.getProperty("jdbc.user"));
+    dataSource.setPassword(env.getProperty("jdbc.password"));
 
-*_Right click on the issue and click on view details_*
-
-image::../images/issue-details.png[Issue details]
-
-We can put the issue description side by side with the code to make things easier.
-
-*_Move the issue details view to the right and have it side by side with the source code from the PersistenceConfig class_*
-
-image::../images/issue-side-by-side.png[Issue side by side]
-
-//TODO implement the changes required to resolve the issue.
-
-Once the code changes are made. we would need to have the deployment manifests to have the application running in Kubernetes, along with the image required for this type of application.  That is something that the MOve2Kube project can infer right from the source code.
+    return dataSource;
+}
+```
 
 ➡️ Next section: link:./5-rehost.adoc[5 - Rehost]

@@ -1,7 +1,5 @@
 = Rehost
 
-== Migrate the applications from Red Hat Virtualization to OpenShift Virtualization
-
 The steps you will follow to migrate the *customers* service from Red Hat Enterprise Virtualization (RHV) to Red Hat OpenShift are as follows:
 
 * Migrate the *Oracle VM* from RHV to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization
@@ -16,119 +14,159 @@ The steps you will follow to migrate the *customers* service from Red Hat Enterp
 
 ==== Prerequisites
 
-. Download the CA Certificate for your RHV environment. You need to do that on your laptop because you will need to drag the file into the MTV console later.
-+
+Download the CA Certificate for your RHV environment. You need to do that on your laptop because you will need to drag the file into the Migration Toolkit for Virtualization (MTV) console later.
+
+Set this variable to the RHV hostname from the e-mail. 
+
+Open a new browser to access the following URL. Make sure to replace `RHV_HOSTNAME`` with the hostname from your welcome e-mail (e.g., *rhvm.dev.cnv.infra.opentlc.com*).
+
 [source,sh]
 ----
-# Set this variable to the RHV hostname from the e-mail
-export RHV_HOST=<RHV_HOSTNAME>
-
-wget -O $HOME/pki-resource.cer --no-check-certificate "https://${RHV_HOSTNAME}/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA"
+https://<RHV_HOSTNAME>/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA
 ----
 
-. Or if you prefer the web browser:
-.. Navigate to `https://<RHV_HOSTNAME>/ovirt-engine/services/pki-resource?resource=ca-certificate&format=X509-PEM-CA` in your web browser (replace *<RHV_HOSTNAME>* with the hostname from your welcome e-mail - e.g. `rhvm.dev.cnv.infra.opentlc.com`).
-.. On most systems this will download a file `pki-resource.cer` into your `Downloads` folder.
-.. Take a note where this file got downloaded to. You will need it a little bit later.
+On most systems this will download a file `pki-resource.cer` into your `Downloads` folder. Take a note where this file got downloaded to. You will need it a little bit later.
 
 === Set up Virtualization Provider in MTV
 
-. Log into the OpenShift Web Console using the URL and *admin* credentials provided
-. On the left click on *Virtualization* -> *Virtual Machines*
-. From the *Projects* drop down select the *retail* project.
-.. There are no Virtual Machines yet.
-. Click *Launch Migration Tool* to launch the OpenShift Migration Toolkit for Virtualization.
-. Log in using your *admin* credentials
-.. If this is the first time you are logging in click the blue *Get started* button.
-. On the list of *Providers* click *Add provider*
-. Select *Red Hat Virtualization* from the list of providers. Fill in the information from your e-mail:
-.. *Name*: `RHV`
-.. *RHV Manager host name or IP address*: The hostname from your e-mail. For example `rhvm.dev.cnv.infra.opentlc.com`
-.. *RHV Manager user name*: the username from your e-mail. For example `migrateuser-wkama@internal`
-.. *RHV Manager passsword*: the password from yoru e-mail. For example `niIEPihdCR7I`
-.. *CA Certificate*: Drop the previously downloaded CA Certificate File
-.. Click *Add*.
-. MTV will validate your provider and after a few seconds the status should switch to *Ready*.
+Log into the OpenShift Web Console from the e-mail.
+
+* Username: `admin`
+* Password: `r3dh4t1!`
+
+image::../images/ocp-login.png[ocp-login]
+
+Go to `Virtualization` on the left menu and click on `Virtual Machines`. From the *Projects* drop down select the *retail* project. There are no Virtual Machines yet.
+
+image::../images/ocp-vm.png[ocp-vm]
+
+Click `Launch Migration Tool` to launch the OpenShift Migration Toolkit for Virtualization.
+
+Log in using your *admin* credentials.
+
+* Username: `admin`
+* Password: `r3dh4t1!`
+
+If this is the first time you are logging in, click on `Get started` button.
+
+image::../images/mtv-get-started.png[mtv-get-started]
+
+Click `Add provider` on the list of *Providers*.
+
+image::../images/mtv-add-provider.png[mtv-add-provider]
+
+Select *Red Hat Virtualization* from the list of providers. Fill in the information from your e-mail.
+
+* Name: `rhv`
+* RHV Manager host name or IP address*: The hostname from your e-mail (e.g., `rhvm.dev.cnv.infra.opentlc.com`)
+* RHV Manager user name: the username from your e-mail. (e.g., `migrateuser-96trd@internal`)
+* RHV Manager passsword: the password from yoru e-mail. (e.g., `ThvA2Ioa6Q4G`)
+* CA Certificate: Drop the previously downloaded CA Certificate File
+
+Click `Add`.
+
+image::../images/mtv-add-provider-detail.png[mtv-add-provider-detail]
+
+MTV will validate your provider and after a few seconds the status should switch to *Ready*.
+
+image::../images/mtv-add-provider-ready.png[mtv-add-provider-ready]
 
 === Create and execute Migration Plan
 
-. In the *Migration Toolkit for Virtualization* console navigate to *Migration Plans*.
-. Click *Create Plan*
-. On the *General* page use the following parameters:
-.. *Plan name*: `customers-database`
-.. *Source provider*: select the *RHV* source provider you previously created
-.. *Target provider*: select *host* (the OpenShift cluster you are currently on)
-.. *Target namespace*: select *retail*
-. Click *Next*
-. On the *VM Selection / Filter* page select the checkbox next to *All datacenters*
-. Click *Next*
-. On the *VM Selection / Select VMs* page select the VM that got created for you. You will find the name in your welcome e-mail (future). The name will be something like *oracle-XXXXX* where XXXXX is your GUID.
-. Click *Next*
-. On the *Network Mapping* page click on *Select a network mapping* and select *Create a network mapping*.
-. Leave the defaults and click *Next*
-. On the *Storage Mapping* page click on *Select a storage mapping* and select *Create a storage mapping*.
-. Change the *Target Storage Class* to `gp2-csi` and click *Next*
-. On the *Type* page select *Cold migration* and click *Next*
-// . On the *Type* page select *Warm migration* and click *Next*
-. On the *Hooks* page click *Next*
-. On the *Review* page click *Finish*
+Go to `Migration Plans` in the Migration Toolkit for Virtualization console. Click `Create Plan`.
 
-Now your Migration Plan is ready to use.
+image::../images/mtv-create-plan.png[mtv-create-plan]
 
-// WKTBD: figure out correct permissions for Warm Migration to work....
-// The migration will happen in two stages. First a snapshot of the current state of the disk in RHV is copied to OpenShift. The database VM can keep running in RHV during that stage not disrupting our running application.
+On the *General settings* page use the following parameters.
 
-// Once the *incremental data copy* step has finished you can then execute the cutover from RHV to OpenShift Virtualization.
+* Plan name: `customers-database`
+* Source provider: `rhv`
+* Target provider: select *host* (the OpenShift cluster you are currently on)
+* Target namespace*: select *retail*
 
-To execute the plan click the *Start* button next to your *customers-database* migration plan and confirm by clicking the blue *Start* button in the popup window.
+Click `Next`.
+
+image::../images/mtv-plan-general.png[mtv-plan-general]
+
+Check `All datacenters` on the *Filter by VM location*. Click `Next`.
+
+image::../images/mtv-plan-vm-loc.png[mtv-plan-vm-loc]
+
+Select the Oracle VM (e.g. _oracle-96trd_) in your welcome e-mail on the *Select VMs* page. Click `Next`.
+
+image::../images/mtv-select-vm.png[mtv-select-vm]
+
+ Click on *Select a network mapping* on the *Network Mapping* page. Then, Select `Create a network mapping`. Leave the defaults and click `Next`.
+
+image::../images/mtv-select-nw.png[mtv-select-nw]
+
+Click on *Select a storage mapping* on the *Storage Mapping* page. Select `Create a storage mapping`.
+
+Change the *Target Storage Class* to `gp2-csi` and click `Next`.
+
+image::../images/mtv-select-storage.png[mtv-select-storage]
+
+Select `Cold migration` on the *Migration type* page. Click `Next`.
+
+image::../images/mtv-select-cold.png[mtv-select-cold]
+
+ Click `Next` on the *Hooks* page.
+
+image::../images/mtv-select-hook.png[mtv-select-hook]
+
+Click `Finish` on the *Review* page.
+
+image::../images/mtv-review.png[mtv-review]
+
+Now your Migration Plan is ready to use. To execute the plan click on `Start` button in the *customers-database* migration plan.
+
+image::../images/mtv-plan-ready.png[mtv-plan-ready]
+
+Confirm by clicking the blue `Start` button in the popup window.
+
+image::../images/mtv-plan-start.png[mtv-plan-start]
 
 Because you are running a *cold migration* the VM in RHV gets shutdown first.
 
-The migration will take about 15-25 minutes after which you will have a running Oracle database VM in your OpenShift cluster.
+The migration will take about _15 - 25_ minutes after which you will have a running Oracle database VM in your OpenShift cluster.
 
 Once the migration succeeds you will find a VM called `oracle-xxxxx` in your retail namespace.
 
-=== Post Migration Tasks:
+=== Post Migration Tasks
 
 The VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 
-. Add a label to your VM's template metadata (make sure to replace `wkama` with your GUID).
-+
+Add a label to your VM's template metadata (make sure to replace `wkama` with your GUID).
+
 [source,sh]
 ----
 oc patch vm oracle-wkama --type=merge --patch='{"spec": { "template": { "metadata": { "labels": { "app": "oracle-wkama"}}}}}' -n retail
 ----
 
-. Restart the VM for the VM Pod to pick up the new label.
-+
+Restart the VM for the VM Pod to pick up the new label.
+
 You can restart the VM either from the OpenShift Web Console or using `virtctl` from the bastion VM.
 
-.. Navigate to your VM in the OpenShift Web Console:
-... *Virtualization* -> *VirtualMachines*
-... Click on your VM
-... From the *Action* drop down select *Restart* then confirm by clicking *Restart* in the pop up dialog.
-.. Or use `virtctl` to restart the VM:
-+
-[source,sh]
-----
-virtctl restart oracle-${GUID} -n retail
-----
+Go back to the `VirtualMachines` menu in the OpenShift Web Console. Click on your VM.
 
-. Create service for database vm:
-+
+From the *Action* drop down select *Restart* then confirm by clicking *Restart* in the pop up dialog.
+
+Create service for database vm:
+
 [source,sh]
 ----
 oc create service clusterip oracle-${GUID} --tcp=1521:1521 --tcp=2022:22 -n retail
 ----
 
-. Make sure your service has the endpoint for the Oracle VM pod as an Endpoint:
-+
+Make sure your service has the endpoint for the Oracle VM pod as an Endpoint:
+
 [source,sh]
 ----
 oc describe svc oracle-${GUID} -n retail
 ----
-+
-.Sample Output
+
+* Sample Output
+
 [source,texinfo]
 ----
 Name:              oracle-wkama

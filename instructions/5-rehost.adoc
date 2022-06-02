@@ -130,61 +130,63 @@ Because you are running a *cold migration* the VM in RHV gets shutdown first.
 
 The migration will take about _15 - 25_ minutes after which you will have a running Oracle database VM in your OpenShift cluster.
 
+image::../images/mtv-plan-complete.png[mtv-plan-complete]
+
 Once the migration succeeds you will find a VM called `oracle-xxxxx` in your retail namespace.
+
+image::../images/mtv-plan-complete-ocp.png[mtv-plan-complete-ocp]
 
 === Post Migration Tasks
 
 The VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 
-Add a label to your VM's template metadata (make sure to replace `wkama` with your GUID).
+Add a label to your VM's template metadata and make sure to replace `{GUID}` with your GUID.
 
 [source,sh]
 ----
-oc patch vm oracle-wkama --type=merge --patch='{"spec": { "template": { "metadata": { "labels": { "app": "oracle-wkama"}}}}}' -n retail
+oc patch vm oracle-{GUID} --type=merge --patch='{"spec": { "template": { "metadata": { "labels": { "app": "oracle-{GUID}"}}}}}' -n retail
 ----
 
-Restart the VM for the VM Pod to pick up the new label.
-
-You can restart the VM either from the OpenShift Web Console or using `virtctl` from the bastion VM.
-
-Go back to the `VirtualMachines` menu in the OpenShift Web Console. Click on your VM.
+Restart the VM for the VM Pod to pick up the new label. Go back to the `VirtualMachines` menu in the OpenShift Web Console. Click on your VM.
 
 From the *Action* drop down select *Restart* then confirm by clicking *Restart* in the pop up dialog.
 
-Create service for database vm:
+image::../images/restart-vm.png[restart-vm]
+
+Create service for the database vm:
 
 [source,sh]
 ----
-oc create service clusterip oracle-${GUID} --tcp=1521:1521 --tcp=2022:22 -n retail
+oc create service clusterip oracle-{GUID} --tcp=1521:1521 --tcp=2022:22 -n retail
 ----
 
 Make sure your service has the endpoint for the Oracle VM pod as an Endpoint:
 
 [source,sh]
 ----
-oc describe svc oracle-${GUID} -n retail
+oc describe svc oracle-{GUID} -n retail
 ----
 
 * Sample Output
 
 [source,texinfo]
 ----
-Name:              oracle-wkama
+Name:              oracle-96trd
 Namespace:         retail
-Labels:            app=oracle-wkama
+Labels:            app=oracle-96trd
 Annotations:       <none>
-Selector:          app=oracle-wkama
+Selector:          app=oracle-96trd
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                172.30.4.130
-IPs:               172.30.4.130
+IP:                172.30.99.143
+IPs:               172.30.99.143
 Port:              1521-1521  1521/TCP
 TargetPort:        1521/TCP
-Endpoints:         10.128.1.14:1521
+Endpoints:         10.128.1.156:1521
 Port:              2022-22  2022/TCP
 TargetPort:        22/TCP
-Endpoints:         10.128.1.14:22
+Endpoints:         10.128.1.156:22
 Session Affinity:  None
 Events:            <none>
 ----

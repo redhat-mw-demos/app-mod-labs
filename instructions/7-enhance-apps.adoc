@@ -813,4 +813,4 @@ image::../images/8-enhance-apps/curl-test-api.png[]
 +
 image::../images/8-enhance-apps/api-traffic.png[]
 
-➡️ Next section: link:./9-closing.adoc[9 - Closing]
+➡️ Next section: link:./8-summary.adoc[8 - Summary]

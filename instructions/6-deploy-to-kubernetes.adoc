@@ -1,3 +1,41 @@
 = Deploy to Kubernetes
 
+== Use OpenShift Pipelines to build and deploy the modernized customer application.
+
+=== Change Customer Application to connect to the migrated VM on the cluster
+
+The existing customer pod connects to the VM running in RHEV. Unless you started the VM again in RHEV this application now has no database. But since we migrated the VM over to OpenShift we need to tell the application to connect to the VM on OpenShift instead.
+
+You will need to change source code in order to point to the VM.
+
+. In a web browser navigate to the Visual Studio Code window using the URL and password from your welcome e-mail.
+. Navigate to the file `appmod-enablement / customer-tomcat-gitops / helm / secret / persistence.properties`
+. Change the *jdbc.url* to use the service name for your VM on OpenShift. It should look somewhat like this:
++
+[source,text]
+----
+jdbc.url=jdbc:oracle:thin:@oracle-wkama:1521/xepdb1
+----
+
+. Save the file.
+
+// . Configure Git: in VSCode switch to the Terminal and run these two commands:
+// +
+// [source,sh]
+// ----
+// git config --global user.email "you@example.com"
+// git config --global user.name "Your Name"
+// ----
+
+. Switch to the Source Control section in VSCode, commit and push the change.
+(you may need to push from the Terminal. It will prompt for user (lab-user) and password (openshift))
+
+=== Start an OpenShift Pipeline run
+
+In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually
+
+. Log into OpenShift Web Console
+. Navigate to *Pipelines* -> *Pipelines*
+. Click the dots menu to the right of the pipeline `customers-deployment-pipeline` and select *Start last run*
+
 ➡️ Next section: link:./7-replatform-from-kubernetes.adoc[7 - Replatform from Kubernetes]

@@ -26,8 +26,6 @@ image::../images/ocp-manifests.png[ocp-manifests]
 
 Let's find out how to fix the above configuration issue. Move to `customers-tomcat-ocp` project. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory and `pom.xml` file.
 
-image::../images/persistence-class-ocp.png[persistence-class-ocp]
-
 *ApplicationConfiguration* class isn't required anymore to configure the JDBC variables but the *datasource* method still needs to use the environment instance. When you take a look at the *pom.xml*, the static properties file will be excluded when the application is building. 
 
 image::../images/appconfig-pom-ocp.png[appconfig-pom-ocp]

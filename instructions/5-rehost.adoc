@@ -1,6 +1,6 @@
 = Rehost
 
-The steps you will follow to migrate the *customers* service from Red Hat Enterprise Virtualization (RHV) to Red Hat OpenShift are as follows:
+In this step you will follow to migrate the *customers* service from Red Hat Enterprise Virtualization (RHV) to Red Hat OpenShift are as follows:
 
 * Migrate the *Oracle VM* from RHV to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization
 * Modernize the Java source code for the *customers* application

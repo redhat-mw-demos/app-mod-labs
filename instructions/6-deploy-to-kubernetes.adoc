@@ -1,8 +1,8 @@
 = Deploy to Kubernetes
 
-== Use OpenShift Pipelines to build and deploy the modernized customer application.
+The steps you willUse OpenShift Pipelines to build and deploy the modernized customer application.
 
-=== Change Customer Application to connect to the migrated VM on the cluster
+== Change Customer Application to connect to the migrated VM on the cluster
 
 The existing customer pod connects to the VM running in RHV. Unless you started the VM again in RHV this application now has no database. But since we migrated the VM over to OpenShift we need to tell the application to connect to the VM on OpenShift instead.
 

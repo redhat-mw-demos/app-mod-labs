@@ -58,8 +58,11 @@ image::../images/vscode-commit.png[vscode-commit]
 
 In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually
 
-. Log into OpenShift Web Console
-. Navigate to *Pipelines* -> *Pipelines*
-. Click the dots menu to the right of the pipeline `customers-deployment-pipeline` and select *Start last run*
+Go to `Pipelines` and click the dots menu to the right of the pipeline `customers-deployment-pipeline`. Select *Start last run*.
+
+When you go to the Topology view of `retail` project in Developer perspective, the applications deployment should look like:
+
+// Need to update
+image::../images/app-toplogy.png[app-toplogy]
 
 ➡️ Next section: link:./7-enhance-apps.adoc[7 - Enhance Applications with Managed Services]

@@ -43,10 +43,10 @@ Save the file.
 Open a terminal in VS Code, run the following `git config` command before you _commit_ and _push_ changes.
 
 [source,sh]
----
+----
 git config --global user.email "opentlc-mgr@opentlc.com"
 git config --global user.name "opentlc-mgr"
----
+----
 
 Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_persistence.properties_).
 

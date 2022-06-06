@@ -9,7 +9,7 @@
 === Workshop scenario
 *In Phase 1:*
 
-* The application is split into microservices and runs on OpenShift and  inherits all the benefits of the de-facto enterprise Kubernetes distribution: horizontal scaling, automated rollout/rollback, bin-packing, self healing, service discovery, load balancing, etc.
+* The application is split into microservices and runs on OpenShift and inherits all the benefits of the de-facto enterprise Kubernetes distribution: horizontal scaling, automated rollout/rollback, bin-packing, self healing, service discovery, load balancing, etc.
 * Adoption of GitOps practices decreases Lead Time for Change, Mean Time to Recover and Change Failure Rate while increasing Deployment Frequency
 
 
@@ -18,9 +18,9 @@ Fast forward 6 months!
 Taking advantage of this new momentum, the business comes up with new requirements for the e-commerce retail application.
 In *Phase 2*, the customer would like to enhance their modernized application to include new requirements and features.
 
-* Track how visitors engage with their website, derive intelligence  out of user activity stream
-* Process and analyse  this user activity stream  to showcase Featured Products based on products with the most customer interest leading a more personalised experience.
-* Introduce a multi-channel approach to build a mobile app as a new channel of access - mobile development is  most likely to be outsourced
+* Track how visitors engage with their website, derive intelligence out of user activity stream
+* Process and analyse this user activity stream to showcase Featured Products based on products with the most customer interest leading a more personalised experience.
+* Introduce a multi-channel approach to build a mobile app as a new channel of access - mobile development is most likely to be outsourced
 
 === Common Challenges
 There are however a number of challenges with the new requirements:
@@ -34,13 +34,13 @@ In order to cope with these challenges, the development team decides for a new a
 === A new development approach
 *Adoption of Apache Kafka* as a streaming platform to ingest and process user activity event streams.
 
-*API First approach*:  API contract is formalized in a OpenAPI spec document before dev commences.  API design phase is done collaboratively with all stakeholders. The  first version of the OpenAPI spec document is pushed and managed in a service registry, which acts a the system of truth. Mocks are created for the API.
+*API First approach*: API contract is formalized in a OpenAPI spec document before dev commences. API design phase is done collaboratively with all stakeholders. The first version of the OpenAPI spec document is pushed and managed in a service registry, which acts a the system of truth. Mocks are created for the API.
 
-*Parallel Development* streams with  API first approach enables parallel development streams. 
-- UI development teams and other API consumers start their development against the mocked 
+*Parallel Development* streams with API first approach enables parallel development streams. 
+- UI development teams and other API consumers start their development against the mocked api endpoints. 
 - Backend development teams can implement the APIs using modern cloud-native frameworks and test the implementation against the OpenAPI spec to ensure that the implementation does not break the contract.
 
-*Manage and Secure the APIs*  Use nn API management platform  to expose the APIs in a secure and managed manner for access by the mobile app and other 3rd party applications.
+*Manage and Secure the APIs* Use a n API management platform to expose the APIs in a secure and managed manner for access by the mobile app and other 3rd party applications.
 
 
 *Managed cloud services* preferred for easy and rapid adoption of new middleware components like the API Management platform and Apache Kafka; this allows the teams to focus on the business requirements, without the need to invest in skills and infrastructure to deploy and maintain these components.
@@ -105,7 +105,7 @@ The deployed topology consists of:
 ** `catalog-app`: The Globex Coolstuff catalog service, consisting of the catalog database and the Spring Boot catalog microservice.
 ** `inventory-app`: The Globex Coolstuff inventory service, consisting of the inventory database and the Quarkus inventory microservice.
 ** `activity-tracking`: The Activity Tracking service. Notice that the deployment of the service is scaled to zero. The service will be scaled up once the connection to the Kafka broker is set up.
-**  `recommendation-engine`: The Recommendation Engine service. Notice that the deployment of the service is scaled to zero. The service will be scaled up once the connection to the Kafka broker is set up.
+** `recommendation-engine`: The Recommendation Engine service. Notice that the deployment of the service is scaled to zero. The service will be scaled up once the connection to the Kafka broker is set up.
 ** `activity-tracking-simulator`: A Quarkus service that simulates user activity events and sends them to the Activity Tracking service.
 . Find the route to the *Globex UI* application and open the URL in your browser.. Expect to see the home page of the Globex Coolstuff web application:
 +
@@ -146,7 +146,7 @@ image::../images/8-enhance-apps/console-redhat-com-kafka-instance-ready.png[]
 
 . When the instance _Status_ is _Ready_, you can start using the Kafka instance. You can use the options icon (three vertical dots) to view, connect to, or delete the instance as needed.
 
-Normally, when using Streams for Apache Kafka, the next steps would be to create a service account and set up the Access Control List for that service account. However, when using Service Binding to connect applications to the Kafka instance, a service account is created as part of the binding. Once the service account is created, you will need to setup the required permissions for that service account. An alternative is to set up wildcard permissions (valid for all service accounts), but this is generally considered less secure.  
+Normally, when using Streams for Apache Kafka, the next steps would be to create a service account and set up the Access Control List for that service account. However, when using Service Binding to connect applications to the Kafka instance, a service account is created as part of the binding. Once the service account is created, you will need to setup the required permissions for that service account. An alternative is to set up wildcard permissions (valid for all service accounts), but this is generally considered less secure. 
 
 *Create a Kafka Topic in OpenShift Streams for Apache Kafka*
 
@@ -608,7 +608,7 @@ In this part of the workshop you will:
 
 === Environment and prerequisites
 
-The *Product catalog API* is already deployed on the OpenShift cluster in the namespace you've been using for this portion of the workshop. You will use the  Red Hat OpenShift API management sandbox to manage this API.  All activities in this part of the workshop can be done in the RHOAMsandbox console and do not require any tools to be installed on your workstation. 
+The *Product catalog API* is already deployed on the OpenShift cluster in the namespace you've been using for this portion of the workshop. You will use the Red Hat OpenShift API management sandbox to manage this API. All activities in this part of the workshop can be done in the RHOAM sandbox console and do not require any tools to be installed on your workstation. 
 
 Prerequisites:
 
@@ -632,17 +632,17 @@ image::../images/8-enhance-apps/tenant-search.png[width=100%]
 * Select *Create APIManagementTenant* button
 +
 image::../images/8-enhance-apps/create-APIManagementTenant.png[width=100%]
-* You will be taken to the YAML configuration of this resource. Click the  Create button at the bottom of the YAML displayed.
+* You will be taken to the YAML configuration of this resource. Click the Create button at the bottom of the YAML displayed.
 * You will be taken to the Details page of this resource. Click on the YAML tab to view the changes to the YAML configuration.
-* Watch for changes to the YAML of the APIManagementTenant resource, and wait for  the status to be displayed at the bottom of the YAML to become `status.provisioningStatus: 3scale account ready`
+* Watch for changes to the YAML of the APIManagementTenant resource, and wait for the status to be displayed at the bottom of the YAML to become `status.provisioningStatus: 3scale account ready`
 +
 image::../images/8-enhance-apps/api-tenant-deployed.png[width=100%]
-* The API Management  Tenant account is now provisioned and is ready for use. 
+* The API Management Tenant account is now provisioned and is ready for use. 
 This may take a couple of minutes 
 * To access OpenShift API Management, navigate to the Launcher pane on the right side, select `API Management`
 +
 image::../images/8-enhance-apps/launcher-pane.png[width=100%]
-* Choose to authenticate using Red Hat Single Sign-On, and  login using the identity provider that applies to you, e.g DevSandbox.
+* Choose to authenticate using Red Hat Single Sign-On, and login using the identity provider that applies to you, e.g DevSandbox.
 +
 image::../images/8-enhance-apps/sso-login.png[width=100%] 
 image::../images/8-enhance-apps/devsandbox-login.png[width=100%] 
@@ -659,7 +659,7 @@ The following sections will guide you through
 
 ==== Create an API Product
 
-A product is a customer-facing API that packages one or more backends. You will create an API  Product manually with the following instructions
+A product is a customer-facing API that packages one or more backends. You will create an API Product manually with the following instructions
 
 . In a browser window navigate to the Red Hat OpenShift API Management
 . In the Dashboard, under the APIs section, click *Create Product* in the *_Products_* card.
@@ -692,7 +692,7 @@ image::../images/8-enhance-apps/create-backend.png[]
 + 
 [NOTE]
 ====
-Here are instruction how to access the Private Endpoint of the Product Catalog API.
+Here are instruction for how to access the Private Endpoint of the Product Catalog API.
 
 * Access the Developer Perspective Topology of the OpenShift enviroment where the Globex application has been deployed
 * Click on the *catalog-service icon* and you will see the deployment details popup on the right hand side
@@ -750,7 +750,7 @@ image::../images/8-enhance-apps/new-mapping-rule.png[]
 ==== Create an application plans to define a customer-facing API product
 
 . Go to the Dashboard
-. Under the API section, click on  `globex-product-catalog` under the *_Product_*
+. Under the API section, click on `globex-product-catalog` under the *_Product_*
 . In Applications > Application Plans menu on the left hand side, click on *Create Application Plan*
 . Provide the following details:
 +

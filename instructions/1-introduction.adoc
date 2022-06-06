@@ -27,13 +27,13 @@ Your application has been partially already moved from your legacy environments 
 
 The application is a multi service application consisting of a Node.js frontend service which is getting its data via a gateway service. The gateway service is connected to three backend services: customers, orders and inventory. Each of the backend services uses its own database to store data.
 
-The services running no OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
+The services running on OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
 
 All source code for the applications as well as the GitOps YAML manifests for all services are stored in a (GitHub compatible) Gitea repository that for demo purposes is hosted on the OpenShift cluster.
 
 The problem right now is the customers service:
 
-* The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat Web Server.
+* The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat JBoss Web Server.
 * The customers database is using an Oracle 21c database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
 
 When you have finished this demonstration your deployment architecture should look like this:
@@ -109,6 +109,7 @@ image::../images/frontend.png[Frontend]
 
 You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the Oracle database on Red Hat Virtualization (RHV).
 
+. Download ans install the version of DBeaver suitable for your environment.
 . Launch *DBeaver*
 . Right click the *Database Navigator* Panel and select *Create* -> *Connection*
 . Select *Oracle* and click *Next*

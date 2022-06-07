@@ -134,11 +134,20 @@ image::../images/mtv-plan-complete-ocp.png[mtv-plan-complete-ocp]
 
 The VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 
-Add a label to your VM's template metadata and make sure to replace `{GUID}` with your GUID.
+Set your GUID as an environment value to avoid repeatable replacement in the following command lines.
+
+Replace `GUID` with your GUID (e.g. _96trd_).
 
 [source,sh]
 ----
-oc patch vm oracle-{GUID} --type=merge --patch='{"spec": { "template": { "metadata": { "labels": { "app": "oracle-{GUID}"}}}}}' -n retail
+export GUID=YOUR_GUID
+----
+
+Add a label to your VM's template metadata and make sure to replace `${GUID}` with your GUID.
+
+[source,sh]
+----
+oc patch vm oracle-${GUID} --type=merge --patch='{"spec": { "template": { "metadata": { "labels": { "app": "oracle-${GUID}"}}}}}' -n retail
 ----
 
 Restart the VM for the VM Pod to pick up the new label. Go back to the `VirtualMachines` menu in the OpenShift Web Console. Click on your VM.
@@ -151,14 +160,14 @@ Create service for the database vm:
 
 [source,sh]
 ----
-oc create service clusterip oracle-{GUID} --tcp=1521:1521 --tcp=2022:22 -n retail
+oc create service clusterip oracle-${GUID} --tcp=1521:1521 --tcp=2022:22 -n retail
 ----
 
 Make sure your service has the endpoint for the Oracle VM pod as an Endpoint:
 
 [source,sh]
 ----
-oc describe svc oracle-{GUID} -n retail
+oc describe svc oracle-${GUID} -n retail
 ----
 
 * Sample Output

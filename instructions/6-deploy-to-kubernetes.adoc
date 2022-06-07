@@ -92,9 +92,16 @@ This dialog box is where you bind the final target values for the source repo of
 
 image::../images/ama-pipeline-start-popup.png[ama-pipeline-start-popup]
 
-When you go to the Topology view of `retail` project in Developer perspective, the applications deployment should look like:
+As soon as you started the *customers-deployment-pipeline* pipeline, a _pipelinerun_ is instantiated and pods are created to execute the tasks that are defined in the pipeline. After a few minutes, the pipeline should finish successfully. You can hover over the steps to get a quick snapshot of the step’s progress, or click on the steps to see detailed logs of the steps.
 
-// Need to update
+image::../images/ama-pipeline-complete.png[ama-pipeline-complete]
+
+Go back to the _Topology View_ of `retail` project in Developer perspective, the applications deployment should look like:
+
 image::../images/app-toplogy.png[app-toplogy]
+
+Click on `Open URL` to access the *GLOBEX* web page. you should see that `Customers` shows properly now.
+
+image::../images/new-customers.png[new-customers]
 
 ➡️ Next section: link:./7-enhance-apps.adoc[7 - Enhance Applications with Managed Services]

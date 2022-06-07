@@ -4,7 +4,7 @@ In this step you will modernize the customers application to fix the analyzed is
 
 Open a new browser to access the VSCode server that is provided from the e-mail. Use the following credential.
 
-* Password: `password`
+* Password: `openshift`
 
 image::../images/vscode-server-login.png[vscode-server-login]
 

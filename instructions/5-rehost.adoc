@@ -12,7 +12,7 @@ Download the CA Certificate for your RHV environment. You need to do that on you
 
 Set this variable to the RHV hostname from the e-mail. 
 
-Open a new browser to access the following URL. Make sure to replace `RHV_HOSTNAME`` with the hostname from your welcome e-mail (e.g., *rhvm.dev.cnv.infra.opentlc.com*).
+Open a new browser to access the following URL. Make sure to replace `RHV_HOSTNAME` with the hostname from your welcome e-mail (e.g., *rhvm.dev.cnv.infra.opentlc.com*).
 
 [source,sh]
 ----

@@ -45,15 +45,10 @@ Update the `jdbc.url` value to your Oracle virtual machine's name (e.g. _oracle-
 jdbc.url=jdbc:oracle:thin:@ooracle-96trd:1521/xepdb1
 ----
 
-Save the file.
-
-Open a terminal in VS Code, run the following `git config` command before you _commit_ and _push_ changes.
-
-[source,sh]
-----
-git config --global user.email "opentlc-mgr@opentlc.com"
-git config --global user.name "opentlc-mgr"
-----
+[NOTE]
+====
+Where is the Save button? VS Code server will autosave your changes, that is why you can’t find a SAVE button - no more losing code because you forgot to save. You can undo with `CTRL-Z` or `CMD-Z` or by using the `Edit -> Undo` menu option.
+====
 
 Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_persistence.properties_).
 
@@ -61,11 +56,41 @@ Type `Update jdbc.url` in the comment. Then, commit it(e.g. _Command + Enter on 
 
 image::../images/vscode-commit.png[vscode-commit]
 
+Access your `Gitea` repository (e.g. _https://gitea.apps.cluster-l6kxh.sandbox541.opentlc.com_) in your email notification with the following credentials:
+
+* Gitea admin username: `opentlc-mgr`
+* Gitea admin password: `openshift`
+
+Once you logged in to the Gitea admin console, you will see the latest commit (e.g. _08fb9fb6f4 Update jdbc.url_).
+
+image::../images/gitea-update-file.png[gitea-update-file]
+
 == Run an OpenShift Pipeline
 
-In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually
+In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually.
 
-Go to `Pipelines` and click the dots menu to the right of the pipeline `customers-deployment-pipeline`. Select *Start last run*.
+Go back to OpenShift web console. Then, switch project to 'ama-pipeline` in _Developer perspective_. 
+
+Click on `Pipelines` on the left menu. You will see pre-defined `customers-deployment-pipeline` pipeline. Click on the pipeline.
+
+image::../images/ama-pipeline.png[ama-pipeline]
+
+Click on `Start` in *Actions* dropbox to run the pipeline.
+
+image::../images/ama-pipeline-start.png[ama-pipeline-start]
+
+A *PipelineRun* is how you can start a pipeline and tie it to the Git and image resources that should be used for this specific invocation.
+
+This dialog box is where you bind the final target values for the source repo of the _build-artifact_ step, and the target namespace to deploy in the _update-manifest-and-push_ step. Input the parameter and select resources as below then Click on *Start*:
+
+* git-url: `https://YOUR_GITEA_URL/lab-user/app-mod-projects.git`
+* git-branch: `main`
+* app-subdir: `customers-tomcat-gitops`
+* target-namespace: `retail`
+* target-registry: `image-registry.openshift-image-registry.svc:5000`
+* ws: `customers-pvc` in *PersistentVolumeClaim*
+
+image::../images/ama-pipeline-start-popup.png[ama-pipeline-start-popup]
 
 When you go to the Topology view of `retail` project in Developer perspective, the applications deployment should look like:
 

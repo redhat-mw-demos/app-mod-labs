@@ -3,12 +3,6 @@
 In this step you will follow to migrate the *customers* service from Red Hat Enterprise Virtualization (RHV) to Red Hat OpenShift are as follows:
 
 * Migrate the *Oracle VM* from RHV to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization
-* Modernize the Java source code for the *customers* application
-* Use the https://tekton.dev/[Tekton^] Pipeline to build and deploy the new, modernized application using Red Hat JBoss Web Server instead of Apache Tomcat as the runtime.
-* Set up the configuration for the *customers* service to connect to the Oracle database VM which is now running on OpenShift Container Platform
-* Test the *customers* service
-* Update the configuration for the *gateway* service to now point to the modernized *customers* service.
-* Demonstrate that your *frontend* service still works as before.
 
 === Migrate the Oracle VM from RHV to OpenShift
 

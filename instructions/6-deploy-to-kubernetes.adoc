@@ -96,6 +96,29 @@ As soon as you started the *customers-deployment-pipeline* pipeline, a _pipeline
 
 image::../images/ama-pipeline-complete.png[ama-pipeline-complete]
 
+Add some nice labels to correspond to the different languages, frameworks, and runtimes used in the app. Run the following `oc` commands in your local environment or VS Code server where you logged in to the OpenShift cluster.
+
+[source,sh]
+----
+oc project retail && \
+oc label deployment/inventory app.kubernetes.io/part-of=inventory app.openshift.io/runtime=quarkus --overwrite && \
+oc label deployment/postgresql-inventory app.kubernetes.io/part-of=inventory app.openshift.io/runtime=postgresql --overwrite && \
+oc annotate deployment/inventory app.openshift.io/connects-to=postgresql-inventory --overwrite && \
+oc label deployment/orders app.kubernetes.io/part-of=orders app.openshift.io/runtime=spring --overwrite && \
+oc label deployment/postgresql-orders app.kubernetes.io/part-of=orders app.openshift.io/runtime=postgresql --overwrite && \
+oc annotate deployment/orders app.openshift.io/connects-to=postgresql-orders --overwrite && \
+oc label deployment/customers app.kubernetes.io/part-of=customers app.openshift.io/runtime=tomcat --overwrite && \
+oc label deployment/ordersfrontend app.kubernetes.io/part-of=ordersfrontend app.openshift.io/runtime=nodejs --overwrite && \
+oc annotate deployment/ordersfrontend app.openshift.io/connects-to=gateway --overwrite && \
+oc label deployment/gateway app.kubernetes.io/part-of=gateway app.openshift.io/runtime=spring --overwrite && \
+oc annotate deployment/gateway app.openshift.io/connects-to=inventory,orders,customers --overwrite 
+----
+
+[NOTE]
+====
+You might have no connection between `gateway` and `customers`. In that case, you can add the connection by dragging in _Dev Console_.
+====
+
 Go back to the _Topology View_ of `retail` project in Developer perspective, the applications deployment should look like:
 
 image::../images/app-toplogy.png[app-toplogy]

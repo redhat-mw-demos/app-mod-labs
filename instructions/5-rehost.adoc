@@ -147,7 +147,7 @@ Add a label to your VM's template metadata and make sure to replace `${GUID}` wi
 
 [source,sh]
 ----
-oc patch vm oracle-${GUID} --type=merge --patch='{"spec": { "template": { "metadata": { "labels": { "app": "oracle-${GUID}"}}}}}' -n retail
+oc patch vm oracle-${GUID} --type=merge --patch="{\"spec\": { \"template\": { \"metadata\": { \"labels\": { \"app\": \"oracle-${GUID}\"}}}}}" -n retail
 ----
 
 Restart the VM for the VM Pod to pick up the new label. Go back to the `VirtualMachines` menu in the OpenShift Web Console. Click on your VM.

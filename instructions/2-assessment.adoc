@@ -42,9 +42,9 @@ image::../images/stakeholder-groups.png[stakeholder-groups]
 
 === Business services
 
-Applications can be classified and grouped in multiple ways such as **business service**. Let’s create a new business service for the legacy `Retail` applications.
+Applications can be classified and grouped in multiple ways such as **business service**. We've created a business service for the legacy `Retail` applications.
 
-Go to `Controls` on the left menu and click on _Business services_ tab. You will existing _business services_ such as *Finance and HR* and *Retail*.
+Go to `Controls` on the left menu and click on _Business services_ tab. You will see existing _business services_ such as *Finance and HR* and *Retail*.
 
 image::../images/tackle-control-business-service.png[business service]
 
@@ -94,7 +94,7 @@ Choose the following answers for each question.
 ** Actively developed, SME knowledge is available
 
 * How is the application supported in production?
-** Separate internal support team, separate from the development team, with little interaction between the team
+** SRE (Site Reliability Engineering) approach with a knowledgeable and experienced operations team
 
 * How much time passes from when code is committed until the application is deployed to production?
 ** 1-7 days

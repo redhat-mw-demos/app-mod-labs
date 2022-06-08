@@ -10,7 +10,7 @@ image::../images/vscode-server-login.png[vscode-server-login]
 
 == Explore the Migration issues
 
-According to the analysis report, the migration issues are to use the external configurations with hard coded static IP addresses. Let's dig into the issue on the code level. Go to `customers-tomcat-legacy` project in VSCode server. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory.
+According to the analysis report, the migration issues are related to external configurations with hard coded static IP addresses. Let's dig into the issue on the code level. Go to `customers-tomcat-legacy` project in VSCode server. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory.
 
 image::../images/persistence-class.png[persistence-class]
 
@@ -30,7 +30,7 @@ Let's find out how to fix the above configuration issue. Move to `customers-tomc
 
 image::../images/appconfig-pom-ocp.png[appconfig-pom-ocp]
 
-Using the kubernetes profile in the build is essential for the application to pick up the configuration file injected via a secret in the pod. That secret also has to be  created manually with the following command from the customers-tomcat-ocp directory:
+Using the kubernetes profile in the build is essential for the application to pick up the configuration file injected via a secret in the pod. That secret also has to be  created manually which would normally be done by packaging with maven, we don't need to run this command though:
 
 [source,sh]
 ----
@@ -39,7 +39,7 @@ mvn clean package -P kubernetes
 
 Luckily, We already have the solution artifact (`customers-tomcat-solution.war`) in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/packages-mta[packages-mta^] folder. Download the WAR file and go back to the MTA web console.
 
-Create a new project, `New Customers Service` to analyze the solution artifact. Once the report is finished, verify that it now reports `0` Story Points.
+Create a new project, `New Customers Service` to analyze the solution artifact. Configure the project with the same settings and custom rules that we used for the Customers Service project. Once the report is finished, verify that it now reports `0` Story Points.
 
 You have successfully migrated this app to OpenShift, *congratulations!*
 

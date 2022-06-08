@@ -29,6 +29,8 @@ The application is a multi service application consisting of a Node.js frontend 
 
 The services running on OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
 
+You might see the customers poda are failing since there's a bug we will figure out...
+
 All source code for the applications as well as the GitOps YAML manifests for all services are stored in a (GitHub compatible) Gitea repository that for demo purposes is hosted on the OpenShift cluster.
 
 The problem right now is the customers service:
@@ -94,7 +96,7 @@ NAME             HOST/PORT                                                      
 ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.com          ordersfrontend   web    edge/Redirect   None
 ----
 
-. Navigate to the orders frontend route. You can use either https or http (which will be redirected to http).
+. Navigate to the orders frontend route. You can use either https or http (which will be redirected to https).
 +
 image::../images/frontend.png[Frontend]
 

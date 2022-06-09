@@ -52,7 +52,7 @@ Where is the Save button? VS Code server will autosave your changes, that is why
 
 Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_persistence.properties_).
 
-Type `Update jdbc.url` in the comment. Then, commit it(e.g. _Command + Enter on macOS_) and cick on `Sync Changes`.
+Type `Update jdbc.url` in the comment. Then, commit it(e.g. _Command + Enter on macOS_) and click on `Sync Changes`.
 
 image::../images/vscode-commit.png[vscode-commit]
 
@@ -65,7 +65,7 @@ Once you logged in to the Gitea admin console, you will see the latest commit (e
 
 image::../images/gitea-update-file.png[gitea-update-file]
 
-== Run an OpenShift Pipeline
+== Run an OpenShift Pipelines
 
 In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually.
 
@@ -121,10 +121,66 @@ You might have no connection between `gateway` and `customers`. In that case, yo
 
 Go back to the _Topology View_ of `retail` project in Developer perspective, the applications deployment should look like:
 
-image::../images/app-toplogy.png[app-toplogy]
+image::../images/app-topology.png[app-topology]
 
-Click on `Open URL` to access the *GLOBEX* web page. you should see that `Customers` shows properly now.
+Now we need to update the `gateway` application's configuration to connect to the `customers` based on Kubernetes service name rather than the *IP address*.
 
-image::../images/new-customers.png[new-customers]
+== Sync the Gateway application in ArgoCD
+
+Go back to the _VS Code_ and open the `application.yaml` file in *gatway/helm/config* directory. Replace *customers' URL* with the following URL.
+
+[source,yaml]
+----
+url: http://customers/customers-tomcat-0.0.1-SNAPSHOT/customers
+----
+
+image::../images/update-customers-url.png[update-customers-url]
+
+Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_application.yaml_).
+
+Type `Update customers url` in the comment. Then, commit it(e.g. _Command + Enter on macOS_) and click on `Sync Changes`.
+
+image::../images/update-customers-url-push.png[update-customers-url-push]
+
+Access the ArgoCD admin console by clicking on `Open URL` over the *argocd-server* pod.
+
+image::../images/argocd-server-route.png[argocd-server-route]
+
+Then you will see the ArgoCD login page. The admin user's password is stored in the Kubernetes secret. Go to `Secret` on the left menu in _Developer perspective_ and click on the `argocd-cluster` secret. When you click on 'Hide values', the password will be shown. Then click on `copy` icon.
+
+image::../images/argocd-secret.png[argocd-secret]
+
+Go back to the ArgoCD login page, enter the following credentials.
+
+* Username: `admin`
+* Password: Paste the admin.password in the secret _(e.g. 1rjCPla5DZw3SWxsVv9cF2dmOuiYgHbA_)
+
+image::../images/argocd-login.png[argocd-login]
+
+you will see all applications such as _frontend, gateway, inventory, orders, and customers_. Click on `gateway` application.
+
+image::../images/argocd-gateway.png[argocd-gateway]
+
+When the code change (e.g. _application.yaml_) completes in _Gitea_ server, ArgoCD starts syncing the gateway application. It usually takes less than a minute to complete the sync.
+
+image::../images/argocd-sync.png[argocd-sync]
+
+Go to the OpenShift admin console to confirm if the `gateway-config` is updated based on the code change.
+
+image::../images/gateway-new-configmap.png[gateway-new-configmap]
+
+Now you need to kill the `gateway` pod to apply for the new ConfigMap. Go to the *Pod detail view*, click on `Delete Pod` in _Actions_ dropdown menu.
+
+image::../images/delete-gateway-pod.png[delete-gateway-pod]
+
+Click on 'Delete' on the popup window.
+
+image::../images/delete-gateway-pod-popup.png[delete-gateway-pod-popup]
+
+== Revisit the GLOBEX web page
+
+Let's go back to the `Orders` in the *GLOBEX* web page. You can see the same customers data as you had in the VM.
+
+image::../images/frontend.png[Frontend]
 
 ➡️ Next section: link:./7-enhance-apps.adoc[7 - Enhance Applications with Managed Services]

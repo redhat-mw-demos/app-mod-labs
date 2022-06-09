@@ -1,41 +1,186 @@
 = Deploy to Kubernetes
 
-== Use OpenShift Pipelines to build and deploy the modernized customer application.
+In this step you will build and deploy the modernized customer application to OpenShift using https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html[OpenShift Pipelines^] and https://docs.openshift.com/container-platform/4.10/cicd/gitops/understanding-openshift-gitops.html[GitOps^].
 
-=== Change Customer Application to connect to the migrated VM on the cluster
+* Modernize the Java source code for the *customers* application
+* Use the https://tekton.dev/[Tekton^] Pipeline to build and deploy the new, modernized application using Red Hat JBoss Web Server instead of Apache Tomcat as the runtime.
+* Set up the configuration for the *customers* service to connect to the Oracle database VM which is now running on OpenShift Container Platform
+* Test the *customers* service
+* Update the configuration for the *gateway* service to now point to the modernized *customers* service.
+* Demonstrate that your *frontend* service still works as before.
 
-The existing customer pod connects to the VM running in RHV. Unless you started the VM again in RHV this application now has no database. But since we migrated the VM over to OpenShift we need to tell the application to connect to the VM on OpenShift instead.
+As stated before, one of the main focus areas of the application modernization journey is to showcase a modern approach for CI/CD using a set of tools and practices around the GitOps paradigm. For that, a Deployment Pipeline for the Customers application has been developed using OpenShift Pipelines based on https://tekton.dev/[Tekton^]. The following diagram depicts all tasks to be executed by the pipeline and its interaction with external systems and tools:
 
-You will need to change source code in order to point to the VM.
+image::../images/ocp-pipeline.png[ocp-pipeline]
 
-. In a web browser navigate to the Visual Studio Code window using the URL and password from your welcome e-mail.
-. Navigate to the file `appmod-enablement / customer-tomcat-gitops / helm / secret / persistence.properties`
-. Change the *jdbc.url* to use the service name for your VM on OpenShift. It should look somewhat like this:
-+
-[source,text]
+Each of these tasks can be described as follows:
+
+* *Clone Repository* downloads the source code from the target Git repository.
+* *Build from Source* builds the application artifact from source code. This task has been tweaked to allow selecting the target subdirectory from the repository in which the target application source is available, allowing to have several application/components available in a single repository. *This way of versioning different services/components is highly discouraged*, as the optimal approach would be to have a dedicated repository for each component since their lifecycle should be independent. Nevertheless, this choice was made to gather all demo materials on a single repository for simplicity purposes.
+* *Build Image* uses the Dockerfile packaged on the root directory of an application to build an image and push it to the target registry. The image will be tagged with the short commit hash of the source it contains.
+* *Update Manifest* uses the short commit hash tag to update the application manifest in Git and point to the newly built image. Application deployment is then delegated to ArgoCD, which is continuously polling the configuration repository for changes and creates/updates all OpenShift objects accordingly.
+
+The pipeline accepts the following parameters:
+
+* *git-url*: URL of the target Git repository.
+* *git-branch*: target branch to work with. (_default: main_)
+* *app-subdir*: Subdirectory from the repository in which the application source code is stored.
+* *target-namespace*: Namespace/project in which to deploy the application.
+* *target-registry*: Registry to push the built image to. (_default: image-registry.openshift-image-registry.svc:5000_)
+
+== Update Oracle DMBS Connection
+
+The *customers* application in the OpenShift cluster has a connection failure because the application still tries to connect to the Oracle database running on RHV. 
+
+To fix the issue, you need to update the *JDBC* configuration that points to the migrated Oracle database on OpenShift virtualization.
+
+Go back to the VS Code server and open the `persistence.properties` file in *customer-tomcat-gitops/helm/secret* directory.
+
+image::../images/gitops-persistence.png[gitops-persistence]
+
+Update the `jdbc.url` value to your Oracle virtual machine's name (e.g. _oracle-96trd_) on OpenShift. It should look somewhat like this:
+
+[source,yaml]
 ----
-jdbc.url=jdbc:oracle:thin:@oracle-wkama:1521/xepdb1
+jdbc.url=jdbc:oracle:thin:@ooracle-96trd:1521/xepdb1
 ----
 
-. Save the file.
+[NOTE]
+====
+Where is the Save button? VS Code server will autosave your changes, that is why you can’t find a SAVE button - no more losing code because you forgot to save. You can undo with `CTRL-Z` or `CMD-Z` or by using the `Edit -> Undo` menu option.
+====
 
-// . Configure Git: in VSCode switch to the Terminal and run these two commands:
-// +
-// [source,sh]
-// ----
-// git config --global user.email "you@example.com"
-// git config --global user.name "Your Name"
-// ----
+Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_persistence.properties_).
 
-. Switch to the Source Control section in VSCode, commit and push the change.
-(you may need to push from the Terminal. It will prompt for user (lab-user) and password (openshift))
+Type `Update jdbc.url` in the comment. Then, commit it(e.g. _Command + Enter on macOS_) and click on `Sync Changes`.
 
-=== Start an OpenShift Pipeline run
+image::../images/vscode-commit.png[vscode-commit]
 
-In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually
+Access your `Gitea` repository (e.g. _https://gitea.apps.cluster-l6kxh.sandbox541.opentlc.com_) in your email notification with the following credentials:
 
-. Log into OpenShift Web Console
-. Navigate to *Pipelines* -> *Pipelines*
-. Click the dots menu to the right of the pipeline `customers-deployment-pipeline` and select *Start last run*
+* Gitea admin username: `opentlc-mgr`
+* Gitea admin password: `openshift`
+
+Once you logged in to the Gitea admin console, you will see the latest commit (e.g. _08fb9fb6f4 Update jdbc.url_).
+
+image::../images/gitea-update-file.png[gitea-update-file]
+
+== Run an OpenShift Pipelines
+
+In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually.
+
+Go back to OpenShift web console. Then, switch project to 'ama-pipeline` in _Developer perspective_. 
+
+Click on `Pipelines` on the left menu. You will see pre-defined `customers-deployment-pipeline` pipeline. Click on the pipeline.
+
+image::../images/ama-pipeline.png[ama-pipeline]
+
+Click on `Start` in *Actions* dropbox to run the pipeline.
+
+image::../images/ama-pipeline-start.png[ama-pipeline-start]
+
+A *PipelineRun* is how you can start a pipeline and tie it to the Git and image resources that should be used for this specific invocation.
+
+This dialog box is where you bind the final target values for the source repo of the _build-artifact_ step, and the target namespace to deploy in the _update-manifest-and-push_ step. Input the parameter and select resources as below then Click on *Start*:
+
+* git-url: `https://YOUR_GITEA_URL/lab-user/app-mod-projects.git`
+* git-branch: `main`
+* app-subdir: `customers-tomcat-gitops`
+* target-namespace: `retail`
+* target-registry: `image-registry.openshift-image-registry.svc:5000`
+* ws: `customers-pvc` in *PersistentVolumeClaim*
+
+image::../images/ama-pipeline-start-popup.png[ama-pipeline-start-popup]
+
+As soon as you started the *customers-deployment-pipeline* pipeline, a _pipelinerun_ is instantiated and pods are created to execute the tasks that are defined in the pipeline. After a few minutes, the pipeline should finish successfully. You can hover over the steps to get a quick snapshot of the step’s progress, or click on the steps to see detailed logs of the steps.
+
+image::../images/ama-pipeline-complete.png[ama-pipeline-complete]
+
+Add some nice labels to correspond to the different languages, frameworks, and runtimes used in the app. Run the following `oc` commands in your local environment or VS Code server where you logged in to the OpenShift cluster.
+
+[source,sh]
+----
+oc project retail && \
+oc label deployment/inventory app.kubernetes.io/part-of=inventory app.openshift.io/runtime=quarkus --overwrite && \
+oc label deployment/postgresql-inventory app.kubernetes.io/part-of=inventory app.openshift.io/runtime=postgresql --overwrite && \
+oc annotate deployment/inventory app.openshift.io/connects-to=postgresql-inventory --overwrite && \
+oc label deployment/orders app.kubernetes.io/part-of=orders app.openshift.io/runtime=spring --overwrite && \
+oc label deployment/postgresql-orders app.kubernetes.io/part-of=orders app.openshift.io/runtime=postgresql --overwrite && \
+oc annotate deployment/orders app.openshift.io/connects-to=postgresql-orders --overwrite && \
+oc label deployment/customers app.kubernetes.io/part-of=customers app.openshift.io/runtime=tomcat --overwrite && \
+oc label deployment/ordersfrontend app.kubernetes.io/part-of=ordersfrontend app.openshift.io/runtime=nodejs --overwrite && \
+oc annotate deployment/ordersfrontend app.openshift.io/connects-to=gateway --overwrite && \
+oc label deployment/gateway app.kubernetes.io/part-of=gateway app.openshift.io/runtime=spring --overwrite && \
+oc annotate deployment/gateway app.openshift.io/connects-to=inventory,orders,customers --overwrite 
+----
+
+[NOTE]
+====
+You might have no connection between `gateway` and `customers`. In that case, you can add the connection by dragging in _Dev Console_.
+====
+
+Go back to the _Topology View_ of `retail` project in Developer perspective, the applications deployment should look like:
+
+image::../images/app-topology.png[app-topology]
+
+Now we need to update the `gateway` application's configuration to connect to the `customers` based on Kubernetes service name rather than the *IP address*.
+
+== Sync the Gateway application in ArgoCD
+
+Go back to the _VS Code_ and open the `application.yaml` file in *gatway/helm/config* directory. Replace *customers' URL* with the following URL.
+
+[source,yaml]
+----
+url: http://customers/customers-tomcat-0.0.1-SNAPSHOT/customers
+----
+
+image::../images/update-customers-url.png[update-customers-url]
+
+Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_application.yaml_).
+
+Type `Update customers url` in the comment. Then, commit it(e.g. _Command + Enter on macOS_) and click on `Sync Changes`.
+
+image::../images/update-customers-url-push.png[update-customers-url-push]
+
+Access the ArgoCD admin console by clicking on `Open URL` over the *argocd-server* pod.
+
+image::../images/argocd-server-route.png[argocd-server-route]
+
+Then you will see the ArgoCD login page. The admin user's password is stored in the Kubernetes secret. Go to `Secret` on the left menu in _Developer perspective_ and click on the `argocd-cluster` secret. When you click on 'Hide values', the password will be shown. Then click on `copy` icon.
+
+image::../images/argocd-secret.png[argocd-secret]
+
+Go back to the ArgoCD login page, enter the following credentials.
+
+* Username: `admin`
+* Password: Paste the admin.password in the secret _(e.g. 1rjCPla5DZw3SWxsVv9cF2dmOuiYgHbA_)
+
+image::../images/argocd-login.png[argocd-login]
+
+you will see all applications such as _frontend, gateway, inventory, orders, and customers_. Click on `gateway` application.
+
+image::../images/argocd-gateway.png[argocd-gateway]
+
+When the code change (e.g. _application.yaml_) completes in _Gitea_ server, ArgoCD starts syncing the gateway application. It usually takes less than a minute to complete the sync.
+
+image::../images/argocd-sync.png[argocd-sync]
+
+Go to the OpenShift admin console to confirm if the `gateway-config` is updated based on the code change.
+
+image::../images/gateway-new-configmap.png[gateway-new-configmap]
+
+Now you need to kill the `gateway` pod to apply for the new ConfigMap. Go to the *Pod detail view*, click on `Delete Pod` in _Actions_ dropdown menu.
+
+image::../images/delete-gateway-pod.png[delete-gateway-pod]
+
+Click on 'Delete' on the popup window.
+
+image::../images/delete-gateway-pod-popup.png[delete-gateway-pod-popup]
+
+== Revisit the GLOBEX web page
+
+Let's go back to the `Orders` in the *GLOBEX* web page. You can see the same customers data as you had in the VM.
+
+image::../images/frontend.png[Frontend]
 
 ➡️ Next section: link:./7-enhance-apps.adoc[7 - Enhance Applications with Managed Services]

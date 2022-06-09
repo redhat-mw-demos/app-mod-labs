@@ -17,7 +17,7 @@ In *Phase 2* of the App Mod journey, the customer would like to enhance their mo
 
 *In Phase 1:*
 
-* The application is modernized into microservices and runs on OpenShift and  inherits all its.
+* The application is modernized into microservices and runs on OpenShift and  inherits all its benefits.
 * Adoption of GitOps practices decreases Lead Time for Change, Mean Time to Recover and Change Failure Rate while increasing Deployment Frequency
 
 

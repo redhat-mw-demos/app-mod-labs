@@ -4,55 +4,45 @@ In this step you will modernize the customers application to fix the analyzed is
 
 Open a new browser to access the VSCode server that is provided from the e-mail. Use the following credential.
 
-* Password: `password`
+* Password: `openshift`
 
 image::../images/vscode-server-login.png[vscode-server-login]
 
 == Explore the Migration issues
 
-Go to `customers-tomcat-legacy` project. Then, open `PersistenceConfig.java` file in `src/main/java/io/konveyor/demo/ordermanagement/config` directory.
+According to the analysis report, the migration issues are related to external configurations with hard coded static IP addresses. Let's dig into the issue on the code level. Go to `customers-tomcat-legacy` project in VSCode server. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory.
 
 image::../images/persistence-class.png[persistence-class]
 
+The *dataSource()* method creates an `ApplicationConfiguration` instance to configure the JDBC variables such as _driverClassName_, _url_, _user_, and _password_. The ApplicationConfiguration ends up with referring to the hard coded IP address in `persistence.properties`.
+
+image::../images/applicationConfiguration-class.png[applicationConfiguration-class]
+
 == Understand the Solution
 
-We already have the solution how to fix the migration issues. Go to `customers-tomcat-ocp` project. Then, open `PersistenceConfig.java` file in `src/main/java/io/konveyor/demo/ordermanagement/config` directory.
+The `customers-tomcat-ocp` project implements the *Customers* application with all the required changes and deploy the applications to OpenShift (Kubernetes). It also defines an OpenShift manifests file in the `ocp` directory.
 
-image::../images/persistence-class-ocp.png[persistence-class-ocp]
+image::../images/ocp-manifests.png[ocp-manifests]
 
-You can compare the code in `dataSource()` method how to configure the datastore values.
+Let's find out how to fix the above configuration issue. Move to `customers-tomcat-ocp` project. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory and `pom.xml` file.
 
-* *AS-IS*
+*ApplicationConfiguration* class isn't required anymore to configure the JDBC variables but the *datasource* method still needs to use the environment instance. When you take a look at the *pom.xml*, the static properties file will be excluded when the application is building. 
 
-[source,java]
+image::../images/appconfig-pom-ocp.png[appconfig-pom-ocp]
+
+Using the kubernetes profile in the build is essential for the application to pick up the configuration file injected via a secret in the pod. That secret also has to be  created manually which would normally be done by packaging with maven, we don't need to run this command though:
+
+[source,sh]
 ----
-@Bean
-public DataSource dataSource() {
-    ApplicationConfiguration config = new ApplicationConfiguration();
-    final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(config.getProperty("jdbc.driverClassName"));
-    dataSource.setUrl(config.getProperty("jdbc.url"));
-    dataSource.setUsername(config.getProperty("jdbc.user"));
-    dataSource.setPassword(config.getProperty("jdbc.password"));
-
-    return dataSource;
-}
+mvn clean package -P kubernetes
 ----
 
-* *TO-BE*
+Luckily, We already have the solution artifact (`customers-tomcat-solution.war`) in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/packages-mta[packages-mta^] folder. Download the WAR file and go back to the MTA web console.
 
-[source,java]
-----
-@Bean
-public DataSource dataSource() {
-    final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-    dataSource.setUrl(env.getProperty("jdbc.url"));
-    dataSource.setUsername(env.getProperty("jdbc.user"));
-    dataSource.setPassword(env.getProperty("jdbc.password"));
+Create a new project, `New Customers Service` to analyze the solution artifact. Configure the project with the same settings and custom rules that we used for the Customers Service project. Once the report is finished, verify that it now reports `0` Story Points.
 
-    return dataSource;
-}
-----
+You have successfully migrated this app to OpenShift, *congratulations!*
+
+image::../images/report-solution-view.png[View report] 
 
 ➡️ Next section: link:./5-rehost.adoc[5 - Rehost]

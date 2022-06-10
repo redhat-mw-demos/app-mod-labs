@@ -179,7 +179,7 @@ image::../images/delete-gateway-pod-popup.png[delete-gateway-pod-popup]
 
 == Revisit the GLOBEX web page
 
-Let's go back to the `Orders` in the *GLOBEX* web page. You can see the same customers data as you had in the VM.
+Let's go back to the `Customers` in the *GLOBEX* web page. You can see the same customers data as you had in the VM.
 
 image::../images/frontend.png[Frontend]
 

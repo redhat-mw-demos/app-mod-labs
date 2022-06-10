@@ -104,9 +104,9 @@ ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.co
 image::../images/frontend.png[Frontend]
 
 . Click through the three panels on the left.
-.. Customer doesn't work (bug in the code)
-.. Orders shows current orders. You can tell that customers is working beause the first two columns are populated by the customers service
-.. Products shows the current inventory
+.. `Customers` shows the list of the customer information such as _fullname, city, country, and username_.
+.. `Orders` shows current order information including relevant customer data.
+.. `Products` shows the current inventory information.
 
 ==  Demonstrating the Oracle Database
 

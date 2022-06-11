@@ -8,24 +8,24 @@ Red Hat helps our customers' application modernization journey with this approac
 
 image::../images/app-mod-approach.png[Modernization Approach]
 
-This demo will walk you thorough 2 phases (_Assess_, _Rationalize_) as following steps:
+This workshop will walk you thorough 2 phases (_Assess_, _Rationalize_) as following steps:
 
    1. Assessment of the legacy application using https://www.konveyor.io/tools/tackle/[Konveyor Tackle^] 
    2. Analysis of the legacy application archive and refactor the application using https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/5.3[Migration Toolkit for Applications^]
-   3. Deploy the modernized applications to Kubernetes/OpenShift using https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html-single/cicd/index#gitops[OpenShift GitOps (ArgCD)^]
-   4. Migration of a database to OpenShift virtualization using https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.3[Migration Toolkit for Virtualization^]
+   3. Migration of a database to OpenShift virtualization using https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.3[Migration Toolkit for Virtualization^]
+   4. Deploy the modernized applications to Kubernetes/OpenShift using https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html-single/cicd/index#gitops[OpenShift GitOps (ArgCD)^]
 
 == Explore the environment
 
-Your initial demo environment has the whole microservices applications deployed and working.
+Your initial workshop environment has the whole microservices applications deployed and working.
 
 image::../images/architecture_initial.png[architecture_initial]
 
-Your initial state for this demo is an environment that is spread over Red Hat Virtualization and Red Hat OpenShift Container Platform.
+Your initial state for this workshop is an environment that is spread over Red Hat Virtualization and Red Hat OpenShift Container Platform.
 
 Your application has been partially already moved from your legacy environments to OpenShift.
 
-The application is a multi service application consisting of a Node.js frontend service which is getting its data via a gateway service. The gateway service is connected to three backend services: customers, orders and inventory. Each of the backend services uses its own database to store data.
+The retail system is multiple services consisting of a Node.js frontend service which is getting its data via a gateway service. The gateway service is connected to three backend services: customers, orders and inventory. Each of the backend services uses its own database to store data.
 
 The services running on OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
 
@@ -34,12 +34,12 @@ The services running on OpenShift are deployed in a namespace `retail`. The serv
 You might see the customers pods are failed to run due to _ImagePullBackOff Error_. It will be fixed when you finish the *Deploy to Kubernetes* section.
 ====
 
-All source code for the applications as well as the GitOps YAML manifests for all services are stored in a (GitHub compatible) Gitea repository that for demo purposes is hosted on the OpenShift cluster.
+All source code for the applications as well as the GitOps YAML manifests for all services are stored in a (GitHub compatible) Gitea repository that for workshop purposes is hosted on the OpenShift cluster.
 
 The problem right now is the customers service:
 
 * The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat JBoss Web Server.
-* The customers database is using an Oracle 21c database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
+* The customers database is using an __Oracle_ database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
 
 When you have finished this demonstration your deployment architecture should look like this:
 
@@ -51,7 +51,7 @@ image::../images/architecture_completed.png[architecture_completed]
 
 Your OpenShift cluster is already configured with everything you need. Here are the details:
 
-* Latest stable OpenShift Container Platform 4.10 is deployed as a bare metal single node OpenShift environment.
+* Latest stable OpenShift Container Platform is deployed as a bare metal single node OpenShift environment.
 * The following operators have been installed and configured:
 ** Gitea (to host the source code repositories)
 ** OpenShift Virtualization (to ultimately run the migrated Oracle VM)
@@ -70,11 +70,11 @@ Instructions on how to access the bastion VM can be found in the provisioning e-
 
 === Visual Studio Code (Server)
 
-To facilitate an easy demonstration environment the bastion has a Visual Studio Code Server installed. This means you don't need to install and configure VSCode on your demo laptop but you can just use the one provided in a web browser.
+To facilitate an easy demonstration environment the bastion has a Visual Studio Code Server installed. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
 
 This makes it easy to change any source code (or configuration files) in the cloned repository.
 
-The URL and password for the VSCode Server can be found in the provisioning e-mail.
+The URL and password for the VS Code Server can be found in the provisioning e-mail.
 
 image::../images/vscode.png[VSCode]
 
@@ -135,7 +135,7 @@ Next you can show the contents of the database:
 
 image::../images/customer-dbms.png[Connect using DBeaver]
 
-=== Demo the Customer Application deployed on Tomcat
+=== Demostrate the Customer Application deployed on Tomcat
 
 The RHV environment not only has the Oracle Database VM deployed but it also hosts another VM which runs the old customer application on top of Apache Tomcat.
 

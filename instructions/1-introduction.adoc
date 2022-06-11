@@ -64,7 +64,7 @@ Instructions on how to access the OpenShift console, Gitea or Migration Toolkit 
 
 === Bastion VM
 
-Your Bastion VM for the cluster has all the necessary tools installed (`oc`, `virtctl`, `tkn`). It also has a copy of the `appmod-enablement` repository in your home directory.
+Your Bastion VM for the cluster has all the necessary tools installed (`oc`, `virtctl`, `tkn`). It also has a copy of the `app-mod-projects` repository in your home directory.
 
 Instructions on how to access the bastion VM can be found in the provisioning e-mail.
 

@@ -60,13 +60,13 @@ Your OpenShift cluster is already configured with everything you need. Here are 
 ** OpenShift Pipelines: to build the customer application from source code and deploy to the `retail` project using GitOps
 ** Migration Toolkit for Applications (Tackle): to help modernize the customer service Java source code.
 
-Instructions on how to access the OpenShift console, Gitea or Migration Toolkit for Applications along with userids and passwords can be found in the provisioning e-mail.
+Instructions on how to access the OpenShift console, Gitea or Migration Toolkit for Applications along with userids and passwords can be found in the provisioning email.
 
 === Bastion VM
 
 Your Bastion VM for the cluster has all the necessary tools installed (`oc`, `virtctl`, `tkn`). It also has a copy of the `app-mod-projects` repository in your home directory.
 
-Instructions on how to access the bastion VM can be found in the provisioning e-mail.
+Instructions on how to access the bastion VM can be found in the provisioning email.
 
 === Visual Studio Code (Server)
 
@@ -74,7 +74,7 @@ To facilitate an easy demonstration environment the bastion has a Visual Studio 
 
 This makes it easy to change any source code (or configuration files) in the cloned repository.
 
-The URL and password for the VS Code Server can be found in the provisioning e-mail.
+The URL and password for the VS Code Server can be found in the provisioning email.
 
 image::../images/vscode.png[VSCode]
 
@@ -118,8 +118,8 @@ You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the O
 . Launch *DBeaver*
 . Right click the *Database Navigator* Panel and select *Create* -> *Connection*
 . Select *Oracle* and click *Next*
-. Fill in the properties (use the values from your welcome e-mail), leave default values where not specified otherwise
-.. *Host*: `<from the e-mail>`
+. Fill in the properties (use the values from your welcome email), leave default values where not specified otherwise
+.. *Host*: `<from the email>`
 .. *Database*: `XEPDB1`
 .. *Username*: `customer`
 .. *Password*: `redhat`

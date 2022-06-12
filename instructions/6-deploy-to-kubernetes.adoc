@@ -130,7 +130,7 @@ Go back to the _VS Code_ and open the `application.yaml` file in *gatway/helm/co
 
 [source,yaml]
 ----
-url: http://customers/customers-tomcat-0.0.1-SNAPSHOT/customers
+url: http://customers:8080/customers-tomcat-0.0.1-SNAPSHOT/customers
 ----
 
 image::../images/update-customers-url.png[update-customers-url]

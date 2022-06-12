@@ -75,8 +75,8 @@ On the *General settings* page use the following parameters.
 
 * Plan name: `customers-database`
 * Source provider: `rhv`
-* Target provider: select *host* (the OpenShift cluster you are currently on)
-* Target namespace*: select *retail*
+* Target provider: `host` (the OpenShift cluster you are currently on)
+* Target namespace: `retail`
 
 Click `Next`.
 

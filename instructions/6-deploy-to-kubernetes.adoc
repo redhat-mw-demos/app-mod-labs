@@ -162,6 +162,11 @@ image::../images/argocd-gateway.png[argocd-gateway]
 
 When the code change (e.g. _application.yaml_) completes in _Gitea_ server, ArgoCD starts syncing the gateway application. It usually takes less than a minute to complete the sync.
 
+[NOTE]
+====
+You can also click on `REFRESH` manually to sync the change.
+====
+
 image::../images/argocd-sync.png[argocd-sync]
 
 Go to the OpenShift admin console to confirm if the `gateway-config` is updated based on the code change.

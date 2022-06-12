@@ -52,10 +52,9 @@ In order to cope with these challenges, the development team decides for a new a
 - UI development teams and other API consumers start their development against the mocked 
 - Backend development teams can implement the APIs using modern cloud-native frameworks and test the implementation against the OpenAPI spec to ensure that the implementation does not break the contract.
 
-*Manage and Secure the APIs*  Use nn API management platform  to expose the APIs in a secure and managed manner for access by the mobile app and other 3rd party applications.
+*Manage and Secure the APIs*  Use an API management platform  to expose the APIs in a secure and managed manner for access by the mobile app and other 3rd party applications.
 
-
-*Managed cloud services* preferred for easy and rapid adoption of new middleware components like the API Management platform and Apache Kafka; this allows the teams to focus on the business requirements, without the need to invest in skills and infrastructure to deploy and maintain these components.
+*Managed cloud services* preferred for easy and rapid adoption of new middleware components like the API Management platform and Apache Kafka. This allows the teams to focus on the business requirements, without the need to invest in skills and infrastructure to deploy and maintain these components.
 
 ====
 

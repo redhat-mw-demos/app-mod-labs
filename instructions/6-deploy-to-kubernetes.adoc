@@ -1,4 +1,4 @@
-= Deploy to Kubernetes
+= Deploy to Kubernetes - 30 minutes
 
 In this step you will build and deploy the modernized customer application to OpenShift using https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html[OpenShift Pipelines^] and https://docs.openshift.com/container-platform/4.10/cicd/gitops/understanding-openshift-gitops.html[GitOps^].
 

@@ -17,7 +17,7 @@ Read more about it in the https://access.redhat.com/documentation/en-us/migratio
 
 == Create a New Project in MTA Web Console
 
-Open a new browser to access the MTA web console that is provided from the e-mail. Use the following credential.
+Open a new browser to access the MTA web console that is provided from the email. Use the following credential.
 
 * Username or email: `mta`
 * Password: `password`

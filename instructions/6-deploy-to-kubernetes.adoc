@@ -182,4 +182,9 @@ Let's go back to the `Customers` in the *GLOBEX* web page. You can see the same 
 
 image::../images/frontend.png[Frontend]
 
+[NOTE]
+====
+You might see `Unknown` result for customers data since the customers application can't access the database on OpenShift Virtualization with an error - `java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist`. In that case, restart the customer pod via deleting the pod in OpenShift admin console.
+====
+
 ➡️ Next section: link:./7-enhance-apps.adoc[7 - Enhance Applications with Managed Services]

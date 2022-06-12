@@ -1,4 +1,4 @@
-= Enhance Applications with Managed Services
+= Enhance Applications with Managed Services - 30 minutes
 
 :sectnums:
 :sectlinks:
@@ -745,4 +745,4 @@ The command can also be run in a non-interactive way:
 $ rhoas cluster bind -n globex --app-name activity-tracking --service-type kafka --service-name globex -y
 $ rhoas cluster bind -n globex --app-name recommendation-engine --service-type kafka --service-name globex -y
 ----
-====
+===

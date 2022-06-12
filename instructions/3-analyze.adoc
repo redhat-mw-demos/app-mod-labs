@@ -1,4 +1,4 @@
-= Analyze
+= Analyze - 20 minutes
 
 image::../images/mta-logo.png[mta-logo]
 

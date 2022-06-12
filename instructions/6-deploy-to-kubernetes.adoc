@@ -2,7 +2,6 @@
 
 In this step you will build and deploy the modernized customer application to OpenShift using https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html[OpenShift Pipelines^] and https://docs.openshift.com/container-platform/4.10/cicd/gitops/understanding-openshift-gitops.html[GitOps^].
 
-* Modernize the Java source code for the *customers* application
 * Use the https://tekton.dev/[Tekton^] Pipeline to build and deploy the new, modernized application using Red Hat JBoss Web Server instead of Apache Tomcat as the runtime.
 * Set up the configuration for the *customers* service to connect to the Oracle database VM which is now running on OpenShift Container Platform
 * Test the *customers* service

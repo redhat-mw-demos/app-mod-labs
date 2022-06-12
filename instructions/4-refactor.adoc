@@ -2,6 +2,8 @@
 
 In this step you will modernize the customers application to fix the analyzed issues (e.g. _Hard coded IP address_).
 
+* Modernize the Java source code for the *customers* application
+
 Open a new browser to access the VSCode server that is provided from the email. Use the following credential.
 
 * Password: `openshift`

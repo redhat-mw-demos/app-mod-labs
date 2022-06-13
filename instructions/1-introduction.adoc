@@ -27,13 +27,18 @@ Your application has been partially already moved from your legacy environments 
 
 The application is a multi service application consisting of a Node.js frontend service which is getting its data via a gateway service. The gateway service is connected to three backend services: customers, orders and inventory. Each of the backend services uses its own database to store data.
 
-The services running no OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
+The services running on OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
+
+[NOTE]
+====
+You might see the customers pods are failed to run due to _ImagePullBackOff Error_. It will be fixed when you finish the *Deploy to Kubernetes* section.
+====
 
 All source code for the applications as well as the GitOps YAML manifests for all services are stored in a (GitHub compatible) Gitea repository that for demo purposes is hosted on the OpenShift cluster.
 
 The problem right now is the customers service:
 
-* The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat Web Server.
+* The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat JBoss Web Server.
 * The customers database is using an Oracle 21c database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
 
 When you have finished this demonstration your deployment architecture should look like this:
@@ -94,7 +99,7 @@ NAME             HOST/PORT                                                      
 ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.com          ordersfrontend   web    edge/Redirect   None
 ----
 
-. Navigate to the orders frontend route. You can use either https or http (which will be redirected to http).
+. Navigate to the orders frontend route. You can use either https or http (which will be redirected to https).
 +
 image::../images/frontend.png[Frontend]
 
@@ -109,6 +114,7 @@ image::../images/frontend.png[Frontend]
 
 You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the Oracle database on Red Hat Virtualization (RHV).
 
+. Download ans install the version of DBeaver suitable for your environment.
 . Launch *DBeaver*
 . Right click the *Database Navigator* Panel and select *Create* -> *Connection*
 . Select *Oracle* and click *Next*
@@ -139,7 +145,7 @@ From a terminal window you can use `curl` to demonstrate that the application is
 +
 [source,sh]
 ----
-curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers/customers/1
+curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/1
 ----
 +
 .Sample Output
@@ -152,7 +158,7 @@ curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers/customers/1
 +
 [source,sh]
 ----
-curl http://169.60.225.219:8080/customers/customers/2
+curl http://169.60.225.219:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2
 ----
 +
 .Sample Output

@@ -5,11 +5,11 @@
 :doctype: book
 
 [sidebar]
-.Related information
+.Table of contents
 --
 1. <<introduction,Introduction>> 
 2. <<prerequisites-setup-the-cloud-services,Prerequisites: Setup the Cloud Services>>
-3. Adding Event Streaming capabilities to an application
+3. <<add-event-stream,Adding Event Streaming capabilities to an application>>
 --
 
 [#introduction]
@@ -144,6 +144,7 @@ image::../images/8-enhance-apps/devsandbox-login.png[width=100%]
 
 This completes the environment prerequistes setup. In the next section, you will use these Cloud Services to enhance your applications.
 
+[#add-event-stream]
 == Adding Event Streaming capabilities to an application
 
 === Introduction

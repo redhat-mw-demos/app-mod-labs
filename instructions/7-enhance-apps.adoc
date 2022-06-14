@@ -4,6 +4,15 @@
 :sectlinks:
 :doctype: book
 
+[sidebar]
+.Table of contents
+--
+1. <<introduction,Introduction>> 
+2. <<prerequisites-setup-the-cloud-services,Prerequisites: Setup the Cloud Services>>
+3. <<add-event-stream,Adding Event Streaming capabilities to an application>>
+--
+
+[#introduction]
 == Introduction
 In *Phase 2* of the App Mod journey, the customer would like to enhance their modernized application to include new requirements to tracking visitors activity and introduce API management to secure and manage their APIs.
 
@@ -68,7 +77,7 @@ The primary goal of the workshop is to guide the user through
 To learn how to demonstrate the API first approach and enabling parallel development, refer to https://redhat-solution-patterns.github.io/solution-pattern-enhancing-applications/solution-pattern-enhancing-applications/main/index.html[Solution Pattern: Enhancing Applications with Application Services,role=external,window=_blank] 
 
 
-
+[#prerequisites-setup-the-cloud-services]
 == Prerequisites: Setup the Cloud Services
 
 === Provision and configure a Streams for Apache Kafka instance
@@ -134,6 +143,7 @@ image::../images/8-enhance-apps/devsandbox-login.png[width=100%]
 
 This completes the environment prerequistes setup. In the next section, you will use these Cloud Services to enhance your applications.
 
+[#add-event-stream]
 == Adding Event Streaming capabilities to an application
 
 === Introduction
@@ -144,7 +154,7 @@ To support the business requirement of capturing and processing user activity on
 * *Recommendation Engine*: This service consumes and processes the events produced by the Activity Tracking service. The service uses the Kafka Streams library to continuously determine the top featured products (the products which generate the most activities).
 The service also exposes a REST endpoint to expose the list of featured products.
 
-Both services are developed using Quarkus and the Quarkus extensions for reactive messaging and Kafka Streams. The development of the services is outside the scope of this workshop, but you are encouraged to examine the source code of the applications on GitHub: link:https://https://github.com/app-modernization-workshop-globex/activity-tracking-service[Activity Tracking Service,role=external,window=_blank] and link:https://github.com/app-modernization-workshop-globex/recommendation-engine[Recommendation Engine,role=external,window=_blank]
+Both services are developed using Quarkus and the Quarkus extensions for reactive messaging and Kafka Streams. The development of the services is outside the scope of this workshop, but you are encouraged to examine the source code of the applications on GitHub: link:https://github.com/app-modernization-workshop-globex/activity-tracking-service[Activity Tracking Service,role=external,window=_blank] and link:https://github.com/app-modernization-workshop-globex/recommendation-engine[Recommendation Engine,role=external,window=_blank]
 
 === Workshop Activities
 

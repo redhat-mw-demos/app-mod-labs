@@ -1,8 +1,8 @@
 <h1 align="center"><a href="./instructions/1-introduction.adoc">Start here!</a></h1>
 
-# Demonstrating App Modernization with Customers
+# Hands-on Labs for the App Modernization with Customers
 
-This demo aims to showcase how to modernize applications for solving the challenges faced by existing applications in the current landscape as below:
+This workshop aims to showcase how to modernize applications for solving the challenges faced by existing applications in the current landscape as below:
 
 * **Integration**: Challenging to leverage new cloud based services
 * **Scalability**: Not able to meet web scale due to data-centric architecture

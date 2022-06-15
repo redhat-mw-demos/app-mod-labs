@@ -68,7 +68,7 @@ image::../images/gitea-update-file.png[gitea-update-file]
 
 In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually.
 
-Go back to OpenShift web console. Then, switch project to 'ama-pipeline` in _Developer perspective_. 
+Go back to OpenShift web console. Then, switch project to `ama-pipeline` in _Developer perspective_. 
 
 Click on `Pipelines` on the left menu. You will see pre-defined `customers-deployment-pipeline` pipeline. Click on the pipeline.
 
@@ -145,7 +145,7 @@ Access the ArgoCD admin console by clicking on `Open URL` over the *argocd-serve
 
 image::../images/argocd-server-route.png[argocd-server-route]
 
-Then you will see the ArgoCD login page. The admin user's password is stored in the Kubernetes secret. Go to `Secret` on the left menu in _Developer perspective_ and click on the `argocd-cluster` secret. When you click on 'Hide values', the password will be shown. Then click on `copy` icon.
+Then you will see the ArgoCD login page. The admin user's password is stored in the Kubernetes secret. Go to `Secret` on the left menu in _Developer perspective_ and click on the `argocd-cluster` secret. When you click on `Hide values`, the password will be shown. Then click on `copy` icon.
 
 image::../images/argocd-secret.png[argocd-secret]
 

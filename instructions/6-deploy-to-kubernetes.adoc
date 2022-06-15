@@ -41,7 +41,7 @@ Update the `jdbc.url` value to your Oracle virtual machine's name (e.g. _oracle-
 
 [source,yaml]
 ----
-jdbc.url=jdbc:oracle:thin:@ooracle-96trd:1521/xepdb1
+jdbc.url=jdbc:oracle:thin:@oracle-96trd:1521/xepdb1
 ----
 
 [NOTE]

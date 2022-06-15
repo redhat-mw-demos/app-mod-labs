@@ -8,7 +8,7 @@ Red Hat helps our customers' application modernization journey with this approac
 
 image::../images/app-mod-approach.png[Modernization Approach]
 
-This workshop will walk you thorough 2 phases (_Assess_, _Rationalize_) as following steps:
+This workshop will walk you through 2 of the phases (_Assess_, _Rationalize_) as following steps:
 
    1. Assessment of the legacy application using https://www.konveyor.io/tools/tackle/[Konveyor Tackle^] 
    2. Analysis of the legacy application archive and refactor the application using https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/5.3[Migration Toolkit for Applications^]

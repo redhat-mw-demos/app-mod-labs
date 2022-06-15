@@ -260,16 +260,6 @@ image::../images/8-enhance-apps/openshift-console-topology-rhosak.png[]
 . The entry is backed by a `KafkaConnection` custom resource created by the OpenShift Application Services operator. To see the details of the KafkaConnection resource, click on the resource in the Topology view, and in the Details window, select *Edit KafkaConnection* to see the YAML structure of the custom resource. +
 Notice that the YAML structure contains the bootstrap URL to the Kafka broker, as well as a reference to a secret containing the data of a service account, named `rh-cloud-services-service-account`.
 
-===== [underline]#*Set Permissions to  "READ" messages from topics*#
-
-To be able to view the messages from the broswer on console.redhat.com, you will need to allow Read Permissions for the Kafka topic.
-
-. Click *Manage access* ,  choose `All Accounts` and click on *Next*
-. Under the *Assign permissions* section click on the `Add permission` drop down, select the following options as show in the below screenshot +
-+
-image::../images/8-enhance-apps/all-allow-topic-read.png[]
-
-
 
 ===== [underline]#*Set Permissions for a Service Account*#
 
@@ -296,6 +286,17 @@ Click *Save*.
 The ACL list for the service account should look like:
 +
 image::../images/8-enhance-apps/rhosak-access-serviceaccount.png[]
+
+
+===== [underline]#*Set Permissions to  "READ" messages from topics*#
+
+To be able to view the messages from the broswer on console.redhat.com, you will need to allow Read Permissions for the Kafka topic.
+
+. Click *Manage access* button in the same page,  choose `All Accounts` and click on *Next*
+. Under the *Assign permissions* section click on the `Add permission` drop down, select the following options as show in the below screenshot +
++
+image::../images/8-enhance-apps/all-allow-topic-read.png[]
+
 
 
 *Bind applications to Streams for Apache Kafka*
@@ -446,7 +447,7 @@ image::../images/8-enhance-apps/audience-add-app.png[]
 . Choose the following details:
 +
 image::../images/8-enhance-apps/create-app.png[]
-* *Product*: `globex-catalog`
+* *Product*: `globex-product-catalog`
 * *Application plan*: `globex-app-plan`
 * *Name*: `globex-application`
 * *Description*: a suitable description
@@ -456,7 +457,7 @@ image::../images/8-enhance-apps/create-app.png[]
 
 === Test integration of the API
 
-. Navigate to the Product > *globex-catalog* > Integration > Configuration
+. Navigate to the Product > *globex-product-catalog* > Integration > Configuration
 . Under *APIcast Configuration*, click `*Promote to Staging APIcast*` to promote the new APIcast configuration to staging,
 . To test requests to your API product, copy the command provided in *Example curl for testing* and access it from a browser.
 +
@@ -468,6 +469,7 @@ image::../images/8-enhance-apps/curl-test-api.png[]
 * Click on the Analytics -> Traffic link on the left hand side. You will see the Hits details
 +
 image::../images/8-enhance-apps/api-traffic.png[]
+* This chart shows a summary of traffic statistics for the application.
 
 
 ➡️ Next section: link:./8-summary.adoc[8 - Summary]

@@ -36,7 +36,7 @@ Taking advantage of this new momentum, the business comes up with new requiremen
 In *Phase 2*, the customer would like to enhance their modernized application to include new requirements and features.
 
 * Track how visitors engage with their website, derive intelligence  out of user activity stream
-* Process and analyse  this user activity stream  to showcase Featured Products based on products with the most customer interest leading a more personalised experience.
+* Process and analyze  this user activity stream  to showcase Featured Products based on products with the most customer interest leading a more personalised experience.
 * Introduce a multi-channel approach to build a mobile app as a new channel of access - mobile development is  most likely to be outsourced
 
 [discrete]
@@ -111,7 +111,7 @@ image::../images/8-enhance-apps/console-redhat-com-kafka-instance-ready.png[]
 Normally, when using Streams for Apache Kafka, the next steps would be to create a service account and set up the Access Control List for that service account. However, when using Service Binding to connect applications to the Kafka instance, a service account is created as part of the binding. Once the service account is created, you will need to setup the required permissions for that service account. An alternative is to set up wildcard permissions (valid for all service accounts), but this is generally considered less secure.  
 
 
-=== Setup Developer sandbox for Red Hat OpenShift API Management (RHOAM) sandbo
+=== Setup Developer sandbox for Red Hat OpenShift API Management (RHOAM) sandbox
 
 Register for a RHOAM sandbox by clicking on the red button in the https://red.ht/rhoam-sandbox[user activities page,role=external,window=_blank]
 
@@ -297,8 +297,6 @@ To be able to view the messages from the broswer on console.redhat.com, you will
 +
 image::../images/8-enhance-apps/all-allow-topic-read.png[]
 
-
-
 *Bind applications to Streams for Apache Kafka*
 
 You can now bind the Activity Tracking Service and Recommendation Engine to the OpenShift Streams for Apache instance. Through Service Binding the connection details are injected into the application pods. Service Binding to a managed Kafka instance can be done on the Topology view of OpenShift console, or through the `rhoas` CLI. The instructions for the `rhoas` CLI can be found in the <<rhoas-cli-appendix,appendix>>.
@@ -400,7 +398,7 @@ image::../images/8-enhance-apps/create-backend.png[]
 ====
 Here are instruction how to access the Private Endpoint of the Product Catalog API.
 
-* Access the Developer Perspective Topology of the OpenShift enviroment where the Globex application has been deployed
+* Access the Developer Perspective Topology of the OpenShift environment where the Globex application has been deployed
 * Click on the *catalog-service icon* and you will see the deployment details popup on the right hand side
 +
 image::../images/8-enhance-apps/globex-deployment-topology-catalog-service.png[]
@@ -408,7 +406,7 @@ image::../images/8-enhance-apps/globex-deployment-topology-catalog-service.png[]
 ====
 
 === Add  Backend to Product
-. Navigate to the Product `*globex-product-catalog*` overview page, and navigare to  *Integration > Backend*
+. Navigate to the Product `*globex-product-catalog*` overview page, and navigate to  *Integration > Backend*
 . Click on *Add Backend*, choose `globex-catalog` from the dropdown, and click on *Add to Product* button
 +
 image::../images/8-enhance-apps/add-backend-to-product.png[width=100%]

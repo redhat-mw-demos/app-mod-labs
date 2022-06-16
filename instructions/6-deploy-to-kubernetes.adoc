@@ -126,7 +126,7 @@ Now we need to update the `gateway` application's configuration to connect to th
 
 == Sync the Gateway application in ArgoCD
 
-Go back to the _VS Code_ and open the `application.yaml` file in *gatway/helm/config* directory. Replace *customers' URL* with the following URL.
+Go back to the VS Code server and open the `application.yaml` file in *gatway/helm/config* directory. Replace *customers' URL* with the following URL.
 
 [source,yaml]
 ----

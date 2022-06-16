@@ -43,7 +43,7 @@ Luckily, We already have the solution artifact (`customers-tomcat-solution.war`)
 
 Create a new project, `New Customers Service` to analyze the solution artifact. Configure the project with the same settings and custom rules that we used for the Customers Service project. Once the report is finished, verify that it now reports `0` Story Points.
 
-You have successfully migrated this app to OpenShift, *congratulations!*
+You have successfully migrated this app and now ready to deploy to OpenShift, *congratulations!*
 
 image::../images/report-solution-view.png[View report] 
 

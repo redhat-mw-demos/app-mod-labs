@@ -48,9 +48,14 @@ Click on `Next`.
 
 === Configure the analysis
 
-You will now be presented with options for transformation targets. As this is a tomcat application, we’re going to uncheck the EAP migration path.
+You will now be presented with options for transformation targets. As this is a tomcat application, we’re *not* going to include the EAP migration path.
 
-* `Uncheck the EAP migration path`
+[NOTE]
+====
+EAP is selected by default in the migration path so you need to deselect it by clicking on it.
+====
+
+* `Click the EAP migration path`
 
 image::../images/configure-analysis.png[Configure Analysis]
 
@@ -58,7 +63,7 @@ We will focus on containerizing the application. Since this is going to be a lin
 
 image::../images/configure-analysis-checked.png[Configure Analysis]
 
-* `Check Containers, Linux, and OpenJDK as the targets`
+* `Click Containers, Linux, and OpenJDK as the targets`
 
 Click on `Next`.
 

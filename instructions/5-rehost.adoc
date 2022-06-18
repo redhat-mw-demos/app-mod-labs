@@ -10,9 +10,9 @@ In this section you will migrate the *customers* service from Red Hat Enterprise
 
 Download the CA Certificate for your RHV environment. You need to do that on your laptop because you will need to drag the file into the Migration Toolkit for Virtualization (MTV) console later.
 
-Set this variable to the RHV hostname from the email. 
+Set this variable to the RHV hostname from the *Provision Messages*. 
 
-Open a new browser to access the following URL. Make sure to replace `RHV_HOSTNAME` with the hostname from your welcome email (e.g., *rhvm.dev.cnv.infra.opentlc.com*).
+Open a new browser to access the following URL. Make sure to replace `RHV_HOSTNAME` with the hostname from the *Provision Messages* (e.g., *rhvm.dev.cnv.infra.opentlc.com*).
 
 [source,sh]
 ----
@@ -23,7 +23,7 @@ On most systems this will download a file `pki-resource.cer` into your `Download
 
 === Set up Virtualization Provider in MTV
 
-Log into the OpenShift Web Console from the email.
+Log into the OpenShift Web Console from the *Provision Messages*.
 
 * Username: `admin`
 * Password: `r3dh4t1!`
@@ -49,12 +49,12 @@ Click `Add provider` on the list of *Providers*.
 
 image::../images/mtv-add-provider.png[mtv-add-provider]
 
-Select *Red Hat Virtualization* from the list of providers. Fill in the information from your email.
+Select *Red Hat Virtualization* from the list of providers. Fill in the information in the *Provision Messages*.
 
 * Name: `rhv`
-* RHV Manager host name or IP address*: The hostname from your email (e.g., `rhvm.dev.cnv.infra.opentlc.com`)
-* RHV Manager user name: the username from your email. (e.g., `migrateuser-96trd@internal`)
-* RHV Manager passsword: the password from yoru email. (e.g., `ThvA2Ioa6Q4G`)
+* RHV Manager host name or IP address*: The hostname in the *Provision Messages* (e.g., `rhvm.dev.cnv.infra.opentlc.com`)
+* RHV Manager user name: the username in the *Provision Messages*. (e.g., `migrateuser-96trd@internal`)
+* RHV Manager passsword: the password in the *Provision Messages*. (e.g., `ThvA2Ioa6Q4G`)
 * CA Certificate: Drop the previously downloaded CA Certificate File
 
 Click `Add`.
@@ -86,7 +86,7 @@ Check `All datacenters` on the *Filter by VM location*. Click `Next`.
 
 image::../images/mtv-plan-vm-loc.png[mtv-plan-vm-loc]
 
-Select the Oracle VM (e.g. _oracle-96trd_) in your welcome email on the *Select VMs* page. Click `Next`.
+Select the Oracle VM (e.g. _oracle-96trd_) in the *Provision Messages* on the *Select VMs* page. Click `Next`.
 
 image::../images/mtv-select-vm.png[mtv-select-vm]
 

@@ -55,7 +55,7 @@ Type `Update jdbc.url` in the comment. Then, commit it(e.g. _Command + Enter on 
 
 image::../images/vscode-commit.png[vscode-commit]
 
-Access your `Gitea` repository (e.g. _https://gitea.apps.cluster-l6kxh.sandbox541.opentlc.com_) in your email notification with the following credentials:
+Access your `Gitea` repository (e.g. _https://gitea.apps.cluster-l6kxh.sandbox541.opentlc.com_) in the *Provision Messages* with the following credentials:
 
 * Gitea admin username: `opentlc-mgr`
 * Gitea admin password: `openshift`

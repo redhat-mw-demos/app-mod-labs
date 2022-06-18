@@ -83,30 +83,46 @@ You see the configuration file for the *gateway* service in the screenshot above
 
 == Demonstrating the Application
 
-You can show that the application is working in its current deployment.
+You can show that the application is working in its current deployment. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
 
-. Find the `Route` for the *Frontend* application
-+
+Click on `New Terminal` in _Terminal_ menu in the VS Code. Once a new terminal is open, run the following _oc_ command.
+
+[NOTE]
+====
+Replace YOUR_Openshift_API_URL with your own URL in the *Provision Messages*.
+====
+
+[source,sh]
+----
+oc login -u admin -p r3dh4t1! https://YOUR_Openshift_API_URL 
+----
+
+image::../images/vscode-terminal.png[vscode-terminal]
+
+Find the `Route` URL for the *Frontend* application.
+
 [source,sh]
 ----
 oc get route ordersfrontend -n retail
 ----
-+
-.Sample Output
+
+The output should look like:
+
 [source,texinfo]
 ----
 NAME             HOST/PORT                                                          PATH   SERVICES         PORT   TERMINATION     WILDCARD
 ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.com          ordersfrontend   web    edge/Redirect   None
 ----
 
-. Navigate to the orders frontend route. You can use either https or http (which will be redirected to https).
-+
+Navigate to the orders frontend route. You can use either _https_ or _http_ (which will be redirected to _https_).
+
 image::../images/frontend.png[Frontend]
 
-. Click through the three panels on the left.
-.. `Customers` shows the list of the customer information such as _fullname, city, country, and username_.
-.. `Orders` shows current order information including relevant customer data.
-.. `Products` shows the current inventory information.
+Click through the three panels on the left.
+
+* `Customers` shows the list of the customer information such as _fullname, city, country, and username_.
+* `Orders` shows current order information including relevant customer data.
+* `Products` shows the current inventory information.
 
 ==  Demonstrating the Oracle Database
 

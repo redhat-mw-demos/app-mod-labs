@@ -25,3 +25,14 @@ Take a look at the [Konveyor Community’s Application Modernization Report for 
 * Red Hat Runtimes (Quarkus, Spring Boot, Node.js, Tomcat)
 * Red Hat OpenShift (Pipeline, GitOps, Virtualization)
 * Oracle Database and PostgreSQL
+
+## Instruction
+
+1. [Introduction](instructions/1-introduction.adoc)
+2. [Assessment](instructions/2-assessment.adoc)
+3. [Analyze](instructions/3-analyze.adoc)
+4. [Refactor](instructions/4-refactor.adoc)
+5. [Rehost](instructions/5-rehost.adoc)
+6. [Deploy to Kubernetes](instructions/6-deploy-to-kubernetes.adoc)
+7. [Enhance Applications with Managed Services](instructions/7-enhance-apps.adoc)
+8. [Summary](instructions/8-summary.adoc)

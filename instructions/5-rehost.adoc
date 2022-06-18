@@ -1,4 +1,4 @@
-= Rehost - 25 minutes
+= 5.  sRehost - 25 minutes
 
 In this section you will migrate the *customers* service from Red Hat Enterprise Virtualization (RHV) to Red Hat OpenShift, the steps to do this are as follows:
 
@@ -194,4 +194,6 @@ Session Affinity:  None
 Events:            <none>
 ----
 
-➡️ Next section: link:./6-deploy-to-kubernetes.adoc[6 - Deploy to Kubernetes]
+➡️ link:./6-deploy-to-kubernetes.adoc[6. Deploy to Kubernetes]
+
+⬅️ link:./4-refactor.adoc[4. Refactor]

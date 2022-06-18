@@ -1,4 +1,4 @@
-= Introduction - 10 minutes
+= 1. Introduction - 10 minutes
 
 Application modernization strategies are often categorized into the `6R`’s framework that was popularized by Amazon (and prior the 5Rs by Gartner). Here is what they mean.
 
@@ -158,7 +158,7 @@ curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customer
 +
 [source,sh]
 ----
-curl http://169.60.225.219:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2
+curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2
 ----
 +
 .Sample Output
@@ -167,4 +167,4 @@ curl http://169.60.225.219:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2
 {"id":2,"username":"hate_guybrush","name":"Pirate","surname":"Lechuck","address":"Caverns of Meat, no number","zipCode":"MO-666","city":"Giant Monkey Head","country":"Monkey Island"}
 ----
 
-➡️ Next section: link:./2-assessment.adoc[2 - Assessment]
+➡️ link:./2-assessment.adoc[2. Assessment]

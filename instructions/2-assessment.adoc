@@ -1,4 +1,4 @@
-= Assessment - 25 minutes
+= 2. Assessment - 25 minutes
 
 To start the assessment of the existing applications we will use the https://www.konveyor.io/tools/tackle[Tackle^] Application Assessment tool in the https://www.konveyor.io[Konveyor^] community to move our applications. We will use _Tackle_ to assess the `Customers` service based on the _Tomcat_ server on Red Hat Virtualization.
 
@@ -240,4 +240,6 @@ Go to `Report` on the left menu. Then filter the report by `Retail` business ser
 
 image::../images/report-review.png[report-review]
 
-➡️ Next section: link:./3-analyze.adoc[3 - Analyze]
+➡️ link:./3-analyze.adoc[3. Analyze]
+
+⬅️ link:./1-introduction.adoc[1. Introduction]

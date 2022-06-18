@@ -1,4 +1,4 @@
-= Analyze - 25 minutes
+= 3. Analyze - 25 minutes
 
 image::../images/mta-logo.png[mta-logo]
 
@@ -160,4 +160,6 @@ image::../images/report-code.png[report code]
 
 You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using Integrated development environment (IDE) tool in the next section.
 
-➡️ Next section: link:./4-refactor.adoc[4 - Refactor]
+➡️ link:./4-refactor.adoc[4. Refactor]
+
+⬅️ link:./2-assessment.adoc[2. Assessment]

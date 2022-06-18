@@ -1,4 +1,4 @@
-= Refactor - 25 minutes
+= 4. Refactor - 25 minutes
 
 In this step you will modernize the customers application to fix the analyzed issues (e.g. _Hard coded IP address_).
 
@@ -47,4 +47,6 @@ You have successfully migrated this app and now ready to deploy to OpenShift, *c
 
 image::../images/report-solution-view.png[View report] 
 
-➡️ Next section: link:./5-rehost.adoc[5 - Rehost]
+➡️ link:./5-rehost.adoc[5. Rehost]
+
+⬅️ link:./3-analyze.adoc[3. Analyze]

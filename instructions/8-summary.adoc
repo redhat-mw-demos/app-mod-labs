@@ -1,4 +1,4 @@
-= Summary - 10 minutes
+= 8. Summary - 10 minutes
 
 You've learned today how to solve the business and technical challenges as below by modernizing existing applications along with the Red Hat application modernization strategies and tools.
 
@@ -22,4 +22,5 @@ image::../images/modernized_architecture.png[modernized_architecture]
 * https://www.redhat.com/en/resources/java-app-modernization-with-openshift-e-book[eBook - Plan your Java application modernization journey^]
 * https://kubebyexample.com/en/learning-paths/migrating-kubernetes/assess-and-refactor-tackle[Migrating Kubernetes Learning Path^]
 
+⬅️ link:./7-enhance-apps.adoc[7. Enhance Applications with Managed Services]
 

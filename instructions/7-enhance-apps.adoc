@@ -1,4 +1,4 @@
-= Enhance Applications with Managed Services - 30 minutes
+= 7. Enhance Applications with Managed Services - 30 minutes
 
 :sectnums:
 :sectlinks:
@@ -772,3 +772,7 @@ $ rhoas cluster bind -n globex --app-name activity-tracking --service-type kafka
 $ rhoas cluster bind -n globex --app-name recommendation-engine --service-type kafka --service-name globex -y
 ----
 ===
+
+➡️ link:./8-summary.adoc[8. Summary]
+
+⬅️ link:./6-deploy-to-kubernetes.adoc[6. Deploy to Kubernetes]

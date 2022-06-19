@@ -78,18 +78,19 @@ Do not press the `enter` key. It will save and close the application inventory a
 
 image::../images/update-new-app-inventory.png[update-new-app-inventory]
 
-=== 2.3.2. Expand the Legacy Customers Application
+=== 2.3.2. Re-Access the Legacy Customers Application
 
-Since the legacy application comes from a traditional platform and we are aware about some problems with the configuration model, let’s focus on this one for the assessment.
+The assessment is driven by multiple `questionnaires` and aims to determine the suitability for containerization for a given application. It covers all the different areas of the *application landscape*, including the *technology*, *application lifecycle management*, and *operations*. These questionnaires allow the tool to identify potential risks that might prevent the application from running in containers or would require any kind of adjustment for that.
 
-To start the assessment, select the customers application. Then, click on `Assess`.
+Since the legacy application comes from a traditional platform, we already have assessed the retail services to identify technical problems a while back. However, we couldn't answer the configuration model during the first assessment by the SRE team. So we just left the answer as `Unknown` at that time.
+
+Today, you'll run the *second* assessment to choose the proper answer in the `cross-cutting concerns` section for the _customers_ application. 
+
+Click on `Assess`.
 
 image::../images/app-inventory-access.png[app-inventory-access]
 
-[NOTE]
-====
-You might see `This application has already been assessed. Do you want to continue?` message, then click on `Continue` to make sure that the following answers are selected for each step.
-====
+When you see *This application has already been assessed. Do you want to continue?* message, click on `Continue` to make sure to proceed the assessment once again.
 
 First step will be to select the stakeholders (_e.g. Homer Simpson_) involved with the assessment. Leave the default values.
 
@@ -97,133 +98,23 @@ image::../images/select-stakeholder.png[select-stakeholder]
 
 Click on `Next`.
 
-The assessment is driven by a `questionnaire`, and aims to determine the suitability for containerization for a given application. It covers all the different areas of the *application landscape*, including the *technology*, *application lifecycle management*, and *operations*.
-
-These questions allow the tool to identify potential risks that might prevent the application from running in containers or would require any kind of adjustment for that.
-
-==== Application details
-
-Choose the following answers for each question.
-
-* Does the application development team understand and actively develop the application?
-** Actively developed, SME knowledge is available
-
-* How is the application supported in production?
-** SRE (Site Reliability Engineering) approach with a knowledgeable and experienced operations team
-
-* How much time passes from when code is committed until the application is deployed to production?
-** 1-7 days
-
-* How often is the application deployed to production?
-** Weekly
-
-* What is the application's mean time to recover (MTTR) from failure in a production environment?
-** Less than 1 hour
-
-* Does the application have legal and/or licensing requirements?
-** None
-
-* Which model best describes the application architecture?
-** Resilient monolith (examples: retries, circuit breakers)
-
-Click on `Next`.
+[NOTE]
+====
+Take a look how the former answers were chosen in the initial assessment for each application assessment section such as `Details`, `Dependencies`, and `Observability`. You don't need to change any answers but keep clicking on `Next` button until you get into the `Application cross-cutting concerns` section.
+====
 
 image::../images/app-details.png[app-details]
 
-==== Application dependencies
+=== 2.3.3. Application cross-cutting concerns
 
-Choose the following answers for each question.
+Choose the following answer for the *How is the application configured?* question. The SRE team finally figured out that the customers application currently refers to multiple configurations in the separated file systems. 
 
-* Does the application require specific hardware?
-** Requires CPU that is supported by Red Hat
-
-* What operating system does the application require?
-** Standard Linux distribution
-
-* Does the vendor provide support for a third-party component running in a container?
-** No third-party components required
-
-* Incoming/northbound dependencies
-** No incoming/northbound dependencies
-
-* Outgoing/southbound dependencies
-** No outgoing/southbound dependencies
-
-Click on `Next`.
-
-image::../images/app-dependencies.png[app-dependencies]
-
-==== Application architecture
-
-Choose the following answers for each question.
-
-* How resilient is the application? How well does it recover from outages and restarts?
-** Application employs resilient architecture patterns (examples: circuit breakers, retry mechanisms)
-
-* How does the external world communicate with the application?
-** HTTP/HTTPS
-
-* How does the application manage its internal state?
-** Stateless or ephemeral container storage
-
-* How does the application handle service discovery?
-** Uses technologies that are not compatible with Kubernetes (examples: hardcoded IP addresses, custom cluster manager)
-
-* How is the application clustering managed?
-** No cluster management required
-
-Click on `Next`.
-
-image::../images/app-architecture.png[app-architecture]
-
-==== Application observability
-
-Choose the following answers for each question.
-
-* How does the application use logging and how are the logs accessed?
-** Logs are forwarded to an external logging system (example: Splunk)
-
-* Does the application provide metrics?
-** Metrics exposed using a third-party solution (examples: Dynatrace, AppDynamics)
-
-* How easy is it to determine the application's health and readiness to handle traffic?
-** Dedicated, independent liveness and readiness endpoints
-
-* What best describes the application's runtime characteristics?
-** Constant traffic with predictable CPU and memory usage
-
-* How long does it take the application to be ready to handle traffic?
-** 10-60 seconds
-
-Click on `Next`.
-
-image::../images/app-observability.png[app-observability]
-
-==== Application cross-cutting concerns
-
-Choose the following answers for each question.
-
-* How is the application tested?
-** Highly repeatable automated testing (examples: unit, integration, smoke tests) before deploying to production; modern test practices are followed
-
-* How is the application configured?
-** Multiple configuration files in multiple file system locations
-
-* How does the application acquire security keys or certificates?
-** Not required
-
-* How is the application deployed?
-** Automated deployment with a full CI/CD pipeline, minimal intervention for promotion through pipeline stages
-
-* Where is the application deployed?
-** Virtual machine (examples: Red Hat Virtualization, VMware)
-
-* How mature is the containerization process, if any?
-** Some experience with containers but not yet fully defined
-
-Click on `Save and review`.
+* *Question* - How is the application configured?
+* *Answer* - `Multiple configuration files in multiple file system locations`
 
 image::../images/app-cross-cutting-concerns.png[app-cross-cutting-concerns]
+
+Click on `Save and review`.
 
 == 2.4. Application Review
 
@@ -247,7 +138,7 @@ Click on `Submit Review`.
 
 image::../images/submit-review.png[submit-review]
 
-Now that we’ve completed the initial assessment we can see that we will need to dig deeper into the legacy customers application to check what the problem is with the config library and how to remove it. To do this we will use the https://developers.redhat.com/products/mta/overview[Migration Toolkit for Applications^] in the next section.
+Now that you have completed the `2nd assessment` to update the `Application cross-cutting concerns` section. You also identify a new `high` risk along with the external configuration references and dependencies.
 
 image::../images/complete-review.png[complete-review]
 

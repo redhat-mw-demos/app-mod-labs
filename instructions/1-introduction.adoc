@@ -81,7 +81,7 @@ image::../images/vscode.png[VSCode]
 [NOTE]
 You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHV.
 
-== 1.3. Explore the Globex services
+== 1.3. Explore the Globex services (GUI)
 
 You can check what the _Globex_ services look like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
 

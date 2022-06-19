@@ -39,7 +39,7 @@ All source code for the applications as well as the GitOps YAML manifests for al
 The problem right now is the customers service:
 
 * The customers service uses an old Java code base running on Apache Tomcat in a VM on Red Hat Virtualization. In the course of this demonstration you will modernize the Java Code and then deploy the application to OpenShift on top of Red Hat JBoss Web Server.
-* The customers database is using an __Oracle_ database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
+* The customers database is using an _Oracle_ database running as a VM in Red Hat Virtualization. Because this is Oracle you can not deploy the database as a Pod on OpenShift - therefore you will migrate the VM to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization.
 
 When you have finished this demonstration your deployment architecture should look like this:
 
@@ -157,7 +157,7 @@ Next you can show the contents of the database:
 
 image::../images/customer-dbms.png[Connect using DBeaver]
 
-=== 1.4.2. Demostrate the Customer Application deployed on Tomcat
+=== 1.4.2. Demonstrate the Customer Application deployed on Tomcat
 
 The RHV environment not only has the Oracle Database VM deployed but it also hosts another VM which runs the old customer application on top of Apache Tomcat.
 

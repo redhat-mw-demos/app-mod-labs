@@ -2,7 +2,9 @@
 
 == Goals of this lab
 
-The goal is to develop advanced cloud-native applications on *Red Hat Runtimes* enabled with _distributed cache management_ and deploy them to *OpenShift 4*. After this lab, you should end up with something like:
+As part of the `Globex`’ digital transformation and cloud adoption initiative, the development and devops teams embarked upon a journey to modernize their existing siloed services running on the virtual machines on Red Hat Virtualization and containerized applications on Red Hat OpenShift separately.
+
+The goal is to assess the siloed current application portfolio and identify potential issues and risks to implement advanced cloud native architecture with the application modernization.
 
 == 2.1. Access the Tackle Web Console
 
@@ -216,7 +218,7 @@ Click on `Save and review`.
 
 image::../images/app-cross-cutting-concerns.png[app-cross-cutting-concerns]
 
-=== 2.3.3. Application Review
+=== 2.4. Application Review
 
 You will be presented with the review screen. It allows you to find out which risks were identified during the assessment and decide which migration strategy to follow based on that.
 

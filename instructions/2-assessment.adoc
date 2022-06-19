@@ -1,5 +1,11 @@
 = 2. Assessment - 25 minutes
 
+== Goals of this lab
+
+The goal is to develop advanced cloud-native applications on *Red Hat Runtimes* enabled with _distributed cache management_ and deploy them to *OpenShift 4*. After this lab, you should end up with something like:
+
+== 2.1. Access the Tackle Web Console
+
 To start the assessment of the existing applications we will use the https://www.konveyor.io/tools/tackle[Tackle^] Application Assessment tool in the https://www.konveyor.io[Konveyor^] community to move our applications. We will use _Tackle_ to assess the `Customers` service based on the _Tomcat_ server on Red Hat Virtualization.
 
 Open a new browser to access the Tackle web console that is provided from the *Provision Messages*. Use the following credential.
@@ -26,11 +32,11 @@ image::../images/application-inventory.png[application inventory]
 * Associated risks
 * Adoption plan with the applications’ prioritization, business criticality and dependencies.
 
-== Controls
+== 2.2. Controls
 
 https://github.com/konveyor/tackle-controls[Tackle Controls^] are a collection of entities that add value to Application Inventory and the Pathfinder assessment. They comprise _business services_, _stakeholders_, _stakeholder groups_, _job functions_, _tag types_, and _tags_.
 
-=== Stakeholders
+=== 2.2.1. Stakeholders
 
 Go to `Controls` on the left menu and you will existing _stakeholders_ such as *Hank Scorpio* and *Homer Simpson*.
 
@@ -40,7 +46,7 @@ You can also find the existing _stakeholder groups_ such as *IT Management* and 
 
 image::../images/stakeholder-groups.png[stakeholder-groups]
 
-=== Business services
+=== 2.2.2. Business services
 
 Applications can be classified and grouped in multiple ways such as **business service**. We've created a business service for the legacy `Retail` applications.
 
@@ -48,11 +54,11 @@ Go to `Controls` on the left menu and click on _Business services_ tab. You will
 
 image::../images/tackle-control-business-service.png[business service]
 
-== Application inventory
+== 2.3. Application inventory
 
 Let’s focus on the legacy application. We have added tags that represent its technology, like java, Tomcat and Oracle, and decided to add a custom tag type that allows us to identify which custom architecture libraries are used by each application.
 
-=== Update the Customers Application Inventory
+=== 2.3.1. Update the Customers Application Inventory
 
 Go to `Application inventory` on the left menu and click on `pencil` icon for the customers inventory.
 
@@ -65,7 +71,7 @@ Fill in the following fields. Then, click on `Save`.
 
 image::../images/update-new-app-inventory.png[update-new-app-inventory]
 
-=== Expand the Legacy Customers Application
+=== 2.3.2. Expand the Legacy Customers Application
 
 Since the legacy application comes from a traditional platform and we are aware about some problems with the configuration model, let’s focus on this one for the assessment.
 
@@ -210,7 +216,7 @@ Click on `Save and review`.
 
 image::../images/app-cross-cutting-concerns.png[app-cross-cutting-concerns]
 
-=== Application Review
+=== 2.3.3. Application Review
 
 You will be presented with the review screen. It allows you to find out which risks were identified during the assessment and decide which migration strategy to follow based on that.
 

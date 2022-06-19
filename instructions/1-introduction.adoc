@@ -85,6 +85,12 @@ You see the configuration file for the *gateway* service in the screenshot above
 
 You can show that the application is working in its current deployment. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
 
+Open a new browser to access the VSCode server that is provided from the *Provision Messages*. Use the following credential.
+
+* Password: `openshift`
+
+image::../images/vscode-server-login.png[vscode-server-login]
+
 Click on `New Terminal` in _Terminal_ menu in the VS Code. Once a new terminal is open, run the following _oc_ command.
 
 [NOTE]
@@ -161,7 +167,7 @@ From a terminal window you can use `curl` to demonstrate that the application is
 +
 [source,sh]
 ----
-curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/1
+curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/1 ; echo
 ----
 +
 .Sample Output
@@ -174,7 +180,7 @@ curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customer
 +
 [source,sh]
 ----
-curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2
+curl http://YOUR_Tomcat_VM_IP_ADDR:8080/customers-tomcat-0.0.1-SNAPSHOT/customers/2 ; echo
 ----
 +
 .Sample Output

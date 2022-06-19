@@ -15,9 +15,9 @@ This workshop will walk you through 2 of the phases (_Assess_, _Rationalize_) as
 * Migration of a database to OpenShift virtualization using https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.3[Migration Toolkit for Virtualization^]
 * Deploy the modernized applications to Kubernetes/OpenShift using https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html-single/cicd/index#gitops[OpenShift GitOps (ArgCD)^]
 
-== 1.1. Explore the environment
+== 1.1. Understand the Globex Retail System Architecture
 
-Your initial workshop environment has the whole microservices applications deployed and working.
+The Globex system (workshop environment) has the whole microservices applications that are deployed multiple platforms such as virtual machines and container platform as below.
 
 image::../images/architecture_initial.png[architecture_initial]
 
@@ -25,7 +25,7 @@ Your initial state for this workshop is an environment that is spread over Red H
 
 Your application has been partially already moved from your legacy environments to OpenShift.
 
-The retail system is multiple services consisting of a Node.js frontend service which is getting its data via a gateway service. The gateway service is connected to three backend services: customers, orders and inventory. Each of the backend services uses its own database to store data.
+The Globex retail system is multiple services consisting of a Node.js frontend service which is getting its data via a gateway service. The gateway service is connected to three backend services: customers, orders and inventory. Each of the backend services uses its own database to store data.
 
 The services running on OpenShift are deployed in a namespace `retail`. The services are also managed using a GitOps approach by *ArgoCD*.
 
@@ -45,7 +45,7 @@ When you have finished this demonstration your deployment architecture should lo
 
 image::../images/architecture_completed.png[architecture_completed]
 
-== 1.2. OpenShift Configuration
+== 1.2. Workshop Environment
 
 === 1.2.1. OpenShift Cluster
 
@@ -62,7 +62,7 @@ Your OpenShift cluster is already configured with everything you need. Here are 
 
 Instructions on how to access the OpenShift console, _Gitea_ or Migration Toolkit for Applications along with userids and passwords can be found in the *Provision Messages*.
 
-=== 1.2.2. Bastion VM
+=== 1.2.2. Bastion Virtual Machine
 
 Your Bastion VM for the cluster has all the necessary tools installed (`oc`, `virtctl`, `tkn`). It also has a copy of the `app-mod-projects` repository in your home directory.
 
@@ -81,9 +81,9 @@ image::../images/vscode.png[VSCode]
 [NOTE]
 You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHV.
 
-== 1.3. Explore the Globex services (GUI)
+== 1.3. Explore the Globex Retail Services (GUI)
 
-You can check what the _Globex_ services look like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
+You can check what the _Globex_ retail service looks like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
 
 Open a new browser to access the VSCode server that is provided from the *Provision Messages*. Use the following credential.
 

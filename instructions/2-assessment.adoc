@@ -68,6 +68,11 @@ image::../images/app-inventory-landing.png[app-inventory-landing]
 
 Fill in the following fields. Then, click on `Save`.
 
+[NOTE]
+====
+Do not press the `enter` key. It will save and close the application inventory automatically.
+====
+
 * Business service: `Retail`
 * Tags: `Java`, `Tomcat`, `RHEL 8`, `Oracle`
 
@@ -82,15 +87,17 @@ To start the assessment, select the customers application. Then, click on `Asses
 image::../images/app-inventory-access.png[app-inventory-access]
 
 [NOTE]
+====
 You might see `This application has already been assessed. Do you want to continue?` message, then click on `Continue` to make sure that the following answers are selected for each step.
+====
 
 First step will be to select the stakeholders (_e.g. Homer Simpson_) involved with the assessment. Leave the default values.
 
 image::../images/select-stakeholder.png[select-stakeholder]
 
-Once you’re happy with the stakeholders, click on `Next`.
+Click on `Next`.
 
-The assessment is driven by a questionnaire, and aims to determine the suitability for containerization for a given application. It covers all the different areas of the application landscape, including the technology, application lifecycle management, and operations.
+The assessment is driven by a `questionnaire`, and aims to determine the suitability for containerization for a given application. It covers all the different areas of the *application landscape*, including the *technology*, *application lifecycle management*, and *operations*.
 
 These questions allow the tool to identify potential risks that might prevent the application from running in containers or would require any kind of adjustment for that.
 
@@ -218,7 +225,7 @@ Click on `Save and review`.
 
 image::../images/app-cross-cutting-concerns.png[app-cross-cutting-concerns]
 
-=== 2.4. Application Review
+== 2.4. Application Review
 
 You will be presented with the review screen. It allows you to find out which risks were identified during the assessment and decide which migration strategy to follow based on that.
 

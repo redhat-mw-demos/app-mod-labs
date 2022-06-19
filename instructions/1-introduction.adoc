@@ -81,9 +81,9 @@ image::../images/vscode.png[VSCode]
 [NOTE]
 You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHV.
 
-== 1.3. Demonstrating the Application
+== 1.3. Explore the Globex services
 
-You can show that the application is working in its current deployment. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
+You can check what the _Globex_ services look like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
 
 Open a new browser to access the VSCode server that is provided from the *Provision Messages*. Use the following credential.
 
@@ -130,7 +130,7 @@ Click through the three panels on the left.
 * `Orders` shows current order information including relevant customer data.
 * `Products` shows the current inventory information.
 
-== 1.4. Exploring the Customer Application
+== 1.4. Access the Customer Data
 
 // === 1.4.1 Connect using DBeaver
 
@@ -163,7 +163,7 @@ The RHV environment not only has the Oracle Database VM deployed but it also hos
 
 From a terminal window you can use `curl` to demonstrate that the application is connected to the database.
 
-Use the IP Address of the *Customer Service (Tomcat VM)* to access the customer service.
+Use the IP Address of the *Customer Service (Tomcat VM)* to access the customer service. You can run the following _curl_ command in the VS Code server's terminal or your local environment since the Tomcat IP address is publicly accessible.
 
 [source,sh]
 ----

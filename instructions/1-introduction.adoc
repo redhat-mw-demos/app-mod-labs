@@ -10,10 +10,10 @@ image::../images/app-mod-approach.png[Modernization Approach]
 
 This workshop will walk you through 2 of the phases (_Assess_, _Rationalize_) as following steps:
 
-   1. Assessment of the legacy application using https://www.konveyor.io/tools/tackle/[Konveyor Tackle^] 
-   2. Analysis of the legacy application archive and refactor the application using https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/5.3[Migration Toolkit for Applications^]
-   3. Migration of a database to OpenShift virtualization using https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.3[Migration Toolkit for Virtualization^]
-   4. Deploy the modernized applications to Kubernetes/OpenShift using https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html-single/cicd/index#gitops[OpenShift GitOps (ArgCD)^]
+* Assessment of the legacy application using https://www.konveyor.io/tools/tackle/[Konveyor Tackle^] 
+* Analysis of the legacy application archive and refactor the application using https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/5.3[Migration Toolkit for Applications^]
+* Migration of a database to OpenShift virtualization using https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.3[Migration Toolkit for Virtualization^]
+* Deploy the modernized applications to Kubernetes/OpenShift using https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html-single/cicd/index#gitops[OpenShift GitOps (ArgCD)^]
 
 == 1.1. Explore the environment
 

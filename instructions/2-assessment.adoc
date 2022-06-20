@@ -138,7 +138,7 @@ Click on `Submit Review`.
 
 image::../images/submit-review.png[submit-review]
 
-Now that you have completed the `2nd assessment` to update the `Application cross-cutting concerns` section. You also identify a new `high` risk along with the external configuration references and dependencies.
+Now that you have completed the `2nd assessment` to update the `Application cross-cutting concerns` section. You have also identified a new `high` risk along with the external configuration references and dependencies.
 
 image::../images/complete-review.png[complete-review]
 

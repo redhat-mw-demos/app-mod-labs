@@ -1,10 +1,21 @@
 = 3. Analyze - 25 minutes
 
-image::../images/mta-logo.png[mta-logo]
+== Goals of this lab
+
+As you have realized in the previous _assessment_ lab, you need to analyze the legacy applications in terms of identifying actual code of lines for the modernization issues as well as estimating time and effort for the modernization project.
+
+The goal is to analyze the _customers_ application by scanning all source code and properties using the https://developers.redhat.com/products/mta/overview[Migration Toolkit for Applications^] (MTA) tool. Then, you'll understand how to get started with the code modification along with the analysis report.
+
+[NOTE]
+====
+The main difference between *Tackle* and *MTA* tool is to analyze actual application code. Then the report shows the line of codes for the migration issues and possible solutions to fix the issues.
+====
 
 Migration Toolkit for Applications (MTA) is an extensible and customizable rule-based tool that helps simplify migration of Java applications.
 
-It is used by organizations for:
+image::../images/mta-logo.png[mta-logo]
+
+MTA is also used by organizations for:
 
 * Planning and work estimation
 * Identifying migration issues and providing solutions

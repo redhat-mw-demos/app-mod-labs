@@ -109,7 +109,7 @@ image::../images/custom-rules.png[Custom rules]
 
 MTA Analysis uses a custom rule engine for the analysis. It comes with many rules out of the box to support the different migration paths, but it can be extended. Custom rules can be developed with a very simple XML syntax and used on the analysis. We've provided some custom rules which will detect the usage of a specific library and make suggestions for changes to be performed to remove it.
 
-Click on `Add Rule` to upload a custom rule (`corporate-framework-config.windup.xml`) in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/customrules[customrules] directory. You can clone the whole Git repository or download the XML file to your local file system.
+Click on `Add Rule` to upload a custom rule (`corporate-framework-config.windup.xml`) in the *customrules* directory that you have already downloaded in your file system.
 
 image::../images/upload-custom-rule.png[upload-custom-rule]
 

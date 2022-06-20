@@ -124,7 +124,9 @@ image::../images/review.png[review]
 
 Scroll down the screen to view the risks. This legacy application uses a discovery mechanism that is not cloud-friendly, which makes sense since it comes from a classic platform and accesses a database through a static IP.
 
-Now that we know there will be some changes required in the source code to adapt the application, we can decide that the strategy will be `Refactor`.
+image::../images/review-high-risk.png[review-high-risk]
+
+Now that you know there will be some changes required in the source code to adapt the application, we can decide that the strategy will be `Refactor`.
 
 * Proposed action: `Refactor`
 * Effort estimate: `Small`

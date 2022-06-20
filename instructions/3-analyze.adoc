@@ -26,7 +26,7 @@ MTA is also used by organizations for:
 
 Read more about it in the https://access.redhat.com/documentation/en-us/migration_toolkit_for_applications/5.3[MTA documentation^]
 
-== Create a New Project in MTA Web Console
+== 3.1. Create a New Project in MTA Web Console
 
 Open a new browser to access the MTA web console that is provided from the *Provision Messages*. Use the following credential.
 
@@ -47,23 +47,30 @@ image::../images/create-project.png[Create project]
 
 Click on `Next`.
 
-=== Add applications
+=== 3.1.1. Add applications
 
-First, you need to download the `customers-tomcat.war` file in the https://github.com/redhat-mw-demos/app-mod-projects/tree/main/packages-mta[packages-mta^] folder.
+First, you need to _download_ or _git clone_ the `app-mod-project` from your _Gitea_ repository. You can find the Gitea URL and credentials in the *Provision Messages*. 
 
-From the `Add applications` page, click on `Browse`` to select the WAR file for analysis.
+* Gitea admin username - `opentlc-mgr`
+* Gitea admin password - `openshift`
+
+image::../images/gitea-repo.png[gitea-repo]
+
+Once you download or clone the project to your local file system, explore if the `customers-tomcat.war` file exists in the *packages-mta* folder.
+
+Go back to the MTA web console. Then, click on `Browse` in the `Add applications` page to select the *customers-tomcat.war* file from your local file system.
 
 image::../images/add-applications.png[Add applications]
 
 Click on `Next`.
 
-=== Configure the analysis
+=== 3.1.2. Configure the analysis
 
 You will now be presented with options for transformation targets. As this is a tomcat application, we’re *not* going to include the EAP migration path.
 
 [NOTE]
 ====
-EAP is selected by default in the migration path so you need to deselect it by clicking on it.
+JBoss EAP is selected by default in the migration path so you need to deselect it by clicking on it.
 ====
 
 * `Click the EAP migration path`
@@ -78,13 +85,23 @@ image::../images/configure-analysis-checked.png[Configure Analysis]
 
 Click on `Next`.
 
-You will now be presented with options for packages. In order to accelerate the analysis, we will choose only the business packages related to our application. In the case of this application, these classes belong to the `io.konyeyor` package. You need to remove all packages from the *Included package* box except for  `io.konveyor` package by clicking on `<` button.
+You will now be presented with options for packages. In order to accelerate the analysis, we will choose only the business packages related to our application. In the case of this application, these classes belong to the `io.konyeyor` package.
+
+Select `all packages` in the *Included packaged* box. Click on `<` arrow button to exclude all packages.
+
+image::../images/packages-exclude.png[Select packages]
+
+There's *no* included packaged on the right box.
+
+image::../images/packages-empty.png[Select packages]
+
+Select only `io.konveyor` package. Then, click on `>` arrow button to include the package.
 
 image::../images/packages.png[Select packages]
 
 Click on `Next`.
 
-=== Advanced
+=== 3.1.3. Advanced
 
 You will now be presented with options for custom rules.
 
@@ -122,7 +139,7 @@ Now the analysis has been scheduled, and once it is finished we will be able to 
 
 image::../images/active-analysis.png[Active analysis]
 
-== Understanding the report
+== 3.2. Understanding the report
 
 The Dashboard gives an overview of the entire application migration effort. It summarizes:
 
@@ -169,7 +186,7 @@ The legacy ApplicationConfiguration class is being used in this application.
 
 image::../images/report-code.png[report code]
 
-You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using Integrated development environment (IDE) tool in the next section.
+You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using an Integrated Development Environment (IDE) tool in the next section.
 
 ➡️ link:./4-refactor.adoc[4. Refactor]
 

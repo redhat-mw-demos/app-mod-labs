@@ -2,19 +2,13 @@
 
 == Goals of this lab
 
-In this step you will modernize the customers application to fix the analyzed issues (e.g. _Hard coded IP address_).
-
-* Modernize the Java source code for the *customers* application
-
-Open a new browser to access the VSCode server that is provided from the *Provision Messages*. Use the following credential.
-
-* Password: `openshift`
-
-image::../images/vscode-server-login.png[vscode-server-login]
+The goal is to understand the modernization issues of the *customers* application and learn how you can fix them by the code modification. The MTA report also provides the details in terms of the file name, path, and solution recommendation for each issue. In this lab you will also analyze the customers application once again using MTA if the all issue are fixed.
 
 == 4.1. Explore the Migration issues
 
-According to the analysis report, the migration issues are related to external configurations with hard coded static IP addresses. Let's dig into the issue on the code level. Go to `customers-tomcat-legacy` project in VSCode server. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory.
+According to the analysis report, the migration issues are related to external configurations with hard coded static IP addresses. Let's dig into the issue on the code level. 
+
+Go to the web browser that opens the VS Code server. Explore the `customers-tomcat-legacy` project to open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory.
 
 image::../images/persistence-class.png[persistence-class]
 

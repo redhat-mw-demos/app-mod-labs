@@ -2,7 +2,9 @@
 
 == Goals of this lab
 
-The goal is to understand the modernization issues of the *customers* application and learn how you can fix them by the code modification. The MTA report also provides the details in terms of the file name, path, and solution recommendation for each issue. In this lab you will also analyze the customers application once again using MTA if the all issue are fixed.
+The goal is to understand the modernization issues of the *customers* application and learn how you can fix them by the code modification. The MTA report also provides the details in terms of the file name, path, and solution recommendation for each issue. 
+
+In this lab you will also analyze the customers application once again using MTA if the all issue are fixed.
 
 == 4.1. Explore the Migration issues
 

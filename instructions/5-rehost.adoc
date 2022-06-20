@@ -1,12 +1,12 @@
 = 5. Rehost - 25 minutes
 
-In this section you will migrate the *customers* service from Red Hat Enterprise Virtualization (RHV) to Red Hat OpenShift, the steps to do this are as follows:
+== Goals of this lab
 
-* Migrate the *Oracle VM* from RHV to OpenShift Virtualization using the OpenShift Migration Toolkit for Virtualization
+As you learned how the _Globex retails system_ stands up the application portfolio, the `Oracle database` is still running on the virtual machine to manage the _customers_ data. After you have refactored the customers application, you will need to deploy the application to the OpenShift cluster along with the modernization path for the containerization.
 
-=== Migrate the Oracle VM from RHV to OpenShift
+The goal is to migrate the *Oracle virtual machine* from `Red Hat Virtualization` (RHV) to `OpenShift Virtualization` using the OpenShift Migration Toolkit for Virtualization (MTV).
 
-==== Prerequisites
+== 5.1. Prerequisites
 
 Download the CA Certificate for your RHV environment. You need to do that on your laptop because you will need to drag the file into the Migration Toolkit for Virtualization (MTV) console later.
 
@@ -21,7 +21,7 @@ https://<RHV_HOSTNAME>/ovirt-engine/services/pki-resource?resource=ca-certificat
 
 On most systems this will download a file `pki-resource.cer` into your `Downloads` folder. Take a note where this file got downloaded to. You will need it a little bit later.
 
-=== Set up Virtualization Provider in MTV
+=== 5.2. Set up Virtualization Provider in MTV
 
 Log into the OpenShift Web Console from the *Provision Messages*.
 
@@ -65,7 +65,7 @@ MTV will validate your provider and after a few seconds the status should switch
 
 image::../images/mtv-add-provider-ready.png[mtv-add-provider-ready]
 
-=== Create and execute Migration Plan
+=== 5.3. Create and execute Migration Plan
 
 Go to `Migration Plans` in the Migration Toolkit for Virtualization console. Click `Create Plan`.
 
@@ -130,7 +130,7 @@ Once the migration succeeds you will find a VM called `oracle-xxxxx` in your ret
 
 image::../images/mtv-plan-complete-ocp.png[mtv-plan-complete-ocp]
 
-=== Post Migration Tasks
+== 5.4. Post Migration Tasks
 
 The VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 

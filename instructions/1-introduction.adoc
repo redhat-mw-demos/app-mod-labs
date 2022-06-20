@@ -72,9 +72,7 @@ Instructions on how to access the bastion VM can be found in the *Provision Mess
 
 To facilitate an easy demonstration environment the bastion has a Visual Studio (VS) Code Server installed. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
 
-This makes it easy to change any source code and configuration files in the cloned repository.
-
-The URL and password for the VS Code Server can be found in the *Provision Messages*.
+This makes it easy to change any source code and configuration files in the cloned repository. The URL and password for the VS Code Server can be found in the *Provision Messages*.
 
 Open a new browser to access the VS Code server using the following credential.
 

@@ -1,5 +1,7 @@
 = 4. Refactor - 25 minutes
 
+== Goals of this lab
+
 In this step you will modernize the customers application to fix the analyzed issues (e.g. _Hard coded IP address_).
 
 * Modernize the Java source code for the *customers* application
@@ -10,7 +12,7 @@ Open a new browser to access the VSCode server that is provided from the *Provis
 
 image::../images/vscode-server-login.png[vscode-server-login]
 
-== Explore the Migration issues
+== 4.1. Explore the Migration issues
 
 According to the analysis report, the migration issues are related to external configurations with hard coded static IP addresses. Let's dig into the issue on the code level. Go to `customers-tomcat-legacy` project in VSCode server. Then, open `PersistenceConfig.java` file in *src/main/java/io/konveyor/demo/ordermanagement/config* directory.
 
@@ -20,7 +22,7 @@ The *dataSource()* method creates an `ApplicationConfiguration` instance to conf
 
 image::../images/applicationConfiguration-class.png[applicationConfiguration-class]
 
-== Understand the Solution
+== 4.2. Understand the Solution
 
 The `customers-tomcat-ocp` project implements the *Customers* application with all the required changes and deploy the applications to OpenShift (Kubernetes). It also defines an OpenShift manifests file in the `ocp` directory.
 

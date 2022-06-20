@@ -70,16 +70,21 @@ Instructions on how to access the bastion VM can be found in the *Provision Mess
 
 === 1.2.3. Visual Studio Code (Server)
 
-To facilitate an easy demonstration environment the bastion has a Visual Studio Code Server installed. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
+To facilitate an easy demonstration environment the bastion has a Visual Studio (VS) Code Server installed. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
 
-This makes it easy to change any source code (or configuration files) in the cloned repository.
+This makes it easy to change any source code and configuration files in the cloned repository.
 
 The URL and password for the VS Code Server can be found in the *Provision Messages*.
 
-image::../images/vscode.png[VSCode]
+Open a new browser to access the VS Code server using the following credential.
 
-[NOTE]
-You see the configuration file for the *gateway* service in the screenshot above. You will notice that two services (orders and inventory) point to the services on OpenShift and that the customers service points to the customers VM on RHV.
+* Password: `openshift`
+
+image::../images/vscode-server-login.png[vscode-server-login]
+
+The graphical user interface (GUI) should look like:
+
+image::../images/vscode.png[VSCode]
 
 == 1.3. Explore the Globex Retail Services (GUI)
 

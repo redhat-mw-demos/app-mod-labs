@@ -4,11 +4,13 @@
 
 As you learned how the _Globex retails system_ stands up the application portfolio, the `Oracle database` is still running on the virtual machine to manage the _customers_ data. After you have refactored the customers application, you will need to deploy the application to the OpenShift cluster along with the modernization path for the containerization.
 
-The goal is to migrate the *Oracle virtual machine* from `Red Hat Virtualization` (RHV) to `OpenShift Virtualization` using the OpenShift Migration Toolkit for Virtualization (MTV).
+The goal is to migrate the *Oracle virtual machine* from `Red Hat Virtualization` (RHV) to `OpenShift Virtualization` using the Migration Toolkit for Virtualization (MTV).
+
+The https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.0/html/installing_and_using_the_migration_toolkit_for_virtualization/about-mtv_mtv[MTV^] enables you to migrate virtual machines from VMware vSphere or Red Hat Virtualization to OpenShift Virtualization based on https://kubevirt.io[KubeVirt^], an add-on to OpenShift Container Platform With OpenShift Virtualization, you can run and manage virtual machine workloads alongside container workloads.
 
 == 5.1. Prerequisites
 
-Download the CA Certificate for your RHV environment. You need to do that on your laptop because you will need to drag the file into the Migration Toolkit for Virtualization (MTV) console later.
+Download the CA Certificate for your RHV environment. You need to do that on your laptop because you will need to drag the file into the Migration Toolkit for the MTV web console later.
 
 Set this variable to the RHV hostname from the *Provision Messages*. 
 
@@ -54,7 +56,7 @@ Select *Red Hat Virtualization* from the list of providers. Fill in the informat
 * Name: `rhv`
 * RHV Manager host name or IP address*: The hostname in the *Provision Messages* (e.g., `rhvm.dev.cnv.infra.opentlc.com`)
 * RHV Manager user name: the username in the *Provision Messages*. (e.g., `migrateuser-96trd@internal`)
-* RHV Manager passsword: the password in the *Provision Messages*. (e.g., `ThvA2Ioa6Q4G`)
+* RHV Manager password: the password in the *Provision Messages*. (e.g., `ThvA2Ioa6Q4G`)
 * CA Certificate: Drop the previously downloaded CA Certificate File
 
 Click `Add`.
@@ -134,9 +136,14 @@ image::../images/mtv-plan-complete-ocp.png[mtv-plan-complete-ocp]
 
 The VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 
+[NOTE]
+====
+The workshop environment has already created multiple virtual machines separately for the workshop participants. So you will see the unique ID (GUID) for your oracle virtual machine (e.g. _oracle-96trd_) for the provision Message page.
+====
+
 Set your GUID as an environment value to avoid repeatable replacement in the following command lines.
 
-Replace `GUID` with your GUID (e.g. _96trd_).
+Replace `GUID` with your GUID from the *Provision Messages*. (e.g. _96trd_).
 
 [source,sh]
 ----

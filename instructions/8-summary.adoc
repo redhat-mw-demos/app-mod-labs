@@ -11,7 +11,7 @@ We believe that you had a chance to learn how the app migration strategies (e.g.
 
 image::../images/app-mod-benefits.png[app-mod-benefits]
 
-Finally, you ended up with the following modernized architecture to manage multiple microservices such as _frontend, gateway, customers, orders, and inventory_ on Red Hat OpenShift. The new technology stack enables the SRE team to automate the applications deployment along with DevOps and CI/CD practices. 
+Finally, you ended up with the following modernized architecture to manage multiple microservices such as _frontend, gateway, customers, orders, and inventory_ on Red Hat OpenShift. The new technology stack enables the SRE team to automate the applications deployment along with Managed application services, DevOps and CI/CD practices. 
 
 image::../images/modernized_architecture.png[modernized_architecture]
 

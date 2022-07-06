@@ -1,6 +1,6 @@
 <h1 align="center"><a href="./instructions/1-introduction.adoc">Start here!</a></h1>
 
-# Hands-on Labs for the App Modernization with Customers
+# Hands-on Labs for Modern Application Development
 
 This workshop aims to showcase how to modernize applications for solving the challenges faced by existing applications in the current landscape as below:
 

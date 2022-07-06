@@ -1,4 +1,4 @@
-= 5. Rehost - 25 minutes
+= 5. Rehost (Instructor Only) - 25 minutes
 
 == Goals of this lab
 

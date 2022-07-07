@@ -71,18 +71,16 @@ Your OpenShift cluster is already configured with everything you need. Here are 
 
 * Latest stable OpenShift Container Platform is deployed as a bare metal single node OpenShift environment.
 * The following operators have been installed and configured:
-** Gitea (to host the source code repositories)
-** OpenShift Virtualization (to ultimately run the migrated Oracle VM)
-** Migration Toolkit for Virtualization (to facilitate the migration of the Oracle VM from Red Hat Virtualization to Red Hat OpenShift Container Platform)
-** OpenShift GitOps: to manage the deployed services using a GitOps approach through ArgoCD
-** OpenShift Pipelines: to build the customer application from source code and deploy to the `retail` project using GitOps
-** Migration Toolkit for Applications (Tackle): to help modernize the customer service Java source code.
+** `Gitea` to host the source code repositories)
+** `OpenShift Virtualization` to ultimately run the migrated Oracle VM)
+** `Migration Toolkit for Virtualization` to facilitate the migration of the Oracle VM from Red Hat Virtualization to Red Hat OpenShift Container Platform)
+** `OpenShift GitOps` to manage the deployed services using a GitOps approach through ArgoCD
+** `OpenShift Pipelines` to build the customer application from source code and deploy to the `retail` project using GitOps
+** `Migration Toolkit for Applications` (Tackle) to help modernize the customer service Java source code.
 
-Instructions on how to access the OpenShift console, _Gitea_ or Migration Toolkit for Applications along with userids and passwords can be found in the *shared environment detail page*.
+=== 1.2.3. Visual Studio Code Server
 
-=== 1.2.3. Visual Studio Code (Server)
-
-To facilitate an easy demonstration environment the bastion has a Visual Studio (VS) Code Server installed. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
+Visual Studio (VS) Code Servers are already deployed in the OpenShift cluster to facilitate an easy demonstration environment. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
 
 This makes it easy to change any source code and configuration files in the cloned repository. The URL and password for the VS Code Server can be found in the *shared environment detail page*.
 
@@ -98,41 +96,35 @@ image::../images/vscode.png[VSCode]
 
 == 1.3. Explore the Globex Retail Services (GUI)
 
-You can check what the _Globex_ retail service looks like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
-
-Open a new browser to access the VSCode server that is provided from the *shared environment detail page*. Use the following credential.
-
-* Password: `openshift`
-
-image::../images/vscode-server-login.png[vscode-server-login]
+You can check what the `Globex retail service` looks like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). Go to the VS Code server and Open a new terminal that already installed the _oc_ command by default. 
 
 Click on `New Terminal` in _Terminal_ menu in the VS Code. Once a new terminal is open, run the following _oc_ command.
 
 [NOTE]
 ====
-Replace YOUR_Openshift_API_URL with your own URL in the *shared environment detail page*.
+Replace `YOUR_Openshift_API_URL` and `userXX` with your own information in the *shared environment detail page*.
 ====
 
 [source,sh]
 ----
-oc login -u admin -p r3dh4t1! https://YOUR_Openshift_API_URL 
+oc login -u userXX -p openshift https://YOUR_Openshift_API_URL 
 ----
 
 image::../images/vscode-terminal.png[vscode-terminal]
 
-Find the `Route` URL for the *Frontend* application.
+Find the `Route` URL for the *Frontend* application. Run the following `oc` command in the VS Code server terminal.
 
 [source,sh]
 ----
-oc get route ordersfrontend -n retail
+oc get route ordersfrontend -n retail-userXX
 ----
 
 The output should look like:
 
 [source,texinfo]
 ----
-NAME             HOST/PORT                                                          PATH   SERVICES         PORT   TERMINATION     WILDCARD
-ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.com          ordersfrontend   web    edge/Redirect   None
+NAME             HOST/PORT                                                                PATH   SERVICES         PORT   TERMINATION     WILDCARD
+ordersfrontend   ordersfrontend-retail-user1.apps.cluster-mkddz.sandbox1883.opentlc.com          ordersfrontend   web    edge/Redirect   None
 ----
 
 Navigate to the orders frontend route. You can use either _https_ or _http_ (which will be redirected to _https_).
@@ -178,7 +170,9 @@ The RHV environment not only has the Oracle Database VM deployed but it also hos
 
 From a terminal window you can use `curl` to demonstrate that the application is connected to the database.
 
-Use the IP Address of the *Customer Service (Tomcat VM)* to access the customer service. You can run the following _curl_ command in the VS Code server's terminal or your local environment since the Tomcat IP address is publicly accessible.
+Use the IP Address of the *Customer Service (Tomcat VM)* to access the customer service. You can run the following _curl_ command in the VS Code server's terminal or your local environment since the Tomcat IP address is publicly accessible. 
+
+Run the following `oc` commands in the VS Code server terminal.
 
 [source,sh]
 ----

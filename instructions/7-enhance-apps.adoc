@@ -10,6 +10,7 @@
 1. <<introduction,Introduction>> 
 2. <<prerequisites-setup-the-cloud-services,Prerequisites: Setup the Cloud Services>>
 3. <<add-event-stream,Adding Event Streaming capabilities to an application>>
+4. <<add-api-mgmt,Adding API Management capabilities to the application>>
 --
 
 [#introduction]
@@ -349,8 +350,7 @@ image::../images/8-enhance-apps/globex-coolstuff-product-page-featured.png[]
 Congratulations! You reached the end of this part of the workshop, in which you added event streaming capabilities to the Globex Coolstuff application, using the OpenShift Streams for Apache Kafka managed cloud service, and Service Binding to connect your apps to the Kafka instance. 
 
 
-:sectnums:
-
+[#add-api-mgmt]
 == Adding API Management capabilities to the application
 
 In this part of the workshop you will use the  RHOAM sandbox environment that you have already setup in the prerequisites section to manage and secure the pre-deployed *Catalog* service.

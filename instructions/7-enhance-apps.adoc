@@ -10,6 +10,7 @@
 1. <<introduction,Introduction>> 
 2. <<prerequisites-setup-the-cloud-services,Prerequisites: Setup the Cloud Services>>
 3. <<add-event-stream,Adding Event Streaming capabilities to an application>>
+4. <<add-api-mgmt,Adding API Management capabilities to the application>>
 --
 
 [#introduction]
@@ -113,9 +114,9 @@ Normally, when using Streams for Apache Kafka, the next steps would be to create
 
 === Setup Developer sandbox for Red Hat OpenShift API Management (RHOAM) sandbox
 
-Register for a RHOAM sandbox by clicking on the red button in the https://red.ht/rhoam-sandbox[user activities page,role=external,window=_blank]
+Register for a RHOAM sandbox by clicking on the red button in the https://red.ht/rhoam-sandbox[Developer Sandbox use case activities page,role=external,window=_blank]
 
-You will asked to confirm the registration through an email sent to your inbox. Once you launch the sandbox, follow these steps to setup a RHOAM sandbox tenant
+You will be asked to confirm the registration through an email sent to your inbox. Once you launch the sandbox, follow these steps to setup a RHOAM sandbox tenant:
 
 * From the *Projects* dropdown on the top of the page, set the project namespace as *<username>-dev* from the projects that have been already created for you.
 * Click on *Search* from the left navigation
@@ -125,14 +126,14 @@ image::../images/8-enhance-apps/tenant-search.png[width=100%]
 * Select *Create APIManagementTenant* button
 +
 image::../images/8-enhance-apps/create-APIManagementTenant.png[width=100%]
-* You will be taken to the YAML configuration of this resource. Click the  Create button at the bottom of the YAML displayed.
+* You will be taken to the YAML configuration of this resource. Click the *Create* button at the bottom of the YAML displayed.
 * You will be taken to the Details page of this resource. Click on the YAML tab to view the changes to the YAML configuration.
 * Watch for changes to the YAML of the APIManagementTenant resource, and wait for  the status to be displayed at the bottom of the YAML to become `status.provisioningStatus: 3scale account ready`
 +
 image::../images/8-enhance-apps/api-tenant-deployed.png[width=100%]
 * The API Management  Tenant account is now provisioned and is ready for use. 
-This may take a couple of minutes 
-* To access OpenShift API Management, navigate to the Launcher pane on the right side, select `API Management`
+This may take a couple of minutes. 
+* To access OpenShift API Management, navigate to the *Launcher* pane on the right side, select `API Management`
 +
 image::../images/8-enhance-apps/launcher-pane.png[width=100%]
 * Choose to *Authenticate through <> Red Hat Single Sign-On*, and  login using the identity provider that applies to you, e.g DevSandbox.
@@ -176,7 +177,7 @@ https://servicebinding.io/[Service Binding For Kubernetes,role=external,window=_
 
 ==== Explore the environment
 
-. In a browser window, navigate to the console of your OpenShift cluster. Open the *Developer* perspective in the *globex* namespace.
+. In a browser window, navigate to the console of the lab OpenShift cluster. Open the *Developer* perspective in the *globex-userXX* namespace.
 . In the Developer perspective, open the *Topology* view. Expect to see something like this (rearrange the topology as you see fit):
 +
 image::../images/8-enhance-apps/globex-deployment-topology.png[]
@@ -287,17 +288,7 @@ The ACL list for the service account should look like:
 +
 image::../images/8-enhance-apps/rhosak-access-serviceaccount.png[]
 
-
-===== [underline]#*Set Permissions to  "READ" messages from topics*#
-
-To be able to view the messages from the broswer on console.redhat.com, you will need to allow Read Permissions for the Kafka topic.
-
-. Click *Manage access* button in the same page,  choose `All Accounts` and click on *Next*
-. Under the *Assign permissions* section click on the `Add permission` drop down, select the following options as show in the below screenshot +
-+
-image::../images/8-enhance-apps/all-allow-topic-read.png[]
-
-*Bind applications to Streams for Apache Kafka*
+===== [underline]#*Bind applications to Streams for Apache Kafka*#
 
 You can now bind the Activity Tracking Service and Recommendation Engine to the OpenShift Streams for Apache instance. Through Service Binding the connection details are injected into the application pods. Service Binding to a managed Kafka instance can be done on the Topology view of OpenShift console, or through the `rhoas` CLI. The instructions for the `rhoas` CLI can be found in the <<rhoas-cli-appendix,appendix>>.
 
@@ -356,11 +347,10 @@ Also, the product page now shows a banner with the featured products.
 +
 image::../images/8-enhance-apps/globex-coolstuff-product-page-featured.png[]
 
-Congratulations! You reached the end of this part of the workshop, in which you added event streaming capabilities to the Globex Coolstuff application, using the OpenShift Streams for Apache Kafka managed cloud service, and Service Binding to connect your apps the the Kafka instance. 
+Congratulations! You reached the end of this part of the workshop, in which you added event streaming capabilities to the Globex Coolstuff application, using the OpenShift Streams for Apache Kafka managed cloud service, and Service Binding to connect your apps to the Kafka instance. 
 
 
-:sectnums:
-
+[#add-api-mgmt]
 == Adding API Management capabilities to the application
 
 In this part of the workshop you will use the  RHOAM sandbox environment that you have already setup in the prerequisites section to manage and secure the pre-deployed *Catalog* service.
@@ -369,7 +359,7 @@ In this part of the workshop you will use the  RHOAM sandbox environment that yo
 
 A product is a customer-facing API that packages one or more backends. You will create an API  Product manually with the following instructions
 
-. In a browser window navigate to the Red Hat OpenShift API Management
+. In a browser window navigate to the Red Hat OpenShift API Management console.
 . In the Dashboard, under the APIs section, click *Create Product* in the *_Products_* card.
 +
 image::../images/8-enhance-apps/rhoam-dashboard.png[Red Hat OpenShift API Management Dashboard]
@@ -396,13 +386,13 @@ image::../images/8-enhance-apps/create-backend.png[]
 + 
 [NOTE]
 ====
-Here are instruction how to access the Private Endpoint of the Product Catalog API.
+Instructions on how to access the Private Endpoint of the Product Catalog API:
 
 * Access the Developer Perspective Topology of the OpenShift environment where the Globex application has been deployed
 * Click on the *catalog-service icon* and you will see the deployment details popup on the right hand side
 +
 image::../images/8-enhance-apps/globex-deployment-topology-catalog-service.png[]
-* Copy the Location as present at the bottom of this under Routes. This would look something like this `https://catalog-globex-recommendation.apps.cluster-pppk8.pppk8.sandbox45.opentlc.com:443`
+* Copy the Location as present at the bottom of this under Routes. This would look something like this `https://catalog-globex-userXX.apps.cluster-pppk8.pppk8.sandbox45.opentlc.com:443`
 ====
 
 === Add  Backend to Product
@@ -415,7 +405,7 @@ image::../images/8-enhance-apps/add-backend-to-product.png[width=100%]
 
 . Go to the Dashboard
 . Under the API section, click on  `globex-product-catalog` under the *_Product_*
-. In Applications > Application Plans menu on the left hand side, click on *Create Application Plan*
+. In *Applications > Application Plans* menu on the left hand side, click on *Create Application Plan*
 . Provide the following details:
 +
 image::../images/8-enhance-apps/create-app-plan.png[]
@@ -425,7 +415,7 @@ image::../images/8-enhance-apps/create-app-plan.png[]
 
 === Create applications for the default account
 
-An application is always associated with an application plan. Applications are stored within developer accounts. In basic 3scale plans only a single application is allowed. In enterprise plans, multiple applications per account are allowed.
+An application is always associated with an application plan. Applications are stored within developer accounts.
 
 . Navigate to Audience > Accounts > Listing.
 . Click *Create* to create a new Developer account.
@@ -455,25 +445,28 @@ image::../images/8-enhance-apps/create-app.png[]
 
 === Test integration of the API
 
-. Navigate to the Product > *globex-product-catalog* > Integration > Configuration
-. Under *APIcast Configuration*, click `*Promote to Staging APIcast*` to promote the new APIcast configuration to staging,
+. Navigate to the *Product > globex-product-catalog > Integration > Configuration*
+. Under *APIcast Configuration*, click *Promote to Staging APIcast* to promote the new APIcast configuration to staging,
 . To test requests to your API product, copy the command provided in *Example curl for testing* and access it from a browser.
 +
 image::../images/8-enhance-apps/curl-test-api.png[]
 . Include the path `services/products` in the URL so that it looks something like this
 `https://globex-product-jaya-devnation2-apicast-staging.apps.rhoam-ds-prod.xe9u.p1.openshiftapps.com/services/products?user_key=282d71626bc661abdd2ce204d1fc2285`
-. After you run the command, you should get a JSON response containing results from Catalog API.
+. After you run the command, you should get a JSON response containing results from the Catalog API.
 * In real life, the mobile app would be using the staging and production API endpoints securely to access the APIs.
-* Click on the Analytics -> Traffic link on the left hand side. You will see the Hits details
+* Click on the *Analytics > Traffic* link on the left hand side. You will see the `Hits` details
 +
 image::../images/8-enhance-apps/api-traffic.png[]
 * This chart shows a summary of traffic statistics for the application.
 
 
-➡️ Next section: link:./8-summary.adoc[8 - Summary]
+➡️ link:./8-summary.adoc[8. Summary]
+
+⬅️ link:./6-deploy-to-kubernetes.adoc[6. Deploy to Kubernetes]
 
 '''
 
+:sectnums!:
 
 [#rhoas-cli-appendix]
 == Appendix: Use the `rhoas` CLI
@@ -771,7 +764,7 @@ The command can also be run in a non-interactive way:
 $ rhoas cluster bind -n globex --app-name activity-tracking --service-type kafka --service-name globex -y
 $ rhoas cluster bind -n globex --app-name recommendation-engine --service-type kafka --service-name globex -y
 ----
-===
+====
 
 ➡️ link:./8-summary.adoc[8. Summary]
 

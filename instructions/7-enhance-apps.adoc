@@ -460,7 +460,9 @@ image::../images/8-enhance-apps/api-traffic.png[]
 * This chart shows a summary of traffic statistics for the application.
 
 
-➡️ Next section: link:./8-summary.adoc[8 - Summary]
+➡️ link:./8-summary.adoc[8. Summary]
+
+⬅️ link:./6-deploy-to-kubernetes.adoc[6. Deploy to Kubernetes]
 
 '''
 

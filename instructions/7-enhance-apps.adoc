@@ -287,17 +287,7 @@ The ACL list for the service account should look like:
 +
 image::../images/8-enhance-apps/rhosak-access-serviceaccount.png[]
 
-
-===== [underline]#*Set Permissions to  "READ" messages from topics*#
-
-To be able to view the messages from the broswer on console.redhat.com, you will need to allow Read Permissions for the Kafka topic.
-
-. Click *Manage access* button in the same page,  choose `All Accounts` and click on *Next*
-. Under the *Assign permissions* section click on the `Add permission` drop down, select the following options as show in the below screenshot +
-+
-image::../images/8-enhance-apps/all-allow-topic-read.png[]
-
-*Bind applications to Streams for Apache Kafka*
+===== [underline]#*Bind applications to Streams for Apache Kafka*#
 
 You can now bind the Activity Tracking Service and Recommendation Engine to the OpenShift Streams for Apache instance. Through Service Binding the connection details are injected into the application pods. Service Binding to a managed Kafka instance can be done on the Topology view of OpenShift console, or through the `rhoas` CLI. The instructions for the `rhoas` CLI can be found in the <<rhoas-cli-appendix,appendix>>.
 

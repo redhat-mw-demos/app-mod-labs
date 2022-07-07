@@ -176,7 +176,7 @@ https://servicebinding.io/[Service Binding For Kubernetes,role=external,window=_
 
 ==== Explore the environment
 
-. In a browser window, navigate to the console of your OpenShift cluster. Open the *Developer* perspective in the *globex* namespace.
+. In a browser window, navigate to the console of the lab OpenShift cluster. Open the *Developer* perspective in the *globex-userXX* namespace.
 . In the Developer perspective, open the *Topology* view. Expect to see something like this (rearrange the topology as you see fit):
 +
 image::../images/8-enhance-apps/globex-deployment-topology.png[]
@@ -392,7 +392,7 @@ Instructions on how to access the Private Endpoint of the Product Catalog API:
 * Click on the *catalog-service icon* and you will see the deployment details popup on the right hand side
 +
 image::../images/8-enhance-apps/globex-deployment-topology-catalog-service.png[]
-* Copy the Location as present at the bottom of this under Routes. This would look something like this `https://catalog-globex-recommendation.apps.cluster-pppk8.pppk8.sandbox45.opentlc.com:443`
+* Copy the Location as present at the bottom of this under Routes. This would look something like this `https://catalog-globex-userXX.apps.cluster-pppk8.pppk8.sandbox45.opentlc.com:443`
 ====
 
 === Add  Backend to Product

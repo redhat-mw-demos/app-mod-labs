@@ -47,7 +47,25 @@ image::../images/architecture_completed.png[architecture_completed]
 
 == 1.2. Workshop Environment
 
-=== 1.2.1. OpenShift Cluster
+=== 1.2.1. Claim the Shared Workshop Cluster
+
+Open a new web browser to access the https://demo.redhat.com/workshop/kukr6s[RHPDS page^].
+
+* Email: `Your Email Address` (e.g. _doh@redhat.com_)
+* Access Password: `frankfurt`
+
+image::../images/user-login.png[user-login]
+
+Once you logged in successfully, the detail information of the shared cluster environment shows as below.
+
+image::../images/shared-cluster-details.png[shared-cluster-details]
+
+[IMPORTANT]
+====
+You have to use *an unique username* (e.g. `user1`) while you're running the hands-on labs. For example, you need to deploy applications to your own project (e.g. *retail-user1*). Keep in mind that you should replace `userXX` with your own username in the next labs.
+====
+
+=== 1.2.2. OpenShift Cluster
 
 Your OpenShift cluster is already configured with everything you need. Here are the details:
 
@@ -60,19 +78,13 @@ Your OpenShift cluster is already configured with everything you need. Here are 
 ** OpenShift Pipelines: to build the customer application from source code and deploy to the `retail` project using GitOps
 ** Migration Toolkit for Applications (Tackle): to help modernize the customer service Java source code.
 
-Instructions on how to access the OpenShift console, _Gitea_ or Migration Toolkit for Applications along with userids and passwords can be found in the *Provision Messages*.
-
-=== 1.2.2. Bastion Virtual Machine
-
-Your Bastion VM for the cluster has all the necessary tools installed (`oc`, `virtctl`, `tkn`). It also has a copy of the `app-mod-projects` repository in your home directory.
-
-Instructions on how to access the bastion VM can be found in the *Provision Messages*.
+Instructions on how to access the OpenShift console, _Gitea_ or Migration Toolkit for Applications along with userids and passwords can be found in the *shared environment detail page*.
 
 === 1.2.3. Visual Studio Code (Server)
 
 To facilitate an easy demonstration environment the bastion has a Visual Studio (VS) Code Server installed. This means you don't need to install and configure VS Code on your local environment but you can just use the one provided in a web browser.
 
-This makes it easy to change any source code and configuration files in the cloned repository. The URL and password for the VS Code Server can be found in the *Provision Messages*.
+This makes it easy to change any source code and configuration files in the cloned repository. The URL and password for the VS Code Server can be found in the *shared environment detail page*.
 
 Open a new browser to access the VS Code server using the following credential.
 
@@ -88,7 +100,7 @@ image::../images/vscode.png[VSCode]
 
 You can check what the _Globex_ retail service looks like currently by accessing the frontend web application. To find the URL to access the *Frontend* application, you need to use the OpenShift command line tool (`oc`). When you open a web browser to access the VS Code server, you can open a new terminal that already installed the _oc_ command by default. 
 
-Open a new browser to access the VSCode server that is provided from the *Provision Messages*. Use the following credential.
+Open a new browser to access the VSCode server that is provided from the *shared environment detail page*. Use the following credential.
 
 * Password: `openshift`
 
@@ -98,7 +110,7 @@ Click on `New Terminal` in _Terminal_ menu in the VS Code. Once a new terminal i
 
 [NOTE]
 ====
-Replace YOUR_Openshift_API_URL with your own URL in the *Provision Messages*.
+Replace YOUR_Openshift_API_URL with your own URL in the *shared environment detail page*.
 ====
 
 [source,sh]
@@ -143,7 +155,7 @@ Click through the three panels on the left.
 // . Launch *DBeaver*
 // . Right click the *Database Navigator* Panel and select *Create* -> *Connection*
 // . Select *Oracle* and click *Next*
-// . Fill in the properties (use the values in the *Provision Messages*), leave default values where not specified otherwise
+// . Fill in the properties (use the values in the *shared environment detail page*), leave default values where not specified otherwise
 // .. *Host*: `YOUR OWN Oracle Database VM IP Address`
 // .. *Database*: `XEPDB1`
 // .. *Username*: `customer`

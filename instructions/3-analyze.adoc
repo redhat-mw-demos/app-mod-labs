@@ -8,7 +8,7 @@ The goal is to analyze the _customers_ application by scanning all source code a
 
 [NOTE]
 ====
-The main difference between *Tackle* and *MTA* tool is to analyze actual application code. Then the report shows the line of codes for the migration issues and possible solutions to fix the issues.
+The main difference between *Tackle* and *MTA* tool is to analyze actual application code. Then the report shows the line of codes for the migration issues and possible solutions to fix the issues. MTA 6 will include the assessment capabilities in the future.
 ====
 
 Migration Toolkit for Applications (MTA) is an extensible and customizable rule-based tool that helps simplify migration of Java applications.

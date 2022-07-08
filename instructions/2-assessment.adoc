@@ -10,7 +10,7 @@ The goal is to assess the siloed current application portfolio and identify pote
 
 To start the assessment of the existing applications we will use the https://www.konveyor.io/tools/tackle[Tackle^] Application Assessment tool in the https://www.konveyor.io[Konveyor^] community to move our applications. We will use _Tackle_ to assess the `Customers` service based on the _Tomcat_ server on Red Hat Virtualization.
 
-Open a new browser to access the Tackle web console that is provided from the *Provision Messages*. Use the following credential.
+Open a new browser to access the Tackle web console that is provided from the *shared environment detail page*. Use the following credential.
 
 * Username or email: `tackle`
 * Password: `password`

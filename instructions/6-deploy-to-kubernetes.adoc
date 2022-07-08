@@ -22,15 +22,20 @@ Helm can also be used to automate *day-1* tasks like installation and basic conf
 
 The *customers* application in the OpenShift cluster has currently a connection failure because the application still tries to connect to the Oracle database running on RHV. To fix the issue, you need to update the *JDBC* configuration that points to the migrated Oracle database on OpenShift virtualization.
 
+[IMPORTANT]
+====
+To save your time to go through the hands-on labs today, our SRE team has already migrated the VM running Oracle database to the OpenShift virtualization in the *retail-userXX* project.  
+====
+
 The JDBC configuration is currently managed by the _helm chart_ to automate day 1 & 2 operations for the modernized Globex retail system. Let's go back to the *VS Code server* and open the `persistence.properties` file in *customer-tomcat-gitops/helm/secret* directory.
 
 image::../images/gitops-persistence.png[gitops-persistence]
 
-Update the `jdbc.url` value to your Oracle virtual machine's GUID (e.g. _oracle-96trd_) on OpenShift. It should look like this:
+Update the `jdbc.url` value to the Oracle virtual machine's name (`oracle-database`) on OpenShift. It should look like this:
 
 [source,yaml]
 ----
-jdbc.url=jdbc:oracle:thin:@oracle-96trd:1521/xepdb1
+jdbc.url=jdbc:oracle:thin:@oracle-database:1521/XEPDB1
 ----
 
 [NOTE]
@@ -46,7 +51,7 @@ image::../images/vscode-commit.png[vscode-commit]
 
 Access your `Gitea` repository (e.g. _https://gitea.apps.cluster-l6kxh.sandbox541.opentlc.com_) in the *shared environment detail page* with the following credentials:
 
-* Gitea admin username: `opentlc-mgr`
+* Gitea admin username: `userXX`
 * Gitea admin password: `openshift`
 
 Once you logged in to the Gitea admin console, you will see the latest commit (e.g. _08fb9fb6f4 Update jdbc.url_).

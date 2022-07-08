@@ -186,7 +186,7 @@ The legacy ApplicationConfiguration class is being used in this application.
 
 image::../images/report-code.png[report code]
 
-You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using an Integrated Development Environment (IDE) tool in the next section.
+You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using the VS Code server in the next section.
 
 ➡️ link:./4-refactor.adoc[4. Refactor]
 

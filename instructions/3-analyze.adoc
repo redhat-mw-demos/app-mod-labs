@@ -174,17 +174,11 @@ It looks like a problem has been detected on some class coming from the config l
 
 image::../images/report-hint-fs.png[report hint file system]
 
-Expand the `Legacy configuration issue`.
-
-It looks like the custom rule got triggered and found some issues with the source code. This rule detects the use of a custom configuration library and gives some hints about what needs to be done to fix it.
-
-image::../images/report-hint-custom.png[report hint custom rule]
-
-Click on the `file to view the source code`.
-
-The legacy ApplicationConfiguration class is being used in this application. 
+Click on the `io.konveyor.demo.config.ApplicationConfiguration` file. It shows the `Source Report` that indicates which code has a migration issue.
 
 image::../images/report-code.png[report code]
+
+It looks like the custom rule got triggered and found some issues with the source code. This rule detects the use of a custom configuration library and gives some hints about what needs to be done to fix it.
 
 You analyzed the legacy application to learn what migration issues you have. You'll refactor the application to fix the issues using the VS Code server in the next section.
 

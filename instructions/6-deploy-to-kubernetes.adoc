@@ -35,12 +35,12 @@ Update the `jdbc.url` value to the Oracle virtual machine's name (`oracle-databa
 
 [source,yaml]
 ----
-jdbc.url=jdbc:oracle:thin:@oracle-database:1521/XEPDB1
+jdbc.url=jdbc:oracle:thin:@oracle-database:1521/xepdb1
 ----
 
 [NOTE]
 ====
-Where is the Save button? VS Code server will autosave your changes, that is why you can’t find a SAVE button - no more losing code because you forgot to save. You can undo with `CTRL-Z` or `CMD-Z` or by using the `Edit -> Undo` menu option.
+Where is the `Save` button? VS Code server will autosave your changes, that is why you can’t find a `SAVE` button - no more losing code because you forgot to save. You can undo with `CTRL-Z` or `CMD-Z` or by using the `Edit -> Undo` menu option.
 ====
 
 Switch to the `Source Control` menu in VSCode. Click on `+` button to add the changes (_persistence.properties_).
@@ -87,7 +87,17 @@ The pipeline accepts the following parameters:
 
 In the future we will have a trigger and event listener on the pipeline. But for now you have to kick off the pipeline run manually.
 
-Go back to OpenShift web console. Then, switch project to `ama-pipeline` in _Developer perspective_. 
+First, open a new browser to access the OpenShift web console that is provided from the *shared environment detail page*. 
+
+image::../images/openshift_login.png[openshift_login]
+
+Login using your credentials:
+
+Username: `userXX`
+
+Password: `openshift`
+
+Then, switch project to `cicd-userXX` in _Developer perspective_. 
 
 Click on `Pipelines` on the left menu. You will see pre-defined `customers-deployment-pipeline` pipeline. Click on the pipeline.
 
@@ -101,10 +111,10 @@ A *PipelineRun* is how you can start a pipeline and tie it to the Git and image 
 
 This dialog box is where you bind the final target values for the source repo of the _build-artifact_ step, and the target namespace to deploy in the _update-manifest-and-push_ step. Input the parameter and select resources as below then Click on *Start*:
 
-* git-url: `https://YOUR_GITEA_URL/lab-user/app-mod-projects.git`
+* git-url: `https://YOUR_GITEA_URL`
 * git-branch: `main`
 * app-subdir: `customers-tomcat-gitops`
-* target-namespace: `retail`
+* target-namespace: `retail-userXX`
 * target-registry: `image-registry.openshift-image-registry.svc:5000`
 * ws: `customers-pvc` in *PersistentVolumeClaim*
 
@@ -120,9 +130,11 @@ Globex retail system has deployed multiple microservices to the OpenShift cluste
 
 Add following labels and annotations to show which _languages_, _frameworks_, and _runtimes_ are used for each application by running the following `oc` commands in terminal on the VS Code server where you logged in to the OpenShift cluster.
 
+Run the following command in the VS Code server terminal. Be sure to replace `userXX` with your *username*.
+
 [source,sh]
 ----
-oc project retail && \
+oc project retail-userXX && \
 oc label deployment/inventory app.kubernetes.io/part-of=inventory app.openshift.io/runtime=quarkus --overwrite && \
 oc label deployment/postgresql-inventory app.kubernetes.io/part-of=inventory app.openshift.io/runtime=postgresql --overwrite && \
 oc annotate deployment/inventory app.openshift.io/connects-to=postgresql-inventory --overwrite && \
@@ -141,7 +153,7 @@ oc annotate deployment/gateway app.openshift.io/connects-to=inventory,orders,cus
 You might have no connection between `gateway` and `customers`. In that case, you can add the connection by dragging in _Dev Console_.
 ====
 
-Go back to the _Topology View_ of `retail` project in Developer perspective, the applications deployment should look like:
+Go back to the _Topology View_ of `retail-userXX` project in Developer perspective, the applications deployment should look like:
 
 image::../images/app-topology.png[app-topology]
 
@@ -187,18 +199,18 @@ Access the ArgoCD admin console by clicking on `Open URL` over the *argocd-serve
 
 image::../images/argocd-server-route.png[argocd-server-route]
 
-Then you will see the ArgoCD login page. The admin user's password is stored in the Kubernetes secret. Go to `Secret` on the left menu in _Developer perspective_ and click on the `argocd-cluster` secret. When you click on `Hide values`, the password will be shown. Then click on `copy` icon.
-
-image::../images/argocd-secret.png[argocd-secret]
+Then you will see the ArgoCD login page.
 
 === 6.3.3 Sync the configuration change by ArgoCD
 
-Go back to the ArgoCD login page, enter the following credentials.
-
-* Username: `admin`
-* Password: Paste the admin.password in the secret _(e.g. 1rjCPla5DZw3SWxsVv9cF2dmOuiYgHbA_)
+Click on `LOG VIA OPENSHIFT` button.
 
 image::../images/argocd-login.png[argocd-login]
+
+Then, enter your OpenShift login credentials.
+
+* Username: `userXX`
+* Password: `openshift`
 
 you will see all applications such as _frontend, gateway, inventory, orders, and customers_. Click on `gateway` application.
 
@@ -228,15 +240,15 @@ Let's go back to the `Customers` in the *GLOBEX* web page. You can find the fron
 
 [source,sh]
 ----
-oc get route ordersfrontend -n retail
+oc get route ordersfrontend
 ----
 
 The output should look like:
 
 [source,texinfo]
 ----
-NAME             HOST/PORT                                                          PATH   SERVICES         PORT   TERMINATION     WILDCARD
-ordersfrontend   ordersfrontend-retail.apps.cluster-amawk.amawk.devel.opentlc.com          ordersfrontend   web    edge/Redirect   None
+NAME             HOST/PORT                                                                PATH   SERVICES         PORT   TERMINATION     WILDCARD
+ordersfrontend   ordersfrontend-retail-user1.apps.cluster-mkddz.sandbox1883.opentlc.com          ordersfrontend   web    edge/Redirect   None
 ----
 
 Open a new web browser to paste the above URL. Then, you can see the same customers data as you had in the VM.

@@ -28,7 +28,7 @@ Read more about it in the https://access.redhat.com/documentation/en-us/migratio
 
 == 3.1. Create a New Project in MTA Web Console
 
-Open a new browser to access the MTA web console that is provided from the *Provision Messages*. Use the following credential.
+Open a new browser to access the MTA web console that is provided from the *shared environment detail page*. Use the following credential.
 
 * Username or email: `mta`
 * Password: `password`
@@ -49,7 +49,7 @@ Click on `Next`.
 
 === 3.1.1. Add applications
 
-First, you need to _download_ or _git clone_ the `app-mod-project` from your _Gitea_ repository. You can find the Gitea URL and credentials in the *Provision Messages*. 
+First, you need to _download_ or _git clone_ the `app-mod-project` from your _Gitea_ repository. You can find the Gitea URL and credentials in the *shared environment detail page*. 
 
 * Gitea admin username - `opentlc-mgr`
 * Gitea admin password - `openshift`

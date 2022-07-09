@@ -220,19 +220,19 @@ When the code change (e.g. _application.yaml_) completes in _Gitea_ server, Argo
 
 image::../images/argocd-sync.png[argocd-sync]
 
-=== 6.3.4 Delete the Gateway Pod
+// === 6.3.4 Delete the Gateway Pod
 
 Go to the OpenShift admin console to confirm if the `gateway-config` is updated based on the code change.
 
 image::../images/gateway-new-configmap.png[gateway-new-configmap]
 
-Now you need to kill the `gateway` pod to apply for the new ConfigMap. Go to the *Pod detail view*, click on `Delete Pod` in _Actions_ dropdown menu.
+// Now you need to kill the `gateway` pod to apply for the new ConfigMap. Go to the *Pod detail view*, click on `Delete Pod` in _Actions_ dropdown menu.
 
-image::../images/delete-gateway-pod.png[delete-gateway-pod]
+// image::../images/delete-gateway-pod.png[delete-gateway-pod]
 
-Click on 'Delete' on the popup window.
+// Click on 'Delete' on the popup window.
 
-image::../images/delete-gateway-pod-popup.png[delete-gateway-pod-popup]
+// image::../images/delete-gateway-pod-popup.png[delete-gateway-pod-popup]
 
 == 6.4. Revisit the GLOBEX web page
 

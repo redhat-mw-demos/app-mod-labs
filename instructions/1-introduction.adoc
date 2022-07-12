@@ -49,7 +49,7 @@ image::../images/architecture_completed.png[architecture_completed]
 
 === 1.2.1. Claim the Shared Workshop Cluster
 
-Open a new web browser to access the https://demo.redhat.com/workshop/kukr6s[RHPDS page^].
+Open a new web browser to access the https://demo.redhat.com/workshop/jj6sec[RHPDS page^].
 
 * Email: `Your Email Address` (e.g. _doh@redhat.com_)
 * Access Password: `frankfurt`

@@ -172,7 +172,7 @@ From a terminal window you can use `curl` to demonstrate that the application is
 
 Use the IP Address of the *Customer Service (Tomcat VM)* to access the customer service. You can run the following _curl_ command in the VS Code server's terminal or your local environment since the Tomcat IP address is publicly accessible. 
 
-Run the following `oc` commands in the VS Code server terminal.
+Run the following `curl` commands in the VS Code server terminal.
 
 [source,sh]
 ----

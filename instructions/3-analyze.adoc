@@ -51,8 +51,8 @@ Click on `Next`.
 
 First, you need to _download_ or _git clone_ the `app-mod-project` from your _Gitea_ repository. You can find the Gitea URL and credentials in the *shared environment detail page*. 
 
-* Gitea admin username - `opentlc-mgr`
-* Gitea admin password - `openshift`
+* Gitea username - `userXX`
+* Gitea password - `openshift`
 
 image::../images/gitea-repo.png[gitea-repo]
 

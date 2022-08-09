@@ -27,16 +27,28 @@ On most systems this will download a file `pki-resource.cer` into your `Download
 
 The shared cluster already has projects for all users available. But you are migrating a VM as administrator. Therefore you need to create your own project to migrate the VM into.
 
-Log into the OpenShift Web Console from the *shared environment detail page*.
+Switch to a terminal window where you are logged in as admin.
 
-* Username: `admin`
-* Password: `r3dh4t1!`
+The shared OpenShift cluster has only one or two nodes that are capable of running VMs. These are _metal_ instances on AWS. To ensure that only VMs are running on these nodes the nodes are _tainted_. Which means you must add a matching _toleration_ to your VM to allow it to run on the metal nodes.
 
-image::../images/ocp-login.png[ocp-login]
+Create the target project for your migrated VM.
 
-In the navigator on the left expand `Home` and select `Projects`.
+[source,sh]
+----
+oc new-project retail
+----
 
-Click `Create Project`. Use *retail* as the name, leave all other fields empty and click `Create`.
+The easiest way of adding a matching _toleration_ is to automatically add the _toleration_ to all pods in a project. This can be done by adding an annotation to the namespace that underlies your project.
+
+[source,sh]
+----
+oc annotate namespace retail scheduler.alpha.kubernetes.io/defaultTolerations='[{"operator": "Exists", "key": "metal"}]'
+----
+
+[WARNING]
+====
+If your namespace does not have the correct toleration the migration process will fail and your VM will not start.
+====
 
 === 5.3. Set up Virtualization Provider in MTV
 
@@ -149,9 +161,7 @@ image::../images/mtv-plan-complete-ocp.png[mtv-plan-complete-ocp]
 
 == 5.5. Post Migration Tasks
 
-The shared OpenShift cluster has only one or two nodes that are capable of running VMs. These are _metal_ instances on AWS. To ensure that only VMs are running on these nodes the nodes are _tainted_. Which means you must add a matching _toleration_ to your VM to allow it to run on the metal nodes.
-
-Additionally the migrated VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
+Initially the migrated VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 
 [NOTE]
 ====
@@ -172,19 +182,6 @@ Make sure you are in the `retail` project:
 [source,sh]
 ----
 oc project retail
-----
-
-Add the _tolerations_ to your VM:
-
-[source,sh]
-----
-oc patch vm oracle-${GUID} --type=merge --patch='{"spec": {"template": {"spec": {"tolerations": [{"key": "metal","operator": "Exists"}]}}}}'
-----
-
-Start the VM:
-[source,sh]
-----
-virtctl start oracle-${GUID}
 ----
 
 Make the VM accessible from within the OpenShift cluster:

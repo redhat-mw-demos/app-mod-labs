@@ -102,14 +102,14 @@ Click on `New Terminal` in _Terminal_ menu in the VS Code. Once a new terminal i
 
 [NOTE]
 ====
-Replace `YOUR_Openshift_API_URL` and `userXX` with your own information in the *shared environment detail page*.
+Replace `userXX` with your own information in the *shared environment detail page*.
 ====
 
 [source,sh]
 ----
-oc login -u userXX -p openshift https://YOUR_Openshift_API_URL 
-----
+oc login -u userXX -p openshift https://openshift.default.svc:443
 
+----
 image::../images/vscode-terminal.png[vscode-terminal]
 
 Find the `Route` URL for the *Frontend* application. Run the following `oc` command in the VS Code server terminal.
@@ -138,33 +138,6 @@ Click through the three panels on the left.
 * `Products` shows the current inventory information.
 
 == 1.4. Access the Customer Data
-
-// === 1.4.1 Connect using DBeaver
-
-// You can use https://dbeaver.io[DBeaver (Community Edition)^] to connect to the Oracle database on Red Hat Virtualization (RHV).
-
-// . Download ans install the version of DBeaver suitable for your environment.
-// . Launch *DBeaver*
-// . Right click the *Database Navigator* Panel and select *Create* -> *Connection*
-// . Select *Oracle* and click *Next*
-// . Fill in the properties (use the values in the *shared environment detail page*), leave default values where not specified otherwise
-// .. *Host*: `YOUR OWN Oracle Database VM IP Address`
-// .. *Database*: `XEPDB1`
-// .. *Username*: `customer`
-// .. *Password*: `redhat`
-// . Click *Test Connection ...*. You should see a success message.
-// . Click *Finish*
-
-// Next you can show the contents of the database:
-
-// . Expand *XEPDB1* then expand *Schemas*
-// . Expand *CUSTOMER* then expand *Tables*
-// . Double click on *CUSTOMERS* under *Tables*
-// . On the right you can show the table properties (first tab) and table properties (*Data* tab)
-
-// image::../images/customer-dbms.png[Connect using DBeaver]
-
-// === 1.4.2. Demonstrate the Customer Application deployed on Tomcat
 
 The RHV environment not only has the Oracle Database VM deployed but it also hosts another VM which runs the old customer application on top of Apache Tomcat.
 

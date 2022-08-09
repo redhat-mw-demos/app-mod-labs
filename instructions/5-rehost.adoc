@@ -23,7 +23,9 @@ https://<RHV_HOSTNAME>/ovirt-engine/services/pki-resource?resource=ca-certificat
 
 On most systems this will download a file `pki-resource.cer` into your `Downloads` folder. Take a note where this file got downloaded to. You will need it a little bit later.
 
-=== 5.2. Set up Virtualization Provider in MTV
+=== 5.2. Set up an OpenShift Project for your migrated VM
+
+The shared cluster already has projects for all users available. But you are migrating a VM as administrator. Therefore you need to create your own project to migrate the VM into.
 
 Log into the OpenShift Web Console from the *shared environment detail page*.
 
@@ -32,7 +34,20 @@ Log into the OpenShift Web Console from the *shared environment detail page*.
 
 image::../images/ocp-login.png[ocp-login]
 
-Go to `Virtualization` on the left menu and click on `Virtual Machines`. From the *Projects* drop down select the *retail* project. There are no Virtual Machines yet.
+In the navigator on the left expand `Home` and select `Projects`.
+
+Click `Create Project`. Use *retail* as the name, leave all other fields empty and click `Create`.
+
+=== 5.3. Set up Virtualization Provider in MTV
+
+Log into the OpenShift Web Console from the *shared environment detail page*.
+
+* Username: `admin`
+* Password: `r3dh4t1!`
+
+image::../images/ocp-login.png[ocp-login]
+
+Go to `Virtualization` on the left menu and click on `Virtual Machines`. From the *Projects* drop down select the previously created *retail* project. There are no Virtual Machines yet.
 
 image::../images/ocp-vm.png[ocp-vm]
 
@@ -54,7 +69,7 @@ image::../images/mtv-add-provider.png[mtv-add-provider]
 Select *Red Hat Virtualization* from the list of providers. Fill in the information in the *shared environment detail page*.
 
 * Name: `rhv`
-* RHV Manager host name or IP address*: The hostname in the *shared environment detail page* (e.g., `rhvm.dev.cnv.infra.opentlc.com`)
+* RHV Manager host name or IP address: The hostname in the *shared environment detail page* (e.g., `rhvm.dev.cnv.infra.opentlc.com`)
 * RHV Manager user name: the username in the *shared environment detail page*. (e.g., `migrateuser-96trd@internal`)
 * RHV Manager password: the password in the *shared environment detail page*. (e.g., `ThvA2Ioa6Q4G`)
 * CA Certificate: Drop the previously downloaded CA Certificate File
@@ -67,7 +82,7 @@ MTV will validate your provider and after a few seconds the status should switch
 
 image::../images/mtv-add-provider-ready.png[mtv-add-provider-ready]
 
-=== 5.3. Create and execute Migration Plan
+=== 5.4. Create and execute Migration Plan
 
 Go to `Migration Plans` in the Migration Toolkit for Virtualization console. Click `Create Plan`.
 
@@ -132,9 +147,11 @@ Once the migration succeeds you will find a VM called `oracle-xxxxx` in your ret
 
 image::../images/mtv-plan-complete-ocp.png[mtv-plan-complete-ocp]
 
-== 5.4. Post Migration Tasks
+== 5.5. Post Migration Tasks
 
-The VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
+The shared OpenShift cluster has only one or two nodes that are capable of running VMs. These are _metal_ instances on AWS. To ensure that only VMs are running on these nodes the nodes are _tainted_. Which means you must add a matching _toleration_ to your VM to allow it to run on the metal nodes.
+
+Additionally the migrated VM is not yet reachable from other applications on the cluster. You will need to add a label to the VM and then create a service to be able to connect to the database on the VM.
 
 [NOTE]
 ====
@@ -150,24 +167,31 @@ Replace `GUID` with your GUID from the *shared environment detail page*. (e.g. _
 export GUID=YOUR_GUID
 ----
 
-Add a label to your VM's template metadata and make sure to replace `${GUID}` with your GUID.
+Make sure you are in the `retail` project:
 
 [source,sh]
 ----
-oc patch vm oracle-${GUID} --type=merge --patch="{\"spec\": { \"template\": { \"metadata\": { \"labels\": { \"app\": \"oracle-${GUID}\"}}}}}" -n retail
+oc project retail
 ----
 
-Restart the VM for the VM Pod to pick up the new label. Go back to the `VirtualMachines` menu in the OpenShift Web Console. Click on your VM.
-
-From the *Action* drop down select *Restart* then confirm by clicking *Restart* in the pop up dialog.
-
-image::../images/restart-vm.png[restart-vm]
-
-When the VM in OpenShift restarted and running again, create service for the database vm:
+Add the _tolerations_ to your VM:
 
 [source,sh]
 ----
-oc create service clusterip oracle-${GUID} --tcp=1521:1521 --tcp=2022:22 -n retail
+oc patch vm oracle-${GUID} --type=merge --patch='{"spec": {"template": {"spec": {"tolerations": [{"key": "metal","operator": "Exists"}]}}}}'
+----
+
+Start the VM:
+[source,sh]
+----
+virtctl start oracle-${GUID}
+----
+
+Make the VM accessible from within the OpenShift cluster:
+
+[source,sh]
+----
+virtctl expose vm oracle-${GUID} --port=1521 --name=oracle-${GUID} --type=ClusterIP
 ----
 
 Make sure your service has the endpoint for the Oracle VM pod as an Endpoint:
